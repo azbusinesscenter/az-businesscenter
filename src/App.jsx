@@ -644,7 +644,7 @@ export default function App() {
 
                     <Link
                       to="/activites"
-                      target="_blank"
+                      
                       className="button-dark"
                     >
                       Voir plus
