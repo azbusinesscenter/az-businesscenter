@@ -68,6 +68,29 @@ const reasons = [
 ];
 
 export default function App() {
+  const [status, setStatus] = React.useState("idle");
+
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyBpy8fAoBfLpurO8ssVFwneveMaQxqjUnXAng7Vrc_RFPgz_aq6REicE-R75uJCF-M/exec";
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("sending");
+    const formData = new FormData(e.target);
+    const payload = {
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      company: formData.get("company"),
+      message: formData.get("message"),
+    };
+    try {
+      await fetch(SCRIPT_URL, { method: "POST", body: JSON.stringify(payload) });
+      setStatus("sent");
+      e.target.reset();
+    } catch {
+      setStatus("error");
+    }
+  };
   const inputStyle = {
     width: "100%",
     padding: "17px 18px",
@@ -687,58 +710,59 @@ export default function App() {
             </p>
 
             <form
-              onSubmit={async (e) => {
-                e.preventDefault();
-                const form = e.target;
-
-                const data = {
-                  name: form.name.value,
-                  email: form.email.value,
-                  phone: form.phone.value,
-                  company: form.company.value,
-                  message: form.message.value,
-                };
-
-                try {
-                  const response = await fetch(
-                    "https://script.google.com/macros/s/AKfycbyw5gH2qWYDgmnAG_dDDtC1adqfSRRw-Om943gmaelTmOS1Nqx7RE1gPxwm9jyxu3Sb/exec",
-                    {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify(data),
-                    }
-                  );
-
-                  const result = await response.json();
-
-                  if (result.result === "success") {
-                    alert("Message envoyé !");
-                    form.reset();
-                  } else {
-                    alert("Erreur : " + result.message);
-                  }
-                } catch (err) {
-                  alert("Erreur de connexion : " + err.message);
-                }
-              }}
+              onSubmit={handleSubmit}
               className="contact-form"
             >
-              <input name="name" placeholder="Nom complet" required style={inputStyle} />
-              <input name="phone" placeholder="Téléphone" required style={inputStyle} />
-              <input name="email" type="email" placeholder="Adresse e-mail" required style={inputStyle} />
-              <input name="company" placeholder="Entreprise" style={inputStyle} />
+              <input
+                name="name"
+                placeholder="Nom complet"
+                required
+                style={inputStyle}
+              />
+              <input
+                name="phone"
+                placeholder="Téléphone"
+                required
+                style={inputStyle}
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Adresse e-mail"
+                required
+                style={inputStyle}
+              />
+              <input
+                name="company"
+                placeholder="Entreprise"
+                style={inputStyle}
+              />
 
               <textarea
                 name="message"
                 placeholder="Votre message"
                 rows="6"
-                style={{ ...inputStyle, resize: "vertical" }}
+                style={{
+                  ...inputStyle,
+                  resize: "vertical",
+                }}
                 className="textarea-full"
               />
 
-              <button type="submit" className="submit-button submit-full">
-                ENVOYER
+              <button type="submit" className="submit-button submit-full" disabled={status === "sending"}>
+                {status === "sending" ? "ENVOI EN COURS..." : "ENVOYER"}
               </button>
+
+              {status === "sent" && (
+                <p style={{ color: "#c9a227", gridColumn: "1/-1" }}>
+                  ✅ Message envoyé avec succès !
+                </p>
+              )}
+              {status === "error" && (
+                <p style={{ color: "#f87171", gridColumn: "1/-1" }}>
+                  ❌ Une erreur est survenue. Veuillez réessayer.
+                </p>
+              )}
             </form>
           </div>
         </section>
