@@ -687,15 +687,54 @@ export default function App() {
             </p>
 
             <form
-              action="https://script.google.com/macros/s/AKfycbwDO7Czly6xZYqYoc3L5GnUTXhaAg6lSp4c-d4BFx3kq7twTH5zlbwzdxfTAVW9c2X5/exec"
-              method="POST"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.target;
+
+                const data = {
+                  name: form.name.value,
+                  email: form.email.value,
+                  phone: form.phone.value,
+                  company: form.company.value,
+                  message: form.message.value,
+                };
+
+                try {
+                  const response = await fetch(
+                    "https://script.google.com/macros/s/AKfycbyw5gH2qWYDgmnAG_dDDtC1adqfSRRw-Om943gmaelTmOS1Nqx7RE1gPxwm9jyxu3Sb/exec",
+                    {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(data),
+                    }
+                  );
+
+                  const result = await response.json();
+
+                  if (result.result === "success") {
+                    alert("Message envoyé !");
+                    form.reset();
+                  } else {
+                    alert("Erreur : " + result.message);
+                  }
+                } catch (err) {
+                  alert("Erreur de connexion : " + err.message);
+                }
+              }}
               className="contact-form"
             >
-              <input name="nom" placeholder="Nom complet" required />
-              <input name="email" type="email" placeholder="Adresse e-mail" required />
-              <input name="telephone" placeholder="Téléphone" required />
-              <input name="entreprise" placeholder="Entreprise" />
-              <textarea name="message" placeholder="Message" rows="6" />
+              <input name="name" placeholder="Nom complet" required style={inputStyle} />
+              <input name="phone" placeholder="Téléphone" required style={inputStyle} />
+              <input name="email" type="email" placeholder="Adresse e-mail" required style={inputStyle} />
+              <input name="company" placeholder="Entreprise" style={inputStyle} />
+
+              <textarea
+                name="message"
+                placeholder="Votre message"
+                rows="6"
+                style={{ ...inputStyle, resize: "vertical" }}
+                className="textarea-full"
+              />
 
               <button type="submit" className="submit-button submit-full">
                 ENVOYER
