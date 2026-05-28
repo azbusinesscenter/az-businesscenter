@@ -17,30 +17,17 @@ const activities = [
   {
     icon: BriefcaseBusiness,
     title: "CONSEIL ET GESTION",
-    items: [
-      "Domiciliation commerciale",
-      "Création d’entreprises",
-      "Contentieux administratif",
-      "Assistance en matière de marchés publics",
-    ],
+    items: ["Accompagnement dans la création d'entreprises, domiciliation commerciale, contentieux administratif et marchés publics, conformément à la réglementation marocaine."],
   },
   {
     icon: Building2,
-    title: "GESTION DU SYNDIC D’IMMEUBLES",
-    items: [
-      "Une gestion rigoureuse",
-      "transparente et professionnelle",
-      "de votre copropriété.",
-    ],
+    title: "GESTION DU SYNDIC D'IMMEUBLES",
+    items: ["Gestion professionnelle de votre copropriété, conforme à la loi n°18-00 révisée en 2024. Assemblées générales, suivi administratif et communication transparente."],
   },
   {
     icon: Sofa,
-    title: "SOUS LOCATION D’IMMEUBLES MEUBLÉES",
-    items: [
-      "Des espaces meublés",
-      "confortables et prêts à l’emploi",
-      "pour courts ou longs séjours.",
-    ],
+    title: "SOUS LOCATION D'IMMEUBLES MEUBLÉES",
+    items: ["Sous-location d'espaces meublés confortables, dans un cadre contractuel clair et conforme à l'article 668 du Code des Obligations et des Contrats."],
   },
 ];
 

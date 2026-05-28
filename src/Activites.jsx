@@ -452,30 +452,30 @@ export default function Activites() {
               <h2 className="section-title">CONSEIL ET GESTION</h2>
 
               <p className="text-dark-bg">
-                Nous accompagnons les porteurs de projets, entrepreneurs et
-                sociétés dans leurs démarches de structuration, de gestion et de
-                développement. Notre rôle est d’apporter un support clair,
-                organisé et adapté aux exigences administratives et commerciales
-                au Maroc.
-              </p>
+                Nous accompagnons les porteurs de projets, entrepreneurs et sociétés
+                dans leurs démarches de structuration, de gestion et de développement,
+                conformément à la réglementation marocaine en vigueur. Notre rôle est
+                d'apporter un support clair, organisé et adapté aux exigences
+                administratives et commerciales au Maroc.
+              </p>t
 
               <div className="cards-grid">
                 {[
                   [
                     "Domiciliation commerciale",
-                    "Mise à disposition d’une adresse professionnelle pour les entreprises, dans le respect des obligations prévues par la réglementation marocaine.",
+                    "Mise à disposition d'une adresse professionnelle conforme à la loi n°89-17. Obligations légales respectées : immatriculation au registre de commerce, mise à jour auprès de la DGI et de la CNSS.",
                   ],
                   [
-                    "Création d’entreprises",
-                    "Accompagnement dans les démarches de constitution, préparation des documents, orientation administrative et suivi du dossier.",
+                    "Création d'entreprises",
+                    "Accompagnement complet en 10 étapes : choix du statut juridique (SARL), certificat négatif, établissement des statuts, immatriculation au Registre de Commerce et affiliation à la CNSS.",
                   ],
                   [
                     "Contentieux administratif",
-                    "Assistance dans l’organisation et le suivi des dossiers administratifs, avec orientation vers les procédures adaptées selon la situation.",
+                    "Assistance dans le suivi des dossiers administratifs conformément à la loi n°41-90. Orientation vers les recours en annulation pour excès de pouvoir, dans un délai légal de 60 jours.",
                   ],
                   [
                     "Marchés publics",
-                    "Assistance en matière de préparation, classement et suivi des dossiers liés aux marchés publics, conformément aux exigences applicables au Maroc.",
+                    "Assistance dans la préparation et le suivi des dossiers de marchés publics, conformément au décret n°2-12-349. Un domaine stratégique représentant 15 à 17% du PIB marocain.",
                   ],
                 ].map(([title, description]) => (
                   <div className="detail-card" key={title}>
@@ -496,22 +496,21 @@ export default function Activites() {
               </h2>
 
               <p className="text-light-bg">
-                AZ Business Center propose une gestion organisée, transparente
-                et professionnelle des copropriétés. Notre objectif est
-                d’assurer le bon fonctionnement de l’immeuble, le suivi
-                administratif, la communication avec les copropriétaires et la
-                gestion courante, dans le cadre de la législation marocaine
-                relative à la copropriété.
+                AZ Business Center assure une gestion organisée, transparente et
+                professionnelle de votre copropriété, en conformité avec la loi n°18-00
+                révisée par le Parlement marocain le 9 juillet 2024. Cette nouvelle
+                législation renforce la transparence, la communication et la résolution
+                des conflits au sein des copropriétés.
               </p>
 
               <div className="points-grid">
                 {[
-                  "Suivi administratif des dossiers de copropriété",
-                  "Gestion des charges et organisation des documents",
-                  "Communication avec les copropriétaires",
-                  "Coordination avec les prestataires",
-                  "Organisation des assemblées et comptes rendus",
-                  "Suivi de l’entretien général de l’immeuble",
+                  "Convocation et organisation des assemblées générales avec 15 jours de préavis",
+                  "Notification des décisions aux copropriétaires dans un délai de 8 jours",
+                  "Conciliation et médiation avant tout recours juridique",
+                  "Suivi administratif et gestion des charges de copropriété",
+                  "Communication transparente avec les copropriétaires",
+                  "Suivi de l'entretien général de l'immeuble",
                 ].map((item) => (
                   <div key={item} className="light-point">
                     <CheckCircle color="#c9a227" size={20} />
@@ -539,21 +538,22 @@ export default function Activites() {
               </h2>
 
               <p className="text-dark-bg">
-                Nous proposons des solutions de sous-location d’immeubles
-                meublés, adaptées aux besoins des professionnels, entreprises,
-                visiteurs et clients recherchant des espaces prêts à l’emploi.
-                Cette activité s’inscrit dans un cadre contractuel clair,
-                conforme aux règles applicables au Maroc.
+                Nous proposons des solutions de sous-location d'immeubles meublés,
+                adaptées aux besoins des professionnels, entreprises et visiteurs.
+                Cette activité s'inscrit dans un cadre contractuel clair, conforme
+                à l'article 668 du Code des Obligations et des Contrats marocain,
+                avec une autorisation écrite du propriétaire et des conditions
+                clairement définies.
               </p>
 
               <div className="points-grid">
                 {[
-                  "Espaces meublés modernes et fonctionnels",
+                  "Espaces meublés modernes, confortables et prêts à l'emploi",
                   "Solutions adaptées aux courts ou longs séjours",
-                  "Cadre professionnel, confortable et organisé",
-                  "Contrats et conditions clairement définis",
+                  "Contrats conformes à l'article 668 du Code des Obligations et des Contrats",
+                  "Autorisation écrite du propriétaire garantie",
                   "Accompagnement dans la mise à disposition des espaces",
-                  "Suivi de l’état, de l’usage et de l’organisation des lieux",
+                  "Suivi de l'état, de l'usage et de l'organisation des lieux",
                 ].map((item) => (
                   <div key={item} className="dark-point">
                     <CheckCircle color="#c9a227" size={22} />
