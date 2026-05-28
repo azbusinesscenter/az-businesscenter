@@ -84,7 +84,11 @@ export default function App() {
       message: formData.get("message"),
     };
     try {
-      await fetch(SCRIPT_URL, { method: "POST", body: JSON.stringify(payload) });
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(payload),
+      });
       setStatus("sent");
       e.target.reset();
     } catch {
