@@ -687,13 +687,9 @@ export default function App() {
             </p>
 
             <form
-
-              action="https://script.google.com/macros/s/AKfyc.../exec"
-
+              action="https://script.google.com/macros/s/AKfycbw4uDdiuikxAkEtJUxun1yMmYHGgLulx4Ko_dUYRxm9WTBLBUfiqTTPuqDS4GIPYtiwsg/exec"
               method="POST"
-
               className="contact-form"
-
             >
               <input
                 name="name"
