@@ -687,15 +687,15 @@ export default function App() {
             </p>
 
             <form
-              action="https://script.google.com/macros/s/AKfycbyVUAZKkcVi3QNYoFqVwjfZ7z-35IYLsmIEz3L1U9PFMmONoI7SZG-2bzvlJOBvbcb_/exec"
+              action="https://script.google.com/macros/s/AKfycbwDO7Czly6xZYqYoc3L5GnUTXhaAg6lSp4c-d4BFx3kq7twTH5zlbwzdxfTAVW9c2X5/exec"
               method="POST"
               className="contact-form"
             >
-              <input name="nom" placeholder="Nom complet" required style={inputStyle} />
-              <input name="email" type="email" placeholder="Adresse e-mail" required style={inputStyle} />
-              <input name="telephone" placeholder="Téléphone" required style={inputStyle} />
-              <input name="entreprise" placeholder="Entreprise" style={inputStyle} />
-              <textarea name="message" placeholder="Message" rows="6" style={{ ...inputStyle, resize: "vertical" }} />
+              <input name="nom" placeholder="Nom complet" required />
+              <input name="email" type="email" placeholder="Adresse e-mail" required />
+              <input name="telephone" placeholder="Téléphone" required />
+              <input name="entreprise" placeholder="Entreprise" />
+              <textarea name="message" placeholder="Message" rows="6" />
 
               <button type="submit" className="submit-button submit-full">
                 ENVOYER
