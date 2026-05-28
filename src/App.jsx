@@ -687,9 +687,13 @@ export default function App() {
             </p>
 
             <form
-              action="https://formspree.io/f/xvzylodw"
+
+              action="https://script.google.com/macros/s/AKfyc.../exec"
+
               method="POST"
+
               className="contact-form"
+
             >
               <input
                 name="name"
