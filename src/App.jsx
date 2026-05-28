@@ -687,45 +687,15 @@ export default function App() {
             </p>
 
             <form
-              action="https://script.google.com/macros/s/AKfycbxYxkHjX9aJXvgn8fdsXosYiEwd06B5c-IX_-_WNzmO-RxFXetL6vRti6GyDJNnUYGUGw/exec"
+              action="https://script.google.com/macros/s/AKfycbyVUAZKkcVi3QNYoFqVwjfZ7z-35IYLsmIEz3L1U9PFMmONoI7SZG-2bzvlJOBvbcb_/exec"
               method="POST"
               className="contact-form"
             >
-              <input
-                name="Nom complet"
-                placeholder="Nom complet"
-                required
-                style={inputStyle}
-              />
-              <input
-                name="Téléphone"
-                placeholder="Téléphone"
-                required
-                style={inputStyle}
-              />
-              <input
-                name="Adresse e-mail"
-                type="email"
-                placeholder="Adresse e-mail"
-                required
-                style={inputStyle}
-              />
-              <input
-                name="Entreprise"
-                placeholder="Entreprise"
-                style={inputStyle}
-              />
-
-              <textarea
-                name="Message"
-                placeholder="Votre message"
-                rows="6"
-                style={{
-                  ...inputStyle,
-                  resize: "vertical",
-                }}
-                className="textarea-full"
-              />
+              <input name="nom" placeholder="Nom complet" required style={inputStyle} />
+              <input name="email" type="email" placeholder="Adresse e-mail" required style={inputStyle} />
+              <input name="telephone" placeholder="Téléphone" required style={inputStyle} />
+              <input name="entreprise" placeholder="Entreprise" style={inputStyle} />
+              <textarea name="message" placeholder="Message" rows="6" style={{ ...inputStyle, resize: "vertical" }} />
 
               <button type="submit" className="submit-button submit-full">
                 ENVOYER
