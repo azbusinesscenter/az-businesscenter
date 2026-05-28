@@ -644,7 +644,7 @@ export default function App() {
 
                     <Link
                       to="/activites"
-                      
+
                       className="button-dark"
                     >
                       Voir plus
@@ -683,27 +683,41 @@ export default function App() {
             <h2>Contactez AZ Business Center</h2>
 
             <p>
-              Laissez vos informations et notre équipe vous contactera
-              prochainement.
+              Laissez vos informations et notre équipe vous contactera prochainement.
             </p>
 
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert("Merci. Vos informations ont été enregistrées.");
-              }}
+              action="https://formspree.io/f/xvzylodw"
+              method="POST"
               className="contact-form"
             >
-              <input placeholder="Nom complet" required style={inputStyle} />
-              <input placeholder="Téléphone" required style={inputStyle} />
               <input
-                placeholder="Adresse e-mail"
-                type="email"
+                name="name"
+                placeholder="Nom complet"
+                required
                 style={inputStyle}
               />
-              <input placeholder="Entreprise" style={inputStyle} />
+              <input
+                name="phone"
+                placeholder="Téléphone"
+                required
+                style={inputStyle}
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Adresse e-mail"
+                required
+                style={inputStyle}
+              />
+              <input
+                name="company"
+                placeholder="Entreprise"
+                style={inputStyle}
+              />
 
               <textarea
+                name="message"
                 placeholder="Votre message"
                 rows="6"
                 style={{
