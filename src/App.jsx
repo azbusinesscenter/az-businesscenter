@@ -55,6 +55,22 @@ const reasons = [
 ];
 
 export default function App() {
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
   const [status, setStatus] = React.useState("idle");
 
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyBpy8fAoBfLpurO8ssVFwneveMaQxqjUnXAng7Vrc_RFPgz_aq6REicE-R75uJCF-M/exec";
@@ -408,6 +424,16 @@ export default function App() {
             width: 38px;
             height: 38px;
           }
+          .fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
           @media (max-width: 1024px) {
             .navbar {
@@ -632,7 +658,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="activites" className="section-light">
+       <section id="activites" className="section-light fade-in">
           <div className="section-label-wrap">
             <span className="section-label">NOS ACTIVITÉS</span>
           </div>
@@ -670,7 +696,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="pourquoi" className="section-dark">
+       <section id="pourquoi" className="section-dark fade-in">
           <h2 className="why-title">
             POURQUOI CHOISIR AZ BUSINESS CENTER ?
           </h2>
@@ -706,7 +732,7 @@ export default function App() {
             />
           </div>
         </section>
-        <section id="contact" className="section-dark">
+        <section id="contact" className="section-dark fade-in">
           <div className="contact-card">
             <h2>Contactez AZ Business Center</h2>
 
