@@ -860,7 +860,7 @@ export default function App() {
         </footer>
 
         <a
-          href="https://wa.me/212600000000"
+          href="https://wa.me/212600000000?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20votre%20site%20web%20AZ%20Business%20Center."
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contact WhatsApp"
