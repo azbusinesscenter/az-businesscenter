@@ -285,136 +285,37 @@ export default function Activites() {
           }
 
           @media (max-width: 1024px) {
-            .activities-nav {
-              padding: 0 32px;
-            }
-
-            .activities-hero {
-              padding: 90px 40px;
-            }
-
-            .activity-section-dark,
-            .activity-section-light {
-              padding: 80px 40px;
-            }
-
-            .activity-layout-left,
-            .activity-layout-right {
-              grid-template-columns: 1fr;
-              gap: 30px;
-            }
-
-            .activity-icon-dark,
-            .activity-icon-light {
-              justify-self: start;
-            }
-
-            .cards-grid,
-            .points-grid {
-              grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-              grid-template-columns: 1fr 1fr;
-            }
+            .activities-nav { padding: 0 32px; }
+            .activities-hero { padding: 90px 40px; }
+            .activity-section-dark, .activity-section-light { padding: 80px 40px; }
+            .activity-layout-left, .activity-layout-right { grid-template-columns: 1fr; gap: 30px; }
+            .activity-icon-dark, .activity-icon-light { justify-self: start; }
+            .cards-grid, .points-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
           }
 
           @media (max-width: 640px) {
-            .activities-nav {
-              height: auto;
-              min-height: 90px;
-              padding: 12px 20px;
-              gap: 18px;
-            }
-
-            .nav-logo {
-              width: 115px;
-              height: 58px;
-            }
-
-            .back-link {
-              font-size: 12px;
-            }
-
-            .activities-hero {
-              padding: 70px 22px;
-            }
-
-            .hero-logo {
-              width: 160px;
-            }
-
-            .hero-title {
-              font-size: 38px;
-              line-height: 1.15;
-            }
-
-            .hero-text {
-              font-size: 17px;
-              line-height: 1.75;
-            }
-
-            .activity-section-dark,
-            .activity-section-light {
-              padding: 65px 22px;
-            }
-
-            .activity-icon-dark,
-            .activity-icon-light {
-              width: 88px;
-              height: 88px;
-            }
-
-            .section-title {
-              font-size: 30px;
-              line-height: 1.2;
-            }
-
-            .text-dark-bg,
-            .text-light-bg {
-              font-size: 16px;
-            }
-
-            .detail-card {
-              padding: 22px;
-            }
-
-            .light-point,
-            .dark-point {
-              font-size: 15px;
-            }
-
-            .legal-section {
-              padding: 60px 22px;
-            }
-
-            .legal-card {
-              padding: 28px 22px;
-            }
-
-            .legal-card p {
-              font-size: 16px;
-            }
-
-            .cta-section {
-              padding: 65px 22px;
-            }
-
-            .cta-section h2 {
-              font-size: 32px;
-            }
-
-            .cta-section p {
-              font-size: 16px;
-            }
-
-            .footer {
-              padding: 45px 22px;
-            }
-
-            .footer-grid {
-              grid-template-columns: 1fr;
-            }
+            .activities-nav { height: auto; min-height: 90px; padding: 12px 20px; gap: 18px; }
+            .nav-logo { width: 115px; height: 58px; }
+            .back-link { font-size: 12px; }
+            .activities-hero { padding: 70px 22px; }
+            .hero-logo { width: 160px; }
+            .hero-title { font-size: 38px; line-height: 1.15; }
+            .hero-text { font-size: 17px; line-height: 1.75; }
+            .activity-section-dark, .activity-section-light { padding: 65px 22px; }
+            .activity-icon-dark, .activity-icon-light { width: 88px; height: 88px; }
+            .section-title { font-size: 30px; line-height: 1.2; }
+            .text-dark-bg, .text-light-bg { font-size: 16px; }
+            .detail-card { padding: 22px; }
+            .light-point, .dark-point { font-size: 15px; }
+            .legal-section { padding: 60px 22px; }
+            .legal-card { padding: 28px 22px; }
+            .legal-card p { font-size: 16px; }
+            .cta-section { padding: 65px 22px; }
+            .cta-section h2 { font-size: 32px; }
+            .cta-section p { font-size: 16px; }
+            .footer { padding: 45px 22px; }
+            .footer-grid { grid-template-columns: 1fr; }
           }
         `}
       </style>
@@ -422,18 +323,15 @@ export default function Activites() {
       <div className="activities-page">
         <nav className="activities-nav">
           <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
-
           <Link to="/" className="back-link">
             <ArrowLeft size={18} />
-            RETOUR À L’ACCUEIL
+            RETOUR À L'ACCUEIL
           </Link>
         </nav>
 
         <section className="activities-hero">
           <img src="/logo.png" alt="AZ Business Center" className="hero-logo" />
-
           <h1 className="hero-title">NOS ACTIVITÉS</h1>
-
           <p className="hero-text">
             AZ Business Center accompagne les entreprises, copropriétés,
             investisseurs et professionnels au Maroc avec des solutions
@@ -442,125 +340,115 @@ export default function Activites() {
           </p>
         </section>
 
+        {/* CONSEIL ET GESTION */}
         <section className="activity-section-dark">
-          <div className="activity-layout-left">
-            <div className="activity-icon-dark">
-              <BriefcaseBusiness size={58} color="#c9a227" />
-            </div>
-
-            <div>
-              <h2 className="section-title">CONSEIL ET GESTION</h2>
-
-              <p className="text-dark-bg">
-                Nous accompagnons les porteurs de projets, entrepreneurs et sociétés
-                dans leurs démarches de structuration, de gestion et de développement,
-                conformément à la réglementation marocaine en vigueur. Notre rôle est
-                d'apporter un support clair, organisé et adapté aux exigences
-                administratives et commerciales au Maroc.
-              </p>t
-
-              <div className="cards-grid">
-                {[
-                  [
-                    "Domiciliation commerciale",
-                    "Mise à disposition d'une adresse professionnelle conforme à la loi n°89-17. Obligations légales respectées : immatriculation au registre de commerce, mise à jour auprès de la DGI et de la CNSS.",
-                  ],
-                  [
-                    "Création d'entreprises",
-                    "Accompagnement complet en 10 étapes : choix du statut juridique (SARL), certificat négatif, établissement des statuts, immatriculation au Registre de Commerce et affiliation à la CNSS.",
-                  ],
-                  [
-                    "Contentieux administratif",
-                    "Assistance dans le suivi des dossiers administratifs conformément à la loi n°41-90. Orientation vers les recours en annulation pour excès de pouvoir, dans un délai légal de 60 jours.",
-                  ],
-                  [
-                    "Marchés publics",
-                    "Assistance dans la préparation et le suivi des dossiers de marchés publics, conformément au décret n°2-12-349. Un domaine stratégique représentant 15 à 17% du PIB marocain.",
-                  ],
-                ].map(([title, description]) => (
-                  <div className="detail-card" key={title}>
-                    <h3>{title}</h3>
-                    <p className="text-dark-bg">{description}</p>
-                  </div>
-                ))}
+          <div style={{ position: "relative", width: "100%", maxWidth: "1250px", margin: "0 auto 55px", borderRadius: "20px", overflow: "hidden", height: "350px" }}>
+            <img src="/conseil.png" alt="Conseil et Gestion" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(6,18,34,0.85) 0%, rgba(6,18,34,0.3) 100%)", display: "flex", flexDirection: "row", alignItems: "center", padding: "0 50px", gap: "20px" }}>
+              <div style={{ width: "70px", height: "70px", borderRadius: "50%", background: "#071426", border: "1px solid rgba(201,162,39,0.35)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <BriefcaseBusiness size={36} color="#c9a227" />
               </div>
+              <h2 style={{ color: "#c9a227", fontSize: "42px", fontWeight: 900, margin: 0 }}>CONSEIL ET GESTION</h2>
+            </div>
+          </div>
+
+          <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
+            <p className="text-dark-bg">
+              Nous accompagnons les porteurs de projets, entrepreneurs et sociétés
+              dans leurs démarches de structuration, de gestion et de développement,
+              conformément à la réglementation marocaine en vigueur. Notre rôle est
+              d'apporter un support clair, organisé et adapté aux exigences
+              administratives et commerciales au Maroc.
+            </p>
+            <div className="cards-grid">
+              {[
+                ["Domiciliation commerciale", "Mise à disposition d'une adresse professionnelle conforme à la loi n°89-17. Obligations légales respectées : immatriculation au registre de commerce, mise à jour auprès de la DGI et de la CNSS."],
+                ["Création d'entreprises", "Accompagnement complet en 10 étapes : choix du statut juridique (SARL), certificat négatif, établissement des statuts, immatriculation au Registre de Commerce et affiliation à la CNSS."],
+                ["Contentieux administratif", "Assistance dans le suivi des dossiers administratifs conformément à la loi n°41-90. Orientation vers les recours en annulation pour excès de pouvoir, dans un délai légal de 60 jours."],
+                ["Marchés publics", "Assistance dans la préparation et le suivi des dossiers de marchés publics, conformément au décret n°2-12-349. Un domaine stratégique représentant 15 à 17% du PIB marocain."],
+              ].map(([title, description]) => (
+                <div className="detail-card" key={title}>
+                  <h3>{title}</h3>
+                  <p className="text-dark-bg">{description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
+        {/* GESTION DU SYNDIC */}
         <section className="activity-section-light">
-          <div className="activity-layout-right">
-            <div>
-              <h2 className="section-title section-title-dark">
-                GESTION DU SYNDIC D’IMMEUBLES
-              </h2>
-
-              <p className="text-light-bg">
-                AZ Business Center assure une gestion organisée, transparente et
-                professionnelle de votre copropriété, en conformité avec la loi n°18-00
-                révisée par le Parlement marocain le 9 juillet 2024. Cette nouvelle
-                législation renforce la transparence, la communication et la résolution
-                des conflits au sein des copropriétés.
-              </p>
-
-              <div className="points-grid">
-                {[
-                  "Convocation et organisation des assemblées générales avec 15 jours de préavis",
-                  "Notification des décisions aux copropriétaires dans un délai de 8 jours",
-                  "Conciliation et médiation avant tout recours juridique",
-                  "Suivi administratif et gestion des charges de copropriété",
-                  "Communication transparente avec les copropriétaires",
-                  "Suivi de l'entretien général de l'immeuble",
-                ].map((item) => (
-                  <div key={item} className="light-point">
-                    <CheckCircle color="#c9a227" size={20} />
-                    {item}
-                  </div>
-                ))}
+          <div style={{ position: "relative", width: "100%", maxWidth: "1250px", margin: "0 auto 55px", borderRadius: "20px", overflow: "hidden", height: "350px" }}>
+            <img src="/syndic.png" alt="Gestion du Syndic" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(6,18,34,0.85) 0%, rgba(6,18,34,0.3) 100%)", display: "flex", flexDirection: "row", alignItems: "center", padding: "0 50px", gap: "20px" }}>
+              <div style={{ width: "70px", height: "70px", borderRadius: "50%", background: "#071426", border: "1px solid rgba(201,162,39,0.35)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <Building2 size={36} color="#c9a227" />
               </div>
+              <h2 style={{ color: "#c9a227", fontSize: "42px", fontWeight: 900, margin: 0 }}>GESTION DU SYNDIC D'IMMEUBLES</h2>
             </div>
+          </div>
 
-            <div className="activity-icon-light">
-              <Building2 size={58} color="#c9a227" />
+          <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
+            <p className="text-light-bg">
+              AZ Business Center assure une gestion organisée, transparente et
+              professionnelle de votre copropriété, en conformité avec la loi n°18-00
+              révisée par le Parlement marocain le 9 juillet 2024. Cette nouvelle
+              législation renforce la transparence, la communication et la résolution
+              des conflits au sein des copropriétés.
+            </p>
+            <div className="points-grid">
+              {[
+                "Convocation et organisation des assemblées générales avec 15 jours de préavis",
+                "Notification des décisions aux copropriétaires dans un délai de 8 jours",
+                "Conciliation et médiation avant tout recours juridique",
+                "Suivi administratif et gestion des charges de copropriété",
+                "Communication transparente avec les copropriétaires",
+                "Suivi de l'entretien général de l'immeuble",
+              ].map((item) => (
+                <div key={item} className="light-point">
+                  <CheckCircle color="#c9a227" size={20} />
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
+        {/* SOUS LOCATION */}
         <section className="activity-section-dark">
-          <div className="activity-layout-left">
-            <div className="activity-icon-dark">
-              <Sofa size={58} color="#c9a227" />
-            </div>
-
-            <div>
-              <h2 className="section-title">
-                SOUS LOCATION D’IMMEUBLES MEUBLÉES
-              </h2>
-
-              <p className="text-dark-bg">
-                Nous proposons des solutions de sous-location d'immeubles meublés,
-                adaptées aux besoins des professionnels, entreprises et visiteurs.
-                Cette activité s'inscrit dans un cadre contractuel clair, conforme
-                à l'article 668 du Code des Obligations et des Contrats marocain,
-                avec une autorisation écrite du propriétaire et des conditions
-                clairement définies.
-              </p>
-
-              <div className="points-grid">
-                {[
-                  "Espaces meublés modernes, confortables et prêts à l'emploi",
-                  "Solutions adaptées aux courts ou longs séjours",
-                  "Contrats conformes à l'article 668 du Code des Obligations et des Contrats",
-                  "Autorisation écrite du propriétaire garantie",
-                  "Accompagnement dans la mise à disposition des espaces",
-                  "Suivi de l'état, de l'usage et de l'organisation des lieux",
-                ].map((item) => (
-                  <div key={item} className="dark-point">
-                    <CheckCircle color="#c9a227" size={22} />
-                    <span>{item}</span>
-                  </div>
-                ))}
+          <div style={{ position: "relative", width: "100%", maxWidth: "1250px", margin: "0 auto 55px", borderRadius: "20px", overflow: "hidden", height: "350px" }}>
+            <img src="/souslocation.png" alt="Sous Location" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(6,18,34,0.85) 0%, rgba(6,18,34,0.3) 100%)", display: "flex", flexDirection: "row", alignItems: "center", padding: "0 50px", gap: "20px" }}>
+              <div style={{ width: "70px", height: "70px", borderRadius: "50%", background: "#071426", border: "1px solid rgba(201,162,39,0.35)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <Sofa size={36} color="#c9a227" />
               </div>
+              <h2 style={{ color: "#c9a227", fontSize: "42px", fontWeight: 900, margin: 0 }}>SOUS LOCATION D'IMMEUBLES MEUBLÉES</h2>
+            </div>
+          </div>
+
+          <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
+            <p className="text-dark-bg">
+              Nous proposons des solutions de sous-location d'immeubles meublés,
+              adaptées aux besoins des professionnels, entreprises et visiteurs.
+              Cette activité s'inscrit dans un cadre contractuel clair, conforme
+              à l'article 668 du Code des Obligations et des Contrats marocain,
+              avec une autorisation écrite du propriétaire et des conditions
+              clairement définies.
+            </p>
+            <div className="points-grid">
+              {[
+                "Espaces meublés modernes, confortables et prêts à l'emploi",
+                "Solutions adaptées aux courts ou longs séjours",
+                "Contrats conformes à l'article 668 du Code des Obligations et des Contrats",
+                "Autorisation écrite du propriétaire garantie",
+                "Accompagnement dans la mise à disposition des espaces",
+                "Suivi de l'état, de l'usage et de l'organisation des lieux",
+              ].map((item) => (
+                <div key={item} className="dark-point">
+                  <CheckCircle color="#c9a227" size={22} />
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -570,7 +458,7 @@ export default function Activites() {
             <h2>Cadre professionnel</h2>
             <p>
               Les services proposés par AZ Business Center sont présentés dans
-              un cadre d’accompagnement professionnel. Selon la nature du
+              un cadre d'accompagnement professionnel. Selon la nature du
               dossier, le client peut être orienté vers les administrations,
               professionnels ou conseils compétents afin de respecter les
               procédures et obligations prévues par le droit marocain.
@@ -579,57 +467,28 @@ export default function Activites() {
         </section>
 
         <section className="cta-section">
-          <h2>Besoin d’un accompagnement ?</h2>
-
-          <p>
-            Contactez AZ Business Center pour obtenir plus d’informations sur
-            nos activités et nos solutions professionnelles.
-          </p>
-
-          <Link to="/" className="home-button">
-            RETOUR À L’ACCUEIL
-          </Link>
+          <h2>Besoin d'un accompagnement ?</h2>
+          <p>Contactez AZ Business Center pour obtenir plus d'informations sur nos activités et nos solutions professionnelles.</p>
+          <Link to="/" className="home-button">RETOUR À L'ACCUEIL</Link>
         </section>
 
         <footer className="footer">
           <div className="footer-grid">
             <div>
-              <img
-                src="/logo.png"
-                alt="AZ Business Center"
-                style={{
-                  width: "150px",
-                  height: "80px",
-                  objectFit: "contain",
-                }}
-              />
+              <img src="/logo.png" alt="AZ Business Center" style={{ width: "150px", height: "80px", objectFit: "contain" }} />
             </div>
-
             <div>
               <h4 style={{ color: "#c9a227" }}>CONTACT</h4>
-              <p>
-                <Phone size={16} /> +212 6 00 00 00 00
-              </p>
-              <p>
-                <Mail size={16} /> contact@az-businesscenter.com
-              </p>
-              <p>
-                <MapPin size={16} /> Fès, Maroc
-              </p>
+              <p><Phone size={16} /> +212 6 00 00 00 00</p>
+              <p><Mail size={16} /> contact@az-businesscenter.com</p>
+              <p><MapPin size={16} /> Fès, Maroc</p>
             </div>
-
             <div>
               <h4 style={{ color: "#c9a227" }}>AZ BUSINESS CENTER</h4>
-              <p style={{ color: "#d8dee9", lineHeight: "1.7" }}>
-                Conseil, gestion, accompagnement administratif et solutions
-                professionnelles au Maroc.
-              </p>
+              <p style={{ color: "#d8dee9", lineHeight: "1.7" }}>Conseil, gestion, accompagnement administratif et solutions professionnelles au Maroc.</p>
             </div>
           </div>
-
-          <p className="footer-bottom">
-            © 2026 AZ Business Center — Tous droits réservés.
-          </p>
+          <p className="footer-bottom">© 2026 AZ Business Center — Tous droits réservés.</p>
         </footer>
       </div>
     </>
