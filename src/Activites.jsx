@@ -480,7 +480,7 @@ export default function Activites() {
             <div>
               <h4 style={{ color: "#c9a227" }}>CONTACT</h4>
               <p><Phone size={16} /> +212 6 00 00 00 00</p>
-              <p><Mail size={16} /> contact@az-businesscenter.com</p>
+              <p><Mail size={16} /> contact@az-businesscenter.ma</p>
               <p><MapPin size={16} /> Fès, Maroc</p>
             </div>
             <div>

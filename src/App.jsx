@@ -692,6 +692,20 @@ export default function App() {
           </div>
         </section>
 
+
+        <section className="section-dark" style={{ paddingBottom: 0 }}>
+          <div style={{ maxWidth: "1150px", margin: "0 auto", borderRadius: "20px", overflow: "hidden", height: "400px" }}>
+            <iframe
+              title="AZ Business Center"
+              src="https://www.google.com/maps?q=22J3%2BQVH+Fes+30050+Morocco&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+            />
+          </div>
+        </section>
         <section id="contact" className="section-dark">
           <div className="contact-card">
             <h2>Contactez AZ Business Center</h2>
@@ -778,7 +792,7 @@ export default function App() {
                 <Phone size={16} /> +212 6 00 00 00 00
               </p>
               <p>
-                <Mail size={16} /> contact@az-businesscenter.com
+                <Mail size={16} /> contact@az-businesscenter.ma
               </p>
               <p>
                 <MapPin size={16} /> Fès, Maroc
