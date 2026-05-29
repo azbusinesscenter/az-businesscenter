@@ -406,8 +406,8 @@ export default function App() {
 
           .whatsapp-button {
             position: fixed;
-            right: 28px;
-            bottom: 28px;
+            right: 15px;
+            bottom: 150px;
             width: 68px;
             height: 68px;
             border-radius: 50%;
