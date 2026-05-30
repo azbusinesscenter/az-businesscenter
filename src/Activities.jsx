@@ -14,7 +14,7 @@ import {
   Phone,
 } from "lucide-react";
 
-export default function Activites() {
+export default function Activities() {
   const { pathname } = useLocation();
 
   useEffect(() => {

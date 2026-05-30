@@ -679,7 +679,7 @@ export default function App() {
         <nav className="navbar">
           <div className="nav-links">
             <Link to="/" className="nav-link">ACCUEIL</Link>
-            <Link to="/activites" target="_blank" className="nav-link">NOS ACTIVITÉS</Link>
+            <Link to="/activities" target="_blank" className="nav-link">NOS ACTIVITÉS</Link>
             <a href="#pourquoi" className="nav-link">POURQUOI NOUS</a>
             <a href="#contact" className="nav-link">CONTACT</a>
           </div>
@@ -693,7 +693,7 @@ export default function App() {
         {menuOpen && (
           <div className="mobile-menu">
             <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>ACCUEIL</Link>
-            <Link to="/activites" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>NOS ACTIVITÉS</Link>
+            <Link to="/activities" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>NOS ACTIVITÉS</Link>
             <a href="#pourquoi" className="nav-link" onClick={() => setMenuOpen(false)}>POURQUOI NOUS</a>
             <a href="#contact" className="nav-link" onClick={() => setMenuOpen(false)}>CONTACT</a>
           </div>
@@ -727,7 +727,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="activites" className="section-light fade-in">
+        <section id="activities" className="section-light fade-in">
           <div className="section-label-wrap">
             <span className="section-label">NOS ACTIVITÉS</span>
           </div>
@@ -752,7 +752,8 @@ export default function App() {
                     ))}
 
                     <Link
-                      to="/activites"
+                      to="/activities"
+                      target="_blank"
 
                       className="button-dark"
                     >
@@ -904,7 +905,7 @@ export default function App() {
               </p>
 
               <p>
-                <Link to="/activites" target="_blank" className="footer-link">
+                <Link to="/activities" target="_blank" className="footer-link">
                   Nos activités
                 </Link>
               </p>

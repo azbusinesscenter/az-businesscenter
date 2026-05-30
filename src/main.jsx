@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import App from "./App";
-import Activites from "./Activites";
+import Activities from "./Activities";
 
 import "./index.css";
 
@@ -50,7 +50,7 @@ function Root() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/activites" element={<Activites />} />
+        <Route path="/activities" element={<Activities />} />
       </Routes>
     </BrowserRouter>
   );
