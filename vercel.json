@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/activites",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
