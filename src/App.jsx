@@ -71,6 +71,7 @@ export default function App() {
 
     return () => observer.disconnect();
   }, []);
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const [status, setStatus] = React.useState("idle");
 
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyBpy8fAoBfLpurO8ssVFwneveMaQxqjUnXAng7Vrc_RFPgz_aq6REicE-R75uJCF-M/exec";
@@ -148,6 +149,52 @@ export default function App() {
             letter-spacing: 0.5px;
             white-space: nowrap;
           }
+
+          .burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px;
+}
+
+.burger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #c9a227;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  background: #061222;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.mobile-menu .nav-link {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .burger {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+  }
+  .mobile-menu {
+    display: flex;
+  }
+}
 
           .hero {
             min-height: 720px;
@@ -494,10 +541,14 @@ export default function App() {
 
           @media (max-width: 640px) {
             .navbar {
-              height: auto;
-              min-height: 92px;
-              padding: 14px 18px;
-            }
+  position: absolute;
+  background: transparent;
+  border-bottom: none;
+  padding: 18px 22px;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: flex-end;
+}
 
             .nav-links {
               gap: 14px 18px;
@@ -598,7 +649,7 @@ export default function App() {
               width: 58px;
               height: 58px;
               right: 18px;
-              bottom: 18px;
+              bottom: 90px;
             }
 
             .whatsapp-button img {
@@ -612,23 +663,26 @@ export default function App() {
       <div className="page">
         <nav className="navbar">
           <div className="nav-links">
-            <Link to="/" className="nav-link">
-              ACCUEIL
-            </Link>
-
-            <Link to="/activites" target="_blank" className="nav-link">
-              NOS ACTIVITÉS
-            </Link>
-
-            <a href="#pourquoi" className="nav-link">
-              POURQUOI NOUS
-            </a>
-
-            <a href="#contact" className="nav-link">
-              CONTACT
-            </a>
+            <Link to="/" className="nav-link">ACCUEIL</Link>
+            <Link to="/activites" target="_blank" className="nav-link">NOS ACTIVITÉS</Link>
+            <a href="#pourquoi" className="nav-link">POURQUOI NOUS</a>
+            <a href="#contact" className="nav-link">CONTACT</a>
           </div>
+          <button className="burger" onClick={() => setMenuOpen(!menuOpen)}>
+            <span />
+            <span />
+            <span />
+          </button>
         </nav>
+
+        {menuOpen && (
+          <div className="mobile-menu">
+            <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>ACCUEIL</Link>
+            <Link to="/activites" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>NOS ACTIVITÉS</Link>
+            <a href="#pourquoi" className="nav-link" onClick={() => setMenuOpen(false)}>POURQUOI NOUS</a>
+            <a href="#contact" className="nav-link" onClick={() => setMenuOpen(false)}>CONTACT</a>
+          </div>
+        )}
 
         <section id="accueil" className="hero">
           <div className="hero-gradient" />
@@ -658,7 +712,7 @@ export default function App() {
           </div>
         </section>
 
-       <section id="activites" className="section-light fade-in">
+        <section id="activites" className="section-light fade-in">
           <div className="section-label-wrap">
             <span className="section-label">NOS ACTIVITÉS</span>
           </div>
@@ -696,7 +750,7 @@ export default function App() {
           </div>
         </section>
 
-       <section id="pourquoi" className="section-dark fade-in">
+        <section id="pourquoi" className="section-dark fade-in">
           <h2 className="why-title">
             POURQUOI CHOISIR AZ BUSINESS CENTER ?
           </h2>

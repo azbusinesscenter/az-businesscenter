@@ -98,44 +98,45 @@ export default function Activites() {
             color: #071426;
           }
 
-          .activity-layout-left {
+          .activity-banner {
+            position: relative;
+            width: 100%;
             max-width: 1250px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 0.28fr 1fr;
-            gap: 55px;
-            align-items: start;
+            margin: 0 auto 55px;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 350px;
           }
 
-          .activity-layout-right {
-            max-width: 1250px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 0.28fr;
-            gap: 55px;
-            align-items: start;
+          .activity-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(6,18,34,0.85) 0%, rgba(6,18,34,0.3) 100%);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 50px;
+            gap: 20px;
           }
 
-          .activity-icon-dark {
-            width: 120px;
-            height: 120px;
+          .activity-banner-icon {
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            background: #0d213d;
+            background: #071426;
             border: 1px solid rgba(201,162,39,0.35);
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
           }
 
-          .activity-icon-light {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: #071426;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            justify-self: center;
+          .activity-banner-title {
+            color: #c9a227;
+            font-size: 42px;
+            font-weight: 900;
+            margin: 0;
+            line-height: 1.2;
           }
 
           .section-title {
@@ -288,8 +289,6 @@ export default function Activites() {
             .activities-nav { padding: 0 32px; }
             .activities-hero { padding: 90px 40px; }
             .activity-section-dark, .activity-section-light { padding: 80px 40px; }
-            .activity-layout-left, .activity-layout-right { grid-template-columns: 1fr; gap: 30px; }
-            .activity-icon-dark, .activity-icon-light { justify-self: start; }
             .cards-grid, .points-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
           }
@@ -303,7 +302,6 @@ export default function Activites() {
             .hero-title { font-size: 38px; line-height: 1.15; }
             .hero-text { font-size: 17px; line-height: 1.75; }
             .activity-section-dark, .activity-section-light { padding: 65px 22px; }
-            .activity-icon-dark, .activity-icon-light { width: 88px; height: 88px; }
             .section-title { font-size: 30px; line-height: 1.2; }
             .text-dark-bg, .text-light-bg { font-size: 16px; }
             .detail-card { padding: 22px; }
@@ -316,6 +314,11 @@ export default function Activites() {
             .cta-section p { font-size: 16px; }
             .footer { padding: 45px 22px; }
             .footer-grid { grid-template-columns: 1fr; }
+            .activity-banner { height: auto; min-height: 130px; }
+            .activity-banner img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+            .activity-banner-overlay { position: relative; padding: 25px 20px; min-height: 130px; }
+            .activity-banner-icon { width: 50px; height: 50px; }
+            .activity-banner-title { font-size: 24px; }
           }
         `}
       </style>
@@ -342,13 +345,13 @@ export default function Activites() {
 
         {/* CONSEIL ET GESTION */}
         <section className="activity-section-dark">
-          <div style={{ position: "relative", width: "100%", maxWidth: "1250px", margin: "0 auto 55px", borderRadius: "20px", overflow: "hidden", height: "350px" }}>
+          <div className="activity-banner">
             <img src="/conseil.png" alt="Conseil et Gestion" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(6,18,34,0.85) 0%, rgba(6,18,34,0.3) 100%)", display: "flex", flexDirection: "row", alignItems: "center", padding: "0 50px", gap: "20px" }}>
-              <div style={{ width: "70px", height: "70px", borderRadius: "50%", background: "#071426", border: "1px solid rgba(201,162,39,0.35)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <div className="activity-banner-overlay">
+              <div className="activity-banner-icon">
                 <BriefcaseBusiness size={36} color="#c9a227" />
               </div>
-              <h2 style={{ color: "#c9a227", fontSize: "42px", fontWeight: 900, margin: 0 }}>CONSEIL ET GESTION</h2>
+              <h2 className="activity-banner-title">CONSEIL ET GESTION</h2>
             </div>
           </div>
 
@@ -378,13 +381,13 @@ export default function Activites() {
 
         {/* GESTION DU SYNDIC */}
         <section className="activity-section-light">
-          <div style={{ position: "relative", width: "100%", maxWidth: "1250px", margin: "0 auto 55px", borderRadius: "20px", overflow: "hidden", height: "350px" }}>
+          <div className="activity-banner">
             <img src="/syndic.png" alt="Gestion du Syndic" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(6,18,34,0.85) 0%, rgba(6,18,34,0.3) 100%)", display: "flex", flexDirection: "row", alignItems: "center", padding: "0 50px", gap: "20px" }}>
-              <div style={{ width: "70px", height: "70px", borderRadius: "50%", background: "#071426", border: "1px solid rgba(201,162,39,0.35)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <div className="activity-banner-overlay">
+              <div className="activity-banner-icon">
                 <Building2 size={36} color="#c9a227" />
               </div>
-              <h2 style={{ color: "#c9a227", fontSize: "42px", fontWeight: 900, margin: 0 }}>GESTION DU SYNDIC D'IMMEUBLES</h2>
+              <h2 className="activity-banner-title">GESTION DU SYNDIC D'IMMEUBLES</h2>
             </div>
           </div>
 
@@ -416,13 +419,13 @@ export default function Activites() {
 
         {/* SOUS LOCATION */}
         <section className="activity-section-dark">
-          <div style={{ position: "relative", width: "100%", maxWidth: "1250px", margin: "0 auto 55px", borderRadius: "20px", overflow: "hidden", height: "350px" }}>
+          <div className="activity-banner">
             <img src="/souslocation.png" alt="Sous Location" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(6,18,34,0.85) 0%, rgba(6,18,34,0.3) 100%)", display: "flex", flexDirection: "row", alignItems: "center", padding: "0 50px", gap: "20px" }}>
-              <div style={{ width: "70px", height: "70px", borderRadius: "50%", background: "#071426", border: "1px solid rgba(201,162,39,0.35)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <div className="activity-banner-overlay">
+              <div className="activity-banner-icon">
                 <Sofa size={36} color="#c9a227" />
               </div>
-              <h2 style={{ color: "#c9a227", fontSize: "42px", fontWeight: 900, margin: 0 }}>SOUS LOCATION D'IMMEUBLES MEUBLÉES</h2>
+              <h2 className="activity-banner-title">SOUS LOCATION D'IMMEUBLES MEUBLÉES</h2>
             </div>
           </div>
 
