@@ -79,14 +79,28 @@ export default function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("sending");
-    const formData = new FormData(e.target);
+
+    // Validate form fields
+    const name = e.target.elements.name.value.trim();
+    const phone = e.target.elements.phone.value.trim();
+    const email = e.target.elements.email.value.trim();
+    const company = e.target.elements.company.value.trim();
+    const message = e.target.elements.message.value.trim();
+
+    if (!name || !phone || !email || !message) {
+      setStatus("error");
+      alert("Please fill out all required fields.");
+      return;
+    }
+
     const payload = {
-      name: formData.get("name"),
-      phone: formData.get("phone"),
-      email: formData.get("email"),
-      company: formData.get("company"),
-      message: formData.get("message"),
+      name,
+      phone,
+      email,
+      company,
+      message,
     };
+
     try {
       await fetch(SCRIPT_URL, {
         method: "POST",
@@ -95,7 +109,8 @@ export default function App() {
       });
       setStatus("sent");
       e.target.reset();
-    } catch {
+    } catch (error) {
+      console.error("Error submitting form:", error);
       setStatus("error");
     }
   };
