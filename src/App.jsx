@@ -73,6 +73,22 @@ export default function App() {
   }, []);
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [status, setStatus] = React.useState("idle");
+  const activitiesRef = React.useRef(null);
+  const [atStart, setAtStart] = React.useState(true);
+  const [atEnd, setAtEnd] = React.useState(false);
+
+  const handleActivitiesScroll = () => {
+    const el = activitiesRef.current;
+    if (!el) return;
+    setAtStart(el.scrollLeft <= 5);
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 5);
+  };
+
+  const scrollActivities = (direction) => {
+    const el = activitiesRef.current;
+    if (!el) return;
+    el.scrollBy({ left: direction * el.clientWidth, behavior: "smooth" });
+  };
 
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyBpy8fAoBfLpurO8ssVFwneveMaQxqjUnXAng7Vrc_RFPgz_aq6REicE-R75uJCF-M/exec";
 
@@ -295,6 +311,14 @@ export default function App() {
             border-radius: 8px;
             font-weight: 900;
             font-size: 22px;
+          }
+
+          .activities-carousel {
+            position: relative;
+          }
+
+          .carousel-arrow {
+            display: none;
           }
 
           .activities-grid {
@@ -618,11 +642,69 @@ export default function App() {
             }
 
             .activities-grid {
+              display: flex;
+              flex-direction: row;
+              overflow-x: auto;
+              overflow-y: hidden;
+              scroll-snap-type: x mandatory;
+              -webkit-overflow-scrolling: touch;
               border-radius: 20px;
             }
 
+            .activities-grid::-webkit-scrollbar {
+              display: none;
+            }
+
             .activity-card {
+              flex: 0 0 100%;
+              scroll-snap-align: center;
               padding: 38px 24px;
+              border-right: 1px solid rgba(201,162,39,0.35);
+              border-bottom: none;
+            }
+
+            .activity-card:last-child {
+              border-right: none;
+            }
+              .activities-carousel {
+              padding-bottom: 75px;
+            }
+
+            .carousel-arrow {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: absolute;
+              bottom: 12px;
+              top: auto;
+              transform: none;
+              width: 48px;
+              height: 48px;
+              border-radius: 50%;
+              border: none;
+              background: #c9a227;
+              color: #071426;
+              font-size: 30px;
+              line-height: 1;
+              padding-bottom: 4px;
+              cursor: pointer;
+              z-index: 10;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            }
+
+            .carousel-arrow-left {
+              right: calc(50% + 10px);
+              left: auto;
+            }
+
+            .carousel-arrow-right {
+              left: calc(50% + 10px);
+              right: auto;
+            }
+
+            .carousel-arrow:disabled {
+              opacity: 0.35;
+              cursor: default;
             }
 
             .activity-title {
@@ -732,37 +814,61 @@ export default function App() {
             <span className="section-label">NOS ACTIVITÉS</span>
           </div>
 
-          <div className="activities-grid">
-            {activities.map((activity) => {
-              const Icon = activity.icon;
+          <div className="activities-carousel">
+            <button
+              className="carousel-arrow carousel-arrow-left"
+              onClick={() => scrollActivities(-1)}
+              disabled={atStart}
+              aria-label="Précédent"
+            >
+              ‹
+            </button>
 
-              return (
-                <div key={activity.title} className="activity-card">
-                  <div className="icon-circle">
-                    <Icon color="#c9a227" size={42} />
+            <div
+              className="activities-grid"
+              ref={activitiesRef}
+              onScroll={handleActivitiesScroll}
+            >
+              {activities.map((activity) => {
+                const Icon = activity.icon;
+
+                return (
+                  <div key={activity.title} className="activity-card">
+                    <div className="icon-circle">
+                      <Icon color="#c9a227" size={42} />
+                    </div>
+
+                    <h3 className="activity-title">{activity.title}</h3>
+
+                    <div className="activity-text">
+                      {activity.items.map((item) => (
+                        <div key={item} className="activity-item">
+                          {item}
+                        </div>
+                      ))}
+
+                      <Link
+                        to="/activities"
+                        target="_blank"
+
+                        className="button-dark"
+                      >
+                        Voir plus
+                      </Link>
+                    </div>
                   </div>
+                );
+              })}
+            </div>
 
-                  <h3 className="activity-title">{activity.title}</h3>
-
-                  <div className="activity-text">
-                    {activity.items.map((item) => (
-                      <div key={item} className="activity-item">
-                        {item}
-                      </div>
-                    ))}
-
-                    <Link
-                      to="/activities"
-                      target="_blank"
-
-                      className="button-dark"
-                    >
-                      Voir plus
-                    </Link>
-                  </div>
-                </div>
-              );
-            })}
+            <button
+              className="carousel-arrow carousel-arrow-right"
+              onClick={() => scrollActivities(1)}
+              disabled={atEnd}
+              aria-label="Suivant"
+            >
+              ›
+            </button>
           </div>
         </section>
 
