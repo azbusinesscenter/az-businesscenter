@@ -152,6 +152,12 @@ export default function App() {
             min-height: 100vh;
             font-family: Arial, sans-serif;
           }
+            .brand {
+            color: #c9a227;
+            white-space: nowrap;
+            font-size: 1.05em;
+            letter-spacing: 1px;
+          }
 
           .navbar {
             height: 76px;
@@ -383,7 +389,7 @@ export default function App() {
           }
 
           .why-title {
-            color: #c9a227;
+            color: white;
             font-size: 36px;
             margin-bottom: 60px;
             text-align: center;
@@ -874,7 +880,7 @@ export default function App() {
 
         <section id="pourquoi" className="section-dark fade-in">
           <h2 className="why-title">
-            POURQUOI CHOISIR AZ BUSINESS CENTER ?
+            POURQUOI CHOISIR <span className="brand">AZ BUSINESS CENTER</span> ?
           </h2>
 
           <div className="why-grid">
@@ -910,7 +916,7 @@ export default function App() {
         </section>
         <section id="contact" className="section-dark fade-in">
           <div className="contact-card">
-            <h2>Contactez AZ Business Center</h2>
+            <h2>Contactez <span className="brand">AZ BUSINESS CENTER</span></h2>
 
             <p>
               Laissez vos informations et notre équipe vous contactera prochainement.
@@ -1031,7 +1037,7 @@ export default function App() {
           </div>
 
           <p className="footer-bottom">
-            © 2026 AZ Business Center — Tous droits réservés.
+            © 2026 <span className="brand">AZ Business Center</span> — Tous droits réservés.
           </p>
         </footer>
 
