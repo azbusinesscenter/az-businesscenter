@@ -237,17 +237,17 @@ export default function Activities() {
 
           .cta-section {
             padding: 80px 60px;
-            background: #071426;
+            background: #f4f1eb;
             text-align: center;
           }
 
           .cta-section h2 {
             font-size: 42px;
-            color: #c9a227;
+            color: #071426;
           }
 
           .cta-section p {
-            color: #d8dee9;
+            color: #283447;
             font-size: 19px;
             line-height: 1.8;
             max-width: 780px;
@@ -456,18 +456,7 @@ export default function Activities() {
           </div>
         </section>
 
-        <section className="legal-section">
-          <div className="legal-card">
-            <h2>Cadre professionnel</h2>
-            <p>
-              Les services proposés par AZ Business Center sont présentés dans
-              un cadre d'accompagnement professionnel. Selon la nature du
-              dossier, le client peut être orienté vers les administrations,
-              professionnels ou conseils compétents afin de respecter les
-              procédures et obligations prévues par le droit marocain.
-            </p>
-          </div>
-        </section>
+        
 
         <section className="cta-section">
           <h2>Besoin d'un accompagnement ?</h2>
