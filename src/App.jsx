@@ -997,7 +997,7 @@ export default function App() {
             <div>
               <h4 style={{ color: "#c9a227" }}>CONTACT</h4>
               <p>
-                <Phone size={16} /> +212 6 00 00 00 00
+                <Phone size={16} /> +212 778 692 099
               </p>
               <p>
                 <Mail size={16} /> contact@az-businesscenter.ma
@@ -1042,7 +1042,7 @@ export default function App() {
         </footer>
 
         <a
-          href="https://wa.me/212600000000?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20votre%20site%20web%20AZ%20Business%20Center."
+          href="https://wa.me/212778692099?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20votre%20site%20web%20AZ%20Business%20Center."
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contact WhatsApp"
