@@ -234,7 +234,7 @@ export default function App() {
 }
 
           .hero {
-            min-height: 720px;
+            min-height: calc(100vh - 76px);
             position: relative;
             background-image: url('/office.jpg');
             background-size: cover;
@@ -262,7 +262,7 @@ export default function App() {
           .hero-content {
             position: relative;
             z-index: 2;
-            min-height: 720px;
+            min-height: calc(100vh - 76px);
             display: flex;
             flex-direction: column;
             justify-content: center;
