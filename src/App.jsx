@@ -8,6 +8,7 @@ import {
   Mail,
   MapPin,
   Phone,
+  PhoneCall,
   ShieldCheck,
   Sofa,
   Target,
@@ -735,6 +736,10 @@ export default function App() {
               font-size: 32px;
               line-height: 1.2;
             }
+            .brand {
+              font-size: 0.83em;
+              letter-spacing: 0;
+            }
 
             .contact-form {
               grid-template-columns: 1fr;
@@ -1000,10 +1005,16 @@ export default function App() {
                 <Phone size={16} /> +212 778 692 099
               </p>
               <p>
+                <Phone size={16} /> +212 662 83 44 89
+              </p>
+              <p>
+                <PhoneCall size={16} /> +212 535 65 20 33
+              </p>
+              <p>
                 <Mail size={16} /> contact@az-businesscenter.ma
               </p>
               <p>
-                <MapPin size={16} /> Fès, Maroc
+                <MapPin size={16} /> N° 75 «Bureaux Al Atlas», Br N°24, 3ème étage, Av. El Hoceima, Atlas, Agdal-Fès
               </p>
             </div>
 

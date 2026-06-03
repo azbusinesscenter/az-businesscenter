@@ -12,6 +12,7 @@ import {
   Mail,
   MapPin,
   Phone,
+  PhoneCall,
 } from "lucide-react";
 
 export default function Activities() {
@@ -29,6 +30,12 @@ export default function Activities() {
             color: white;
             min-height: 100vh;
             font-family: Arial, sans-serif;
+          }
+            .brand {
+            color: #c9a227;
+            white-space: nowrap;
+            font-size: 1.05em;
+            letter-spacing: 1px;
           }
 
           .activities-nav {
@@ -310,7 +317,8 @@ export default function Activities() {
             .legal-card { padding: 28px 22px; }
             .legal-card p { font-size: 16px; }
             .cta-section { padding: 65px 22px; }
-            .cta-section h2 { font-size: 32px; }
+            
+            .brand { font-size: 0.9em; letter-spacing: 0; }
             .cta-section p { font-size: 16px; }
             .footer { padding: 45px 22px; }
             .footer-grid { grid-template-columns: 1fr; }
@@ -336,7 +344,7 @@ export default function Activities() {
           <img src="/logo.png" alt="AZ Business Center" className="hero-logo" />
           <h1 className="hero-title">NOS ACTIVITÉS</h1>
           <p className="hero-text">
-            AZ Business Center accompagne les entreprises, copropriétés,
+            <span className="brand">AZ BUSINESS CENTER</span> accompagne les entreprises, copropriétés,
             investisseurs et professionnels au Maroc avec des solutions
             administratives, commerciales et organisationnelles structurées,
             conformément à la réglementation marocaine applicable.
@@ -393,7 +401,7 @@ export default function Activities() {
 
           <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
             <p className="text-light-bg">
-              AZ Business Center assure une gestion organisée, transparente et
+              <span className="brand">AZ BUSINESS CENTER</span> assure une gestion organisée, transparente et
               professionnelle de votre copropriété, en conformité avec la loi n°18-00
               révisée par le Parlement marocain le 9 juillet 2024. Cette nouvelle
               législation renforce la transparence, la communication et la résolution
@@ -456,11 +464,11 @@ export default function Activities() {
           </div>
         </section>
 
-        
+
 
         <section className="cta-section">
           <h2>Besoin d'un accompagnement ?</h2>
-          <p>Contactez AZ Business Center pour obtenir plus d'informations sur nos activités et nos solutions professionnelles.</p>
+          <p>Contactez <span className="brand">AZ Business Center</span> pour obtenir plus d'informations sur nos activités et nos solutions professionnelles.</p>
           <Link to="/" className="home-button">RETOUR À L'ACCUEIL</Link>
         </section>
 
@@ -472,15 +480,17 @@ export default function Activities() {
             <div>
               <h4 style={{ color: "#c9a227" }}>CONTACT</h4>
               <p><Phone size={16} /> +212 778 692 099</p>
+              <p><Phone size={16} /> +212 662 83 44 89</p>
+              <p><PhoneCall size={16} /> +212 535 65 20 33</p>
               <p><Mail size={16} /> contact@az-businesscenter.ma</p>
-              <p><MapPin size={16} /> Fès, Maroc</p>
+              <p><MapPin size={16} /> N° 75 «Bureaux Al Atlas», Br N°24, 3ème étage, Av. El Hoceima, Atlas, Agdal-Fès</p>
             </div>
             <div>
               <h4 style={{ color: "#c9a227" }}>AZ BUSINESS CENTER</h4>
               <p style={{ color: "#d8dee9", lineHeight: "1.7" }}>Conseil, gestion, accompagnement administratif et solutions professionnelles au Maroc.</p>
             </div>
           </div>
-          <p className="footer-bottom">© 2026 AZ Business Center — Tous droits réservés.</p>
+          <p className="footer-bottom">© 2026 <span className="brand">AZ Business Center</span> — Tous droits réservés.</p>
         </footer>
       </div>
     </>
