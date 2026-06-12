@@ -187,6 +187,53 @@ export default function Activities() {
             color: #c9a227;
             margin-top: 0;
           }
+            .steps-title {
+            color: #c9a227;
+            font-size: 30px;
+            font-weight: 900;
+            margin: 60px 0 30px;
+          }
+
+          .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+          }
+
+          .step-card {
+            background: #0d213d;
+            border: 1px solid rgba(201,162,39,0.28);
+            border-radius: 18px;
+            padding: 24px;
+          }
+
+          .step-number {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #c9a227;
+            color: #071426;
+            font-weight: 900;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+          }
+
+          .step-card h4 {
+            color: white;
+            font-size: 18px;
+            margin: 0 0 8px;
+            line-height: 1.35;
+          }
+
+          .step-card p {
+            color: #d8dee9;
+            font-size: 15px;
+            line-height: 1.65;
+            margin: 0;
+          }
 
           .points-grid {
             margin-top: 35px;
@@ -297,6 +344,7 @@ export default function Activities() {
             .activities-hero { padding: 90px 40px; }
             .activity-section-dark, .activity-section-light { padding: 80px 40px; }
             .cards-grid, .points-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
           }
 
@@ -385,6 +433,29 @@ export default function Activities() {
                 <div className="detail-card" key={title}>
                   <h3>{title}</h3>
                   <p className="text-dark-bg">{description}</p>
+                </div>
+              ))}
+            </div>
+
+            <h3 className="steps-title">Les 11 étapes de la création d'entreprise au Maroc</h3>
+            <div className="steps-grid">
+              {[
+                ["Choisir une forme juridique", "Entreprise individuelle (CPU, autoentrepreneur…) ou société (SARL, SARL AU, SA…)."],
+                ["Obtenir un certificat négatif", "Réservation de la dénomination sociale de votre future entreprise."],
+                ["Choisir une adresse de siège social", "Bien en propriété, bail commercial, ou domiciliation autorisée par la loi marocaine."],
+                ["Établir les statuts de la société", "Définition des règles de fonctionnement et de gestion de l'entreprise."],
+                ["Enregistrer les actes de création", "Dépôt des documents auprès de l'Administration fiscale afin de leur donner date certaine."],
+                ["S'inscrire à la taxe professionnelle (TP)", "Obtention d'un numéro d'identification TP, qui doit figurer sur tous les documents de l'entreprise."],
+                ["Obtenir une identification fiscale (IF)", "Numéro identifiant l'entreprise auprès des autorités fiscales (déclarations TVA et IS)."],
+                ["S'immatriculer au Registre de Commerce (RC)", "Rend les informations de l'entreprise officiellement publiques : nom, gérants, capital, adresse…"],
+                ["S'affilier à la CNSS", "Immatriculation en tant qu'employeur, avec ouverture d'un compte DAMANCOM pour les déclarations."],
+                ["Faire les publications officielles", "Annonces au journal d'annonces légales (JAL) et au Bulletin Officiel (BO)."],
+                ["Ouvrir un compte bancaire", "Sépare les finances personnelles et professionnelles et renforce la crédibilité de l'entreprise."],
+              ].map(([title, text], index) => (
+                <div className="step-card" key={title}>
+                  <div className="step-number">{index + 1}</div>
+                  <h4>{title}</h4>
+                  <p>{text}</p>
                 </div>
               ))}
             </div>
