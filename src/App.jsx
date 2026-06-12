@@ -920,7 +920,7 @@ export default function App() {
           <div style={{ maxWidth: "1150px", margin: "0 auto", borderRadius: "20px", overflow: "hidden", height: "400px" }}>
             <iframe
               title="AZ Business Center"
-              src="https://www.google.com/maps?q=22J3%2BQVH+Fes+30050+Morocco&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.473900800043!2d-4.996386651807956!3d34.03171285713694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd9f8b0076bcc081%3A0xdebf79d2246b01f5!2sAZ%20Business%20Center!5e0!3m2!1sen!2ses!4v1781287173716!5m2!1sen!2ses"
               width="100%"
               height="100%"
               style={{ border: 0 }}
