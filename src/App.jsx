@@ -277,6 +277,7 @@ export default function App() {
             justify-content: center;
             padding: 55px 70px;
             max-width: 780px;
+            transform: translateY(-30px);
           }
 
           .hero-logo {
@@ -294,11 +295,24 @@ export default function App() {
           }
 
           .hero-subtitle {
-            margin-top: 35px;
+            margin-top: 50px;
             color: white;
-            font-size: 20px;
+            font-size: 23px;
             font-weight: 800;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+          }
+
+          .hero-cta {
+            display: inline-block;
+            margin-top: 38px;
+            background: #c9a227;
+            color: #071426;
+            padding: 17px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 16px;
+            letter-spacing: 0.5px;
           }
 
           .section-light {
@@ -629,6 +643,7 @@ export default function App() {
               min-height: auto;
               padding: 70px 24px;
               max-width: 100%;
+              transform: none;
             }
 
             .hero-logo {
@@ -644,6 +659,11 @@ export default function App() {
             .hero-subtitle {
               font-size: 15px;
               line-height: 1.8;
+            }
+            .hero-cta {
+              margin-top: 30px;
+              padding: 15px 28px;
+              font-size: 14px;
             }
 
             .section-light,
@@ -826,6 +846,11 @@ export default function App() {
             <div className="hero-subtitle">
               EXPERTISE <span style={{ color: "#c9a227" }}>•</span> PROXIMITÉ{" "}
               <span style={{ color: "#c9a227" }}>•</span> PERFORMANCE
+            </div>
+            <div>
+              <Link to="/tarifs" target="_blank" className="hero-cta">
+                DÉCOUVRIR NOS TARIFS →
+              </Link>
             </div>
           </div>
         </section>
@@ -1046,6 +1071,11 @@ export default function App() {
               <p>
                 <Link to="/" className="footer-link">
                   Accueil
+                </Link>
+              </p>
+              <p>
+                <Link to="/activities" target="_blank" className="footer-link">
+                  Nos activités
                 </Link>
               </p>
 
