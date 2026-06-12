@@ -245,7 +245,7 @@ export default function App() {
           .hero {
             min-height: calc(100vh - 76px);
             position: relative;
-            background-image: url('/office.jpg');
+            background-image: url('/office.webp');
             background-size: cover;
             background-position: center;
             overflow: hidden;

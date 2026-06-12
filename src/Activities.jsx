@@ -406,7 +406,7 @@ export default function Activities() {
         {/* CONSEIL ET GESTION */}
         <section className="activity-section-dark">
           <div className="activity-banner">
-            <img src="/conseil.png" alt="Conseil et Gestion" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src="/conseil.webp" alt="Conseil et Gestion" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             <div className="activity-banner-overlay">
               <div className="activity-banner-icon">
                 <BriefcaseBusiness size={36} color="#c9a227" />
@@ -465,7 +465,7 @@ export default function Activities() {
         {/* GESTION DU SYNDIC */}
         <section className="activity-section-light">
           <div className="activity-banner">
-            <img src="/syndic.png" alt="Gestion du Syndic" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src="/syndic.webp" alt="Gestion du Syndic" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             <div className="activity-banner-overlay">
               <div className="activity-banner-icon">
                 <Building2 size={36} color="#c9a227" />
@@ -503,7 +503,7 @@ export default function Activities() {
         {/* SOUS LOCATION */}
         <section className="activity-section-dark">
           <div className="activity-banner">
-            <img src="/souslocation.png" alt="Sous Location" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src="/souslocation.webp" alt="Sous Location" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             <div className="activity-banner-overlay">
               <div className="activity-banner-icon">
                 <Sofa size={36} color="#c9a227" />
