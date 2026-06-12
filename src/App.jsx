@@ -74,6 +74,13 @@ export default function App() {
   }, []);
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [status, setStatus] = React.useState("idle");
+  const selectedPlan = new URLSearchParams(window.location.search).get("plan") || "";
+
+  React.useEffect(() => {
+    if (selectedPlan) {
+      document.getElementById("contact")?.scrollIntoView();
+    }
+  }, [selectedPlan]);
   const activitiesRef = React.useRef(null);
   const [atStart, setAtStart] = React.useState(true);
   const [atEnd, setAtEnd] = React.useState(false);
@@ -116,6 +123,7 @@ export default function App() {
       email,
       company,
       message,
+      plan: e.target.elements.plan.value,
     };
 
     try {
@@ -773,6 +781,7 @@ export default function App() {
           <div className="nav-links">
             <Link to="/" className="nav-link">ACCUEIL</Link>
             <Link to="/activities" target="_blank" className="nav-link">NOS ACTIVITÉS</Link>
+            <Link to="/tarifs" target="_blank" className="nav-link">TARIFS</Link>
             <a href="#pourquoi" className="nav-link">POURQUOI NOUS</a>
             <a href="#contact" className="nav-link">CONTACT</a>
           </div>
@@ -787,6 +796,7 @@ export default function App() {
           <div className="mobile-menu">
             <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>ACCUEIL</Link>
             <Link to="/activities" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>NOS ACTIVITÉS</Link>
+            <Link to="/tarifs" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>TARIFS</Link>
             <a href="#pourquoi" className="nav-link" onClick={() => setMenuOpen(false)}>POURQUOI NOUS</a>
             <a href="#contact" className="nav-link" onClick={() => setMenuOpen(false)}>CONTACT</a>
           </div>
@@ -956,6 +966,18 @@ export default function App() {
                 style={inputStyle}
               />
 
+              <select
+                name="plan"
+                defaultValue={selectedPlan}
+                style={inputStyle}
+                className="textarea-full"
+              >
+                <option value="">Pack souhaité (optionnel)</option>
+                <option value="Pack Essentiel">Pack Essentiel — 3 500 MAD</option>
+                <option value="Pack Pro">Pack Pro — 5 000 MAD</option>
+                <option value="Pack Premium">Pack Premium — 9 980 MAD</option>
+              </select>
+
               <textarea
                 name="message"
                 placeholder="Votre message"
@@ -1027,9 +1049,10 @@ export default function App() {
                 </Link>
               </p>
 
+
               <p>
-                <Link to="/activities" target="_blank" className="footer-link">
-                  Nos activités
+                <Link to="/tarifs" target="_blank" className="footer-link">
+                  Nos tarifs
                 </Link>
               </p>
 

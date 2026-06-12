@@ -334,10 +334,14 @@ export default function Activities() {
       <div className="activities-page">
         <nav className="activities-nav">
           <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
-          <Link to="/" className="back-link">
-            <ArrowLeft size={18} />
-            RETOUR À L'ACCUEIL
-          </Link>
+          <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
+            <Link to="/" className="back-link">
+              <ArrowLeft size={18} />
+              RETOUR À L'ACCUEIL
+            </Link>
+            <Link to="/tarifs" className="back-link">TARIFS</Link>
+            
+          </div>
         </nav>
 
         <section className="activities-hero">

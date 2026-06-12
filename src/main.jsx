@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import App from "./App";
 import Activities from "./Activities";
+import Tarifs from "./Tarifs";
 
 import "./index.css";
 
@@ -60,6 +61,7 @@ function Root() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/activities" element={<Activities />} />
+        <Route path="/tarifs" element={<Tarifs />} />
       </Routes>
     </BrowserRouter>
   );
