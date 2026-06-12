@@ -113,7 +113,7 @@ export default function App() {
 
     if (!name || !phone || !email || !message) {
       setStatus("error");
-      alert("Please fill out all required fields.");
+      alert("Veuillez remplir tous les champs obligatoires.");
       return;
     }
 
