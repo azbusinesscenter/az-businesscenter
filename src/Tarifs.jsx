@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   ArrowLeft,
   ArrowRight,
@@ -15,59 +16,62 @@ import {
   Tag,
 } from "lucide-react";
 
-const packs = [
-  {
-    name: "Pack Essentiel",
-    tagline: "Pour démarrer",
-    price: "3 500",
-    deposit: "Acompte de 1 500 MAD (50%)",
-    highlights: ["12 mois de domiciliation offerts"],
-    button: "Choisir l'Essentiel",
-    recommended: false,
-  },
-  {
-    name: "Pack Pro",
-    tagline: "Meilleur rapport qualité prix",
-    price: "5 000",
-    deposit: "Acompte de 2 500 MAD (50%)",
-    highlights: ["24 mois de domiciliation", "Cachet de la société"],
-    button: "Choisir le Pro",
-    recommended: true,
-  },
-  {
-    name: "Pack Premium",
-    tagline: "Le choix de la sérénité",
-    price: "9 980",
-    deposit: "Acompte de 4 990 MAD (50%)",
-    highlights: [
-      "24 mois de domiciliation",
-      "Cachet de la société",
-      "Protection de la marque (2 classes incluses)",
-    ],
-    button: "Choisir le Premium",
-    recommended: false,
-  },
-];
-
-const commonServices = [
-  "Création de société",
-  "Registre de commerce",
-  "Taxe professionnelle",
-  "Identifiant fiscal",
-  "Statuts",
-  "Contrat de domiciliation",
-  "Enregistrement des contrats",
-  "Affiliation de la société à la CNSS",
-  "Publication dans un journal d'annonce légal",
-  "Publication au Bulletin Officiel",
-];
-
 export default function Tarifs() {
   const { pathname } = useLocation();
+  const { t, i18n } = useTranslation();
+  const isAr = i18n.language === "ar";
+
+  const changeLang = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("lang", lng);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  useEffect(() => {
+    document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
+  const packs = [
+    {
+      name: "Pack Essentiel",
+      displayName: t("tarifs.p1name"),
+      tagline: t("tarifs.p1tag"),
+      price: "3 500",
+      deposit: t("tarifs.p1deposit"),
+      highlights: [t("tarifs.p1h1")],
+      button: t("tarifs.p1btn"),
+      recommended: false,
+    },
+    {
+      name: "Pack Pro",
+      displayName: t("tarifs.p2name"),
+      tagline: t("tarifs.p2tag"),
+      price: "5 000",
+      deposit: t("tarifs.p2deposit"),
+      highlights: [t("tarifs.p2h1"), t("tarifs.p2h2")],
+      button: t("tarifs.p2btn"),
+      recommended: true,
+    },
+    {
+      name: "Pack Premium",
+      displayName: t("tarifs.p3name"),
+      tagline: t("tarifs.p3tag"),
+      price: "9 980",
+      deposit: t("tarifs.p3deposit"),
+      highlights: [t("tarifs.p3h1"), t("tarifs.p3h2"), t("tarifs.p3h3")],
+      button: t("tarifs.p3btn"),
+      recommended: false,
+    },
+  ];
+
+  const commonServices = [
+    t("tarifs.sv1"), t("tarifs.sv2"), t("tarifs.sv3"), t("tarifs.sv4"), t("tarifs.sv5"),
+    t("tarifs.sv6"), t("tarifs.sv7"), t("tarifs.sv8"), t("tarifs.sv9"), t("tarifs.sv10"),
+  ];
 
   return (
     <>
@@ -79,11 +83,24 @@ export default function Tarifs() {
             min-height: 100vh;
             font-family: Arial, sans-serif;
           }
+          [dir="rtl"] .tarifs-page {
+            font-family: Tahoma, Arial, sans-serif;
+          }
           .brand {
             color: #c9a227;
             white-space: nowrap;
             font-size: 1.05em;
             letter-spacing: 1px;
+          }
+          [dir="rtl"] .brand {
+            letter-spacing: 0;
+          }
+
+          [dir="rtl"] .pack-button svg {
+            transform: scaleX(-1);
+          }
+          [dir="rtl"] .back-link svg {
+            transform: scaleX(-1);
           }
 
           .tarifs-nav {
@@ -105,6 +122,12 @@ export default function Tarifs() {
             object-fit: contain;
           }
 
+          .nav-right {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+          }
+
           .back-link {
             color: #c9a227;
             text-decoration: none;
@@ -113,6 +136,28 @@ export default function Tarifs() {
             align-items: center;
             gap: 8px;
             white-space: nowrap;
+          }
+
+          .lang-switch {
+            display: flex;
+            gap: 8px;
+          }
+
+          .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(201,162,39,0.5);
+            color: #d8dee9;
+            padding: 6px 13px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+          }
+
+          .lang-btn.active {
+            background: #c9a227;
+            border-color: #c9a227;
+            color: #071426;
           }
 
           .tarifs-hero {
@@ -133,6 +178,10 @@ export default function Tarifs() {
             padding: 9px 20px;
             border-radius: 30px;
             margin-bottom: 26px;
+          }
+
+          [dir="rtl"] .hero-pill {
+            letter-spacing: 0;
           }
 
           .tarifs-hero h1 {
@@ -202,6 +251,10 @@ export default function Tarifs() {
             align-items: center;
             gap: 6px;
             white-space: nowrap;
+          }
+
+          [dir="rtl"] .pack-badge {
+            letter-spacing: 0;
           }
 
           .pack-name {
@@ -284,6 +337,10 @@ export default function Tarifs() {
             border-radius: 6px;
           }
 
+          [dir="rtl"] .inclus-badge {
+            letter-spacing: 0;
+          }
+
           .pack-services {
             flex-grow: 1;
             margin-top: 12px;
@@ -324,14 +381,6 @@ export default function Tarifs() {
             background: #c9a227;
             color: #071426;
             border-color: #c9a227;
-          }
-
-          .packs-note {
-            max-width: 1250px;
-            margin: 50px auto 0;
-            text-align: center;
-            color: #5c6676;
-            font-size: 15px;
           }
 
           .tarifs-cta {
@@ -390,6 +439,10 @@ export default function Tarifs() {
             font-size: 14px;
           }
 
+          [dir="rtl"] #tidio-chat {
+            display: none !important;
+          }
+
           @media (max-width: 1024px) {
             .tarifs-nav { padding: 0 32px; }
             .tarifs-hero { padding: 70px 40px 30px; }
@@ -403,6 +456,8 @@ export default function Tarifs() {
             .tarifs-nav { height: auto; min-height: 90px; padding: 12px 20px; gap: 18px; }
             .nav-logo { width: 115px; height: 58px; }
             .back-link { font-size: 12px; }
+            .nav-right { gap: 14px; }
+            .lang-btn { padding: 5px 11px; font-size: 12px; }
             .tarifs-hero { padding: 60px 22px 25px; }
             .tarifs-hero h1 { font-size: 33px; line-height: 1.15; }
             .tarifs-hero p { font-size: 16px; }
@@ -423,22 +478,37 @@ export default function Tarifs() {
       <div className="tarifs-page">
         <nav className="tarifs-nav">
           <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
-          <Link to="/" className="back-link">
-            <ArrowLeft size={18} />
-            RETOUR À L'ACCUEIL
-          </Link>
+          <div className="nav-right">
+            <Link to="/" className="back-link">
+              <ArrowLeft size={18} />
+              {t("tarifs.backHome")}
+            </Link>
+            <div className="lang-switch">
+              <button
+                className={`lang-btn${i18n.language === "fr" ? " active" : ""}`}
+                onClick={() => changeLang("fr")}
+              >
+                FR
+              </button>
+              <button
+                className={`lang-btn${i18n.language === "ar" ? " active" : ""}`}
+                onClick={() => changeLang("ar")}
+              >
+                ع
+              </button>
+            </div>
+          </div>
         </nav>
 
         <section className="tarifs-hero">
           <div className="hero-pill">
-            <Tag size={15} /> NOS TARIFS
+            <Tag size={15} /> {t("tarifs.pill")}
           </div>
           <h1>
-            Explorez nos offres <span>tarifaires.</span>
+            {t("tarifs.title1")}<span>{t("tarifs.title2")}</span>
           </h1>
           <p>
-            Trois formules transparentes pour créer votre société au Maroc,
-            sans frais cachés. Choisissez l'offre adaptée à votre projet.
+            {t("tarifs.subtitle")}
           </p>
         </section>
 
@@ -451,15 +521,15 @@ export default function Tarifs() {
               >
                 {pack.recommended && (
                   <div className="pack-badge">
-                    <Star size={14} /> RECOMMANDÉ
+                    <Star size={14} /> {t("tarifs.recommended")}
                   </div>
                 )}
 
-                <h3 className="pack-name">{pack.name}</h3>
+                <h3 className="pack-name">{pack.displayName}</h3>
                 <p className="pack-tagline">{pack.tagline}</p>
 
-                <p className="pack-price">
-                  {pack.price} <span>MAD TTC</span>
+                <p className="pack-price" dir="ltr" style={{ textAlign: isAr ? "right" : "left" }}>
+                  {pack.price} <span>{t("tarifs.priceUnit")}</span>
                 </p>
                 <p className="pack-deposit">{pack.deposit}</p>
 
@@ -471,7 +541,7 @@ export default function Tarifs() {
                       <Star size={14} color="#071426" />
                     </span>
                     <span style={{ flex: 1 }}>
-                      {h} <span className="inclus-badge">INCLUS</span>
+                      {h} <span className="inclus-badge">{t("tarifs.inclus")}</span>
                     </span>
                   </div>
                 ))}
@@ -499,15 +569,13 @@ export default function Tarifs() {
 
         <section className="tarifs-cta">
           <h2>
-            Tout ce que vous devez <span>savoir.</span>
+            {t("tarifs.ctaTitle1")}<span>{t("tarifs.ctaTitle2")}</span>
           </h2>
           <p>
-            Une question sur nos offres, le contrat de domiciliation ou le
-            déroulement de la création ? L'équipe{" "}
-            <span className="brand">AZ Business Center</span> vous répond
-            rapidement.
+            {t("tarifs.ctaText1")}{" "}
+            <span className="brand">AZ Business Center</span> {t("tarifs.ctaText2")}
           </p>
-          <Link to="/" className="home-button">RETOUR À L'ACCUEIL</Link>
+          <Link to="/" className="home-button">{t("tarifs.backHome")}</Link>
         </section>
 
         <footer className="footer">
@@ -516,19 +584,19 @@ export default function Tarifs() {
               <img src="/logo.png" alt="AZ Business Center" style={{ width: "150px", height: "80px", objectFit: "contain" }} />
             </div>
             <div>
-              <h4 style={{ color: "#c9a227" }}>CONTACT</h4>
-              <p><Phone size={16} /> +212 778 692 099</p>
-              <p><Phone size={16} /> +212 662 83 44 89</p>
-              <p><PhoneCall size={16} /> +212 535 65 20 33</p>
+              <h4 style={{ color: "#c9a227" }}>{t("footer.contactTitle")}</h4>
+              <p dir="ltr" style={{ textAlign: isAr ? "right" : "left" }}><Phone size={16} /> +212 778 692 099</p>
+              <p dir="ltr" style={{ textAlign: isAr ? "right" : "left" }}><Phone size={16} /> +212 662 83 44 89</p>
+              <p dir="ltr" style={{ textAlign: isAr ? "right" : "left" }}><PhoneCall size={16} /> +212 535 65 20 33</p>
               <p><Mail size={16} /> contact@az-businesscenter.ma</p>
               <p><MapPin size={16} /> N° 75 «Bureaux Al Atlas», Br N°24, 3ème étage, Av. El Hoceima, Atlas, Agdal-Fès</p>
             </div>
             <div>
               <h4 style={{ color: "#c9a227" }}>AZ BUSINESS CENTER</h4>
-              <p style={{ color: "#d8dee9", lineHeight: "1.7" }}>Conseil, gestion, accompagnement administratif et solutions professionnelles au Maroc.</p>
+              <p style={{ color: "#d8dee9", lineHeight: "1.7" }}>{t("footer.aboutText")}</p>
             </div>
           </div>
-          <p className="footer-bottom">© 2026 <span className="brand">AZ Business Center</span> — Tous droits réservés.</p>
+          <p className="footer-bottom">© 2026 <span className="brand">AZ Business Center</span> — {t("footer.rights")}</p>
         </footer>
       </div>
     </>

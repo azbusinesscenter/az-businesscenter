@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   BriefcaseBusiness,
   Building2,
@@ -17,10 +18,53 @@ import {
 
 export default function Activities() {
   const { pathname } = useLocation();
+  const { t, i18n } = useTranslation();
+  const isAr = i18n.language === "ar";
+  const changeLang = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("lang", lng);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  useEffect(() => {
+    document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
+  const conseilCards = [
+    [t("acts.c1t"), t("acts.c1d")],
+    [t("acts.c2t"), t("acts.c2d")],
+    [t("acts.c3t"), t("acts.c3d")],
+    [t("acts.c4t"), t("acts.c4d")],
+  ];
+
+  const steps = [
+    [t("acts.s1t"), t("acts.s1d")],
+    [t("acts.s2t"), t("acts.s2d")],
+    [t("acts.s3t"), t("acts.s3d")],
+    [t("acts.s4t"), t("acts.s4d")],
+    [t("acts.s5t"), t("acts.s5d")],
+    [t("acts.s6t"), t("acts.s6d")],
+    [t("acts.s7t"), t("acts.s7d")],
+    [t("acts.s8t"), t("acts.s8d")],
+    [t("acts.s9t"), t("acts.s9d")],
+    [t("acts.s10t"), t("acts.s10d")],
+    [t("acts.s11t"), t("acts.s11d")],
+  ];
+
+  const syndicPoints = [
+    t("acts.sy1"), t("acts.sy2"), t("acts.sy3"),
+    t("acts.sy4"), t("acts.sy5"), t("acts.sy6"),
+  ];
+
+  const sousPoints = [
+    t("acts.so1"), t("acts.so2"), t("acts.so3"),
+    t("acts.so4"), t("acts.so5"), t("acts.so6"),
+  ];
+
   return (
     <>
       <style>
@@ -31,12 +75,22 @@ export default function Activities() {
             min-height: 100vh;
             font-family: Arial, sans-serif;
           }
+          [dir="rtl"] .activities-page {
+            font-family: Tahoma, Arial, sans-serif;
+          }
             .brand {
             color: #c9a227;
             white-space: nowrap;
             font-size: 1.05em;
             letter-spacing: 1px;
           }
+          [dir="rtl"] .brand {
+            letter-spacing: 0;
+          }
+            [dir="rtl"] .back-link svg {
+            transform: scaleX(-1);
+          }
+          
 
           .activities-nav {
             height: 76px;
@@ -65,6 +119,27 @@ export default function Activities() {
             align-items: center;
             gap: 8px;
             white-space: nowrap;
+          }
+          .lang-switch {
+            display: flex;
+            gap: 8px;
+          }
+
+          .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(201,162,39,0.5);
+            color: #d8dee9;
+            padding: 6px 13px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+          }
+
+          .lang-btn.active {
+            background: #c9a227;
+            border-color: #c9a227;
+            color: #071426;
           }
 
           .activities-hero {
@@ -124,6 +199,10 @@ export default function Activities() {
             align-items: center;
             padding: 0 50px;
             gap: 20px;
+          }
+
+          [dir="rtl"] .activity-banner-overlay {
+            background: linear-gradient(to left, rgba(6,18,34,0.85) 0%, rgba(6,18,34,0.3) 100%);
           }
 
           .activity-banner-icon {
@@ -263,32 +342,6 @@ export default function Activities() {
             line-height: 1.7;
           }
 
-          .legal-section {
-            background: #f4f1eb;
-            color: #071426;
-            padding: 70px 60px;
-          }
-
-          .legal-card {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-          }
-
-          .legal-card h2 {
-            color: #c9a227;
-            margin-top: 0;
-          }
-
-          .legal-card p {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #283447;
-          }
-
           .cta-section {
             padding: 80px 60px;
             background: #f4f1eb;
@@ -339,6 +392,10 @@ export default function Activities() {
             font-size: 14px;
           }
 
+          [dir="rtl"] #tidio-chat {
+            display: none !important;
+          }
+
           @media (max-width: 1024px) {
             .activities-nav { padding: 0 32px; }
             .activities-hero { padding: 90px 40px; }
@@ -361,9 +418,6 @@ export default function Activities() {
             .text-dark-bg, .text-light-bg { font-size: 16px; }
             .detail-card { padding: 22px; }
             .light-point, .dark-point { font-size: 15px; }
-            .legal-section { padding: 60px 22px; }
-            .legal-card { padding: 28px 22px; }
-            .legal-card p { font-size: 16px; }
             .cta-section { padding: 65px 22px; }
             
             .brand { font-size: 0.9em; letter-spacing: 0; }
@@ -375,6 +429,8 @@ export default function Activities() {
             .activity-banner-overlay { position: relative; padding: 25px 20px; min-height: 130px; }
             .activity-banner-icon { width: 50px; height: 50px; }
             .activity-banner-title { font-size: 24px; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .steps-title { font-size: 24px; }
           }
         `}
       </style>
@@ -385,21 +441,31 @@ export default function Activities() {
           <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
             <Link to="/" className="back-link">
               <ArrowLeft size={18} />
-              RETOUR À L'ACCUEIL
+              {t("acts.backHome")}
             </Link>
-            <Link to="/tarifs" className="back-link">TARIFS</Link>
-            
+            <Link to="/tarifs" className="back-link">{t("acts.tarifs")}</Link>
+            <div className="lang-switch">
+              <button
+                className={`lang-btn${i18n.language === "fr" ? " active" : ""}`}
+                onClick={() => changeLang("fr")}
+              >
+                FR
+              </button>
+              <button
+                className={`lang-btn${i18n.language === "ar" ? " active" : ""}`}
+                onClick={() => changeLang("ar")}
+              >
+                ع
+              </button>
+            </div>
           </div>
         </nav>
 
         <section className="activities-hero">
           <img src="/logo.png" alt="AZ Business Center" className="hero-logo" />
-          <h1 className="hero-title">NOS ACTIVITÉS</h1>
+          <h1 className="hero-title">{t("acts.heroTitle")}</h1>
           <p className="hero-text">
-            <span className="brand">AZ BUSINESS CENTER</span> accompagne les entreprises, copropriétés,
-            investisseurs et professionnels au Maroc avec des solutions
-            administratives, commerciales et organisationnelles structurées,
-            conformément à la réglementation marocaine applicable.
+            <span className="brand">AZ BUSINESS CENTER</span> {t("acts.heroText")}
           </p>
         </section>
 
@@ -411,25 +477,16 @@ export default function Activities() {
               <div className="activity-banner-icon">
                 <BriefcaseBusiness size={36} color="#c9a227" />
               </div>
-              <h2 className="activity-banner-title">CONSEIL ET GESTION</h2>
+              <h2 className="activity-banner-title">{t("acts.conseilTitle")}</h2>
             </div>
           </div>
 
           <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
             <p className="text-dark-bg">
-              Nous accompagnons les porteurs de projets, entrepreneurs et sociétés
-              dans leurs démarches de structuration, de gestion et de développement,
-              conformément à la réglementation marocaine en vigueur. Notre rôle est
-              d'apporter un support clair, organisé et adapté aux exigences
-              administratives et commerciales au Maroc.
+              {t("acts.conseilIntro")}
             </p>
             <div className="cards-grid">
-              {[
-                ["Domiciliation commerciale", "Mise à disposition d'une adresse professionnelle conforme à la loi n°89-17. Obligations légales respectées : immatriculation au registre de commerce, mise à jour auprès de la DGI et de la CNSS."],
-                ["Création d'entreprises", "Accompagnement complet en 10 étapes : choix du statut juridique (SARL), certificat négatif, établissement des statuts, immatriculation au Registre de Commerce et affiliation à la CNSS."],
-                ["Contentieux administratif", "Assistance dans le suivi des dossiers administratifs conformément à la loi n°41-90. Orientation vers les recours en annulation pour excès de pouvoir, dans un délai légal de 60 jours."],
-                ["Marchés publics", "Assistance dans la préparation et le suivi des dossiers de marchés publics, conformément au décret n°2-12-349. Un domaine stratégique représentant 15 à 17% du PIB marocain."],
-              ].map(([title, description]) => (
+              {conseilCards.map(([title, description]) => (
                 <div className="detail-card" key={title}>
                   <h3>{title}</h3>
                   <p className="text-dark-bg">{description}</p>
@@ -437,21 +494,9 @@ export default function Activities() {
               ))}
             </div>
 
-            <h3 className="steps-title">Les 11 étapes de la création d'entreprise au Maroc</h3>
+            <h3 className="steps-title">{t("acts.stepsTitle")}</h3>
             <div className="steps-grid">
-              {[
-                ["Choisir une forme juridique", "Entreprise individuelle (CPU, autoentrepreneur…) ou société (SARL, SARL AU, SA…)."],
-                ["Obtenir un certificat négatif", "Réservation de la dénomination sociale de votre future entreprise."],
-                ["Choisir une adresse de siège social", "Bien en propriété, bail commercial, ou domiciliation autorisée par la loi marocaine."],
-                ["Établir les statuts de la société", "Définition des règles de fonctionnement et de gestion de l'entreprise."],
-                ["Enregistrer les actes de création", "Dépôt des documents auprès de l'Administration fiscale afin de leur donner date certaine."],
-                ["S'inscrire à la taxe professionnelle (TP)", "Obtention d'un numéro d'identification TP, qui doit figurer sur tous les documents de l'entreprise."],
-                ["Obtenir une identification fiscale (IF)", "Numéro identifiant l'entreprise auprès des autorités fiscales (déclarations TVA et IS)."],
-                ["S'immatriculer au Registre de Commerce (RC)", "Rend les informations de l'entreprise officiellement publiques : nom, gérants, capital, adresse…"],
-                ["S'affilier à la CNSS", "Immatriculation en tant qu'employeur, avec ouverture d'un compte DAMANCOM pour les déclarations."],
-                ["Faire les publications officielles", "Annonces au journal d'annonces légales (JAL) et au Bulletin Officiel (BO)."],
-                ["Ouvrir un compte bancaire", "Sépare les finances personnelles et professionnelles et renforce la crédibilité de l'entreprise."],
-              ].map(([title, text], index) => (
+              {steps.map(([title, text], index) => (
                 <div className="step-card" key={title}>
                   <div className="step-number">{index + 1}</div>
                   <h4>{title}</h4>
@@ -470,27 +515,16 @@ export default function Activities() {
               <div className="activity-banner-icon">
                 <Building2 size={36} color="#c9a227" />
               </div>
-              <h2 className="activity-banner-title">GESTION DU SYNDIC D'IMMEUBLES</h2>
+              <h2 className="activity-banner-title">{t("acts.syndicTitle")}</h2>
             </div>
           </div>
 
           <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
             <p className="text-light-bg">
-              <span className="brand">AZ BUSINESS CENTER</span> assure une gestion organisée, transparente et
-              professionnelle de votre copropriété, en conformité avec la loi n°18-00
-              révisée par le Parlement marocain le 9 juillet 2024. Cette nouvelle
-              législation renforce la transparence, la communication et la résolution
-              des conflits au sein des copropriétés.
+              <span className="brand">AZ BUSINESS CENTER</span> {t("acts.syndicIntro")}
             </p>
             <div className="points-grid">
-              {[
-                "Convocation et organisation des assemblées générales avec 15 jours de préavis",
-                "Notification des décisions aux copropriétaires dans un délai de 8 jours",
-                "Conciliation et médiation avant tout recours juridique",
-                "Suivi administratif et gestion des charges de copropriété",
-                "Communication transparente avec les copropriétaires",
-                "Suivi de l'entretien général de l'immeuble",
-              ].map((item) => (
+              {syndicPoints.map((item) => (
                 <div key={item} className="light-point">
                   <CheckCircle color="#c9a227" size={20} />
                   {item}
@@ -508,28 +542,16 @@ export default function Activities() {
               <div className="activity-banner-icon">
                 <Sofa size={36} color="#c9a227" />
               </div>
-              <h2 className="activity-banner-title">SOUS LOCATION D'IMMEUBLES MEUBLÉES</h2>
+              <h2 className="activity-banner-title">{t("acts.sousTitle")}</h2>
             </div>
           </div>
 
           <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
             <p className="text-dark-bg">
-              Nous proposons des solutions de sous-location d'immeubles meublés,
-              adaptées aux besoins des professionnels, entreprises et visiteurs.
-              Cette activité s'inscrit dans un cadre contractuel clair, conforme
-              à l'article 668 du Code des Obligations et des Contrats marocain,
-              avec une autorisation écrite du propriétaire et des conditions
-              clairement définies.
+              {t("acts.sousIntro")}
             </p>
             <div className="points-grid">
-              {[
-                "Espaces meublés modernes, confortables et prêts à l'emploi",
-                "Solutions adaptées aux courts ou longs séjours",
-                "Contrats conformes à l'article 668 du Code des Obligations et des Contrats",
-                "Autorisation écrite du propriétaire garantie",
-                "Accompagnement dans la mise à disposition des espaces",
-                "Suivi de l'état, de l'usage et de l'organisation des lieux",
-              ].map((item) => (
+              {sousPoints.map((item) => (
                 <div key={item} className="dark-point">
                   <CheckCircle color="#c9a227" size={22} />
                   <span>{item}</span>
@@ -542,9 +564,9 @@ export default function Activities() {
 
 
         <section className="cta-section">
-          <h2>Besoin d'un accompagnement ?</h2>
-          <p>Contactez <span className="brand">AZ Business Center</span> pour obtenir plus d'informations sur nos activités et nos solutions professionnelles.</p>
-          <Link to="/" className="home-button">RETOUR À L'ACCUEIL</Link>
+          <h2>{t("acts.ctaTitle")}</h2>
+          <p>{t("acts.ctaContact")} <span className="brand">AZ Business Center</span> {t("acts.ctaText")}</p>
+          <Link to="/" className="home-button">{t("acts.backHome")}</Link>
         </section>
 
         <footer className="footer">
@@ -553,19 +575,19 @@ export default function Activities() {
               <img src="/logo.png" alt="AZ Business Center" style={{ width: "150px", height: "80px", objectFit: "contain" }} />
             </div>
             <div>
-              <h4 style={{ color: "#c9a227" }}>CONTACT</h4>
-              <p><Phone size={16} /> +212 778 692 099</p>
-              <p><Phone size={16} /> +212 662 83 44 89</p>
-              <p><PhoneCall size={16} /> +212 535 65 20 33</p>
+              <h4 style={{ color: "#c9a227" }}>{t("footer.contactTitle")}</h4>
+              <p dir="ltr" style={{ textAlign: isAr ? "right" : "left" }}><Phone size={16} /> +212 778 692 099</p>
+              <p dir="ltr" style={{ textAlign: isAr ? "right" : "left" }}><Phone size={16} /> +212 662 83 44 89</p>
+              <p dir="ltr" style={{ textAlign: isAr ? "right" : "left" }}><PhoneCall size={16} /> +212 535 65 20 33</p>
               <p><Mail size={16} /> contact@az-businesscenter.ma</p>
               <p><MapPin size={16} /> N° 75 «Bureaux Al Atlas», Br N°24, 3ème étage, Av. El Hoceima, Atlas, Agdal-Fès</p>
             </div>
             <div>
               <h4 style={{ color: "#c9a227" }}>AZ BUSINESS CENTER</h4>
-              <p style={{ color: "#d8dee9", lineHeight: "1.7" }}>Conseil, gestion, accompagnement administratif et solutions professionnelles au Maroc.</p>
+              <p style={{ color: "#d8dee9", lineHeight: "1.7" }}>{t("footer.aboutText")}</p>
             </div>
           </div>
-          <p className="footer-bottom">© 2026 <span className="brand">AZ Business Center</span> — Tous droits réservés.</p>
+          <p className="footer-bottom">© 2026 <span className="brand">AZ Business Center</span> — {t("footer.rights")}</p>
         </footer>
       </div>
     </>

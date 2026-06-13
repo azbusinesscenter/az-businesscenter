@@ -176,6 +176,10 @@ export default function App() {
             min-height: 100vh;
             font-family: Arial, sans-serif;
           }
+
+          [dir="rtl"] .hero-cta {
+            direction: rtl;
+          }
             .brand {
             color: #c9a227;
             white-space: nowrap;
@@ -872,6 +876,15 @@ export default function App() {
             .carousel-arrow-right {
               left: calc(50% + 10px);
               right: auto;
+            }
+              [dir="rtl"] .carousel-arrow-left {
+              right: auto;
+              left: calc(50% + 10px);
+            }
+
+            [dir="rtl"] .carousel-arrow-right {
+              left: auto;
+              right: calc(50% + 10px);
             }
 
             .carousel-arrow:disabled {
