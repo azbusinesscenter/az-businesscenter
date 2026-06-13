@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import {
   Building2,
@@ -14,48 +15,19 @@ import {
   Target,
 } from "lucide-react";
 
-const activities = [
-  {
-    icon: BriefcaseBusiness,
-    title: "CONSEIL ET GESTION",
-    items: ["Accompagnement dans la création d'entreprises, domiciliation commerciale, contentieux administratif et marchés publics, conformément à la réglementation marocaine."],
-  },
-  {
-    icon: Building2,
-    title: "GESTION DU SYNDIC D'IMMEUBLES",
-    items: ["Gestion professionnelle de votre copropriété, conforme à la loi n°18-00 révisée en 2024. Assemblées générales, suivi administratif et communication transparente."],
-  },
-  {
-    icon: Sofa,
-    title: "SOUS LOCATION D'IMMEUBLES MEUBLÉES",
-    items: ["Sous-location d'espaces meublés confortables, dans un cadre contractuel clair et conforme à l'article 668 du Code des Obligations et des Contrats."],
-  },
-];
-
-const reasons = [
-  {
-    icon: ShieldCheck,
-    title: "EXPERTISE & EXPÉRIENCE",
-    text: "Une équipe qualifiée à votre service.",
-  },
-  {
-    icon: Handshake,
-    title: "ACCOMPAGNEMENT PERSONNALISÉ",
-    text: "Des solutions adaptées à vos besoins.",
-  },
-  {
-    icon: Target,
-    title: "EFFICACITÉ & RIGUEUR",
-    text: "Des résultats concrets, dans les délais.",
-  },
-  {
-    icon: MapPin,
-    title: "PROXIMITÉ & DISPONIBILITÉ",
-    text: "À vos côtés, au quotidien.",
-  },
-];
-
 export default function App() {
+  const { t, i18n } = useTranslation();
+
+  const changeLang = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("lang", lng);
+  };
+
+  React.useEffect(() => {
+    document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -85,6 +57,47 @@ export default function App() {
   const [atStart, setAtStart] = React.useState(true);
   const [atEnd, setAtEnd] = React.useState(false);
 
+  const activities = [
+    {
+      icon: BriefcaseBusiness,
+      title: t("act.a1t"),
+      items: [t("act.a1d")],
+    },
+    {
+      icon: Building2,
+      title: t("act.a2t"),
+      items: [t("act.a2d")],
+    },
+    {
+      icon: Sofa,
+      title: t("act.a3t"),
+      items: [t("act.a3d")],
+    },
+  ];
+
+  const reasons = [
+    {
+      icon: ShieldCheck,
+      title: t("why.r1t"),
+      text: t("why.r1d"),
+    },
+    {
+      icon: Handshake,
+      title: t("why.r2t"),
+      text: t("why.r2d"),
+    },
+    {
+      icon: Target,
+      title: t("why.r3t"),
+      text: t("why.r3d"),
+    },
+    {
+      icon: MapPin,
+      title: t("why.r4t"),
+      text: t("why.r4d"),
+    },
+  ];
+
   const handleActivitiesScroll = () => {
     const el = activitiesRef.current;
     if (!el) return;
@@ -113,7 +126,7 @@ export default function App() {
 
     if (!name || !phone || !email || !message) {
       setStatus("error");
-      alert("Veuillez remplir tous les champs obligatoires.");
+      alert(t("contact.alert"));
       return;
     }
 
@@ -155,6 +168,8 @@ export default function App() {
     <>
       <style>
         {`
+
+          
           .page {
             background: #071426;
             color: white;
@@ -166,6 +181,19 @@ export default function App() {
             white-space: nowrap;
             font-size: 1.05em;
             letter-spacing: 1px;
+          }
+
+          [dir="rtl"] .page {
+            font-family: Tahoma, Arial, sans-serif;
+          }
+
+          [dir="rtl"] .brand,
+          [dir="rtl"] .nav-link,
+          [dir="rtl"] .hero-title,
+          [dir="rtl"] .hero-subtitle,
+          [dir="rtl"] .hero-cta,
+          [dir="rtl"] .section-label {
+            letter-spacing: 0;
           }
 
           .navbar {
@@ -194,6 +222,29 @@ export default function App() {
             font-weight: 800;
             letter-spacing: 0.5px;
             white-space: nowrap;
+          }
+
+          .lang-switch {
+            display: flex;
+            gap: 8px;
+            margin-inline-start: 32px;
+          }
+
+          .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(201,162,39,0.5);
+            color: #d8dee9;
+            padding: 6px 13px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+          }
+
+          .lang-btn.active {
+            background: #c9a227;
+            border-color: #c9a227;
+            color: #071426;
           }
 
           .burger {
@@ -250,11 +301,22 @@ export default function App() {
             background-position: center;
             overflow: hidden;
           }
+          [dir="rtl"] .hero {
+            background-image: url('/office-ar.webp');
+          }
+
 
           .hero-gradient {
             position: absolute;
             inset: 0;
             background: linear-gradient(90deg, rgba(6,18,34,0.98) 0%, rgba(6,18,34,0.95) 38%, rgba(6,18,34,0.55) 58%, rgba(6,18,34,0.05) 100%);
+          }
+
+          [dir="rtl"] .hero-gradient {
+            background: linear-gradient(270deg, rgba(6,18,34,0.98) 0%, rgba(6,18,34,0.95) 38%, rgba(6,18,34,0.55) 58%, rgba(6,18,34,0.05) 100%);
+          }
+          [dir="rtl"] .hero {
+            background-position: left center;
           }
 
           .hero-shape {
@@ -266,6 +328,12 @@ export default function App() {
             background: #061222;
             clip-path: polygon(0 0, 78% 0, 100% 100%, 0% 100%);
             opacity: 0.96;
+          }
+
+          [dir="rtl"] .hero-shape {
+            left: auto;
+            right: 0;
+            clip-path: polygon(22% 0, 100% 0, 100% 100%, 0% 100%);
           }
 
           .hero-content {
@@ -284,6 +352,7 @@ export default function App() {
             width: 210px;
             object-fit: contain;
             margin-bottom: 35px;
+            align-self: flex-start;
           }
 
           .hero-title {
@@ -371,6 +440,15 @@ export default function App() {
             border-right: none;
           }
 
+          [dir="rtl"] .activity-card {
+            border-right: none;
+            border-left: 1px solid rgba(201,162,39,0.35);
+          }
+
+          [dir="rtl"] .activity-card:last-child {
+            border-left: none;
+          }
+
           .icon-circle {
             width: 86px;
             height: 86px;
@@ -434,6 +512,15 @@ export default function App() {
 
           .why-card:last-child {
             border-right: none;
+          }
+
+          [dir="rtl"] .why-card {
+            border-right: none;
+            border-left: 1px solid rgba(201,162,39,0.35);
+          }
+
+          [dir="rtl"] .why-card:last-child {
+            border-left: none;
           }
 
           .why-card h3 {
@@ -534,6 +621,17 @@ export default function App() {
             z-index: 2000;
             text-decoration: none;
           }
+          [dir="rtl"] #tidio-chat {
+            display: none !important;
+          }
+            [dir="rtl"] .whatsapp-button {
+            right: auto;
+            left: 15px;
+          }
+            [dir="rtl"] #tidio-chat-iframe {
+            right: auto !important;
+            left: 0 !important;
+          }
 
           .whatsapp-button img {
             width: 38px;
@@ -560,6 +658,10 @@ export default function App() {
               gap: 22px;
               flex-wrap: wrap;
               justify-content: center;
+            }
+
+            .lang-switch {
+              margin-inline-start: 18px;
             }
 
             .hero {
@@ -594,12 +696,25 @@ export default function App() {
               border-bottom: none;
             }
 
+            [dir="rtl"] .activity-card {
+              border-left: none;
+              border-bottom: 1px solid rgba(201,162,39,0.35);
+            }
+
+            [dir="rtl"] .activity-card:last-child {
+              border-bottom: none;
+            }
+
             .why-grid {
               grid-template-columns: repeat(2, 1fr);
             }
 
             .why-card {
               border-right: none;
+            }
+
+            [dir="rtl"] .why-card {
+              border-left: none;
             }
 
             .footer-grid {
@@ -615,7 +730,7 @@ export default function App() {
   padding: 18px 22px;
   width: 100%;
   box-sizing: border-box;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
             .nav-links {
@@ -626,12 +741,25 @@ export default function App() {
               font-size: 12px;
             }
 
+            .lang-switch {
+              margin-inline-start: 0;
+            }
+
+            .lang-btn {
+              padding: 5px 11px;
+              font-size: 12px;
+            }
+
             .hero {
               min-height: auto;
               background-position: center;
             }
 
             .hero-gradient {
+              background: rgba(6,18,34,0.84);
+            }
+
+            [dir="rtl"] .hero-gradient {
               background: rgba(6,18,34,0.84);
             }
 
@@ -700,6 +828,15 @@ export default function App() {
 
             .activity-card:last-child {
               border-right: none;
+            }
+
+            [dir="rtl"] .activity-card {
+              border-left: 1px solid rgba(201,162,39,0.35);
+              border-bottom: none;
+            }
+
+            [dir="rtl"] .activity-card:last-child {
+              border-left: none;
             }
               .activities-carousel {
               padding-bottom: 75px;
@@ -787,6 +924,10 @@ export default function App() {
               right: 18px;
               bottom: 90px;
             }
+              [dir="rtl"] .whatsapp-button {
+              right: auto;
+              left: 18px;
+            }
 
             .whatsapp-button img {
               width: 32px;
@@ -799,11 +940,25 @@ export default function App() {
       <div className="page">
         <nav className="navbar">
           <div className="nav-links">
-            <Link to="/" className="nav-link">ACCUEIL</Link>
-            <Link to="/activities" target="_blank" className="nav-link">NOS ACTIVITÉS</Link>
-            <Link to="/tarifs" target="_blank" className="nav-link">TARIFS</Link>
-            <a href="#pourquoi" className="nav-link">POURQUOI NOUS</a>
-            <a href="#contact" className="nav-link">CONTACT</a>
+            <Link to="/" className="nav-link">{t("nav.home")}</Link>
+            <Link to="/activities" target="_blank" className="nav-link">{t("nav.activities")}</Link>
+            <Link to="/tarifs" target="_blank" className="nav-link">{t("nav.tarifs")}</Link>
+            <a href="#pourquoi" className="nav-link">{t("nav.why")}</a>
+            <a href="#contact" className="nav-link">{t("nav.contact")}</a>
+          </div>
+          <div className="lang-switch">
+            <button
+              className={`lang-btn${i18n.language === "fr" ? " active" : ""}`}
+              onClick={() => changeLang("fr")}
+            >
+              FR
+            </button>
+            <button
+              className={`lang-btn${i18n.language === "ar" ? " active" : ""}`}
+              onClick={() => changeLang("ar")}
+            >
+              ع
+            </button>
           </div>
           <button className="burger" onClick={() => setMenuOpen(!menuOpen)}>
             <span />
@@ -814,11 +969,11 @@ export default function App() {
 
         {menuOpen && (
           <div className="mobile-menu">
-            <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>ACCUEIL</Link>
-            <Link to="/activities" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>NOS ACTIVITÉS</Link>
-            <Link to="/tarifs" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>TARIFS</Link>
-            <a href="#pourquoi" className="nav-link" onClick={() => setMenuOpen(false)}>POURQUOI NOUS</a>
-            <a href="#contact" className="nav-link" onClick={() => setMenuOpen(false)}>CONTACT</a>
+            <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.home")}</Link>
+            <Link to="/activities" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.activities")}</Link>
+            <Link to="/tarifs" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.tarifs")}</Link>
+            <a href="#pourquoi" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.why")}</a>
+            <a href="#contact" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.contact")}</a>
           </div>
         )}
 
@@ -834,22 +989,22 @@ export default function App() {
             />
 
             <h1 className="hero-title">
-              VOTRE PARTENAIRE
+              {t("hero.l1")}
               <br />
-              <span style={{ color: "#c9a227" }}>DE CONFIANCE,</span>
+              <span style={{ color: "#c9a227" }}>{t("hero.l2")}</span>
               <br />
-              À CHAQUE ÉTAPE
+              {t("hero.l3")}
               <br />
-              DE VOTRE RÉUSSITE
+              {t("hero.l4")}
             </h1>
 
             <div className="hero-subtitle">
-              EXPERTISE <span style={{ color: "#c9a227" }}>•</span> PROXIMITÉ{" "}
-              <span style={{ color: "#c9a227" }}>•</span> PERFORMANCE
+              {t("hero.expertise")} <span style={{ color: "#c9a227" }}>•</span> {t("hero.proximite")}{" "}
+              <span style={{ color: "#c9a227" }}>•</span> {t("hero.performance")}
             </div>
             <div>
               <Link to="/tarifs" target="_blank" className="hero-cta">
-                DÉCOUVRIR NOS TARIFS →
+                {t("hero.cta")}
               </Link>
             </div>
           </div>
@@ -857,7 +1012,7 @@ export default function App() {
 
         <section id="activities" className="section-light fade-in">
           <div className="section-label-wrap">
-            <span className="section-label">NOS ACTIVITÉS</span>
+            <span className="section-label">{t("act.label")}</span>
           </div>
 
           <div className="activities-carousel">
@@ -899,7 +1054,7 @@ export default function App() {
 
                         className="button-dark"
                       >
-                        Voir plus
+                        {t("act.more")}
                       </Link>
                     </div>
                   </div>
@@ -920,7 +1075,7 @@ export default function App() {
 
         <section id="pourquoi" className="section-dark fade-in">
           <h2 className="why-title">
-            POURQUOI CHOISIR <span className="brand">AZ BUSINESS CENTER</span> ?
+            {t("why.title")} <span className="brand">AZ BUSINESS CENTER</span> {t("why.q")}
           </h2>
 
           <div className="why-grid">
@@ -956,10 +1111,10 @@ export default function App() {
         </section>
         <section id="contact" className="section-dark fade-in">
           <div className="contact-card">
-            <h2>Contactez <span className="brand">AZ BUSINESS CENTER</span></h2>
+            <h2>{t("contact.title")} <span className="brand">AZ BUSINESS CENTER</span></h2>
 
             <p>
-              Laissez vos informations et notre équipe vous contactera prochainement.
+              {t("contact.intro")}
             </p>
 
             <form
@@ -968,26 +1123,26 @@ export default function App() {
             >
               <input
                 name="name"
-                placeholder="Nom complet"
+                placeholder={t("contact.name")}
                 required
                 style={inputStyle}
               />
               <input
                 name="phone"
-                placeholder="Téléphone"
+                placeholder={t("contact.phone")}
                 required
                 style={inputStyle}
               />
               <input
                 name="email"
                 type="email"
-                placeholder="Adresse e-mail"
+                placeholder={t("contact.email")}
                 required
                 style={inputStyle}
               />
               <input
                 name="company"
-                placeholder="Entreprise"
+                placeholder={t("contact.company")}
                 style={inputStyle}
               />
 
@@ -997,15 +1152,15 @@ export default function App() {
                 style={inputStyle}
                 className="textarea-full"
               >
-                <option value="">Pack souhaité (optionnel)</option>
-                <option value="Pack Essentiel">Pack Essentiel — 3 500 MAD</option>
-                <option value="Pack Pro">Pack Pro — 5 000 MAD</option>
-                <option value="Pack Premium">Pack Premium — 9 980 MAD</option>
+                <option value="">{t("contact.planDefault")}</option>
+                <option value="Pack Essentiel">{t("contact.plan1")}</option>
+                <option value="Pack Pro">{t("contact.plan2")}</option>
+                <option value="Pack Premium">{t("contact.plan3")}</option>
               </select>
 
               <textarea
                 name="message"
-                placeholder="Votre message"
+                placeholder={t("contact.message")}
                 rows="6"
                 style={{
                   ...inputStyle,
@@ -1015,17 +1170,17 @@ export default function App() {
               />
 
               <button type="submit" className="submit-button submit-full" disabled={status === "sending"}>
-                {status === "sending" ? "ENVOI EN COURS..." : "ENVOYER"}
+                {status === "sending" ? t("contact.sending") : t("contact.send")}
               </button>
 
               {status === "sent" && (
                 <p style={{ color: "#c9a227", gridColumn: "1/-1" }}>
-                  ✅ Message envoyé avec succès !
+                  {t("contact.sent")}
                 </p>
               )}
               {status === "error" && (
                 <p style={{ color: "#f87171", gridColumn: "1/-1" }}>
-                  ❌ Une erreur est survenue. Veuillez réessayer.
+                  {t("contact.error")}
                 </p>
               )}
             </form>
@@ -1047,14 +1202,14 @@ export default function App() {
             </div>
 
             <div>
-              <h4 style={{ color: "#c9a227" }}>CONTACT</h4>
-              <p>
+              <h4 style={{ color: "#c9a227" }}>{t("footer.contactTitle")}</h4>
+              <p dir="ltr" style={{ textAlign: i18n.language === "ar" ? "right" : "left" }}>
                 <Phone size={16} /> +212 778 692 099
               </p>
-              <p>
+              <p dir="ltr" style={{ textAlign: i18n.language === "ar" ? "right" : "left" }}>
                 <Phone size={16} /> +212 662 83 44 89
               </p>
-              <p>
+              <p dir="ltr" style={{ textAlign: i18n.language === "ar" ? "right" : "left" }}>
                 <PhoneCall size={16} /> +212 535 65 20 33
               </p>
               <p>
@@ -1066,42 +1221,42 @@ export default function App() {
             </div>
 
             <div>
-              <h4 style={{ color: "#c9a227" }}>LIENS RAPIDES</h4>
+              <h4 style={{ color: "#c9a227" }}>{t("footer.quickTitle")}</h4>
 
               <p>
                 <Link to="/" className="footer-link">
-                  Accueil
+                  {t("footer.qHome")}
                 </Link>
               </p>
               <p>
                 <Link to="/activities" target="_blank" className="footer-link">
-                  Nos activités
+                  {t("footer.qActivities")}
                 </Link>
               </p>
 
 
               <p>
                 <Link to="/tarifs" target="_blank" className="footer-link">
-                  Nos tarifs
+                  {t("footer.qTarifs")}
                 </Link>
               </p>
 
               <p>
                 <a href="#pourquoi" className="footer-link">
-                  Pourquoi nous choisir
+                  {t("footer.qWhy")}
                 </a>
               </p>
 
               <p>
                 <a href="#contact" className="footer-link">
-                  Contact
+                  {t("footer.qContact")}
                 </a>
               </p>
             </div>
           </div>
 
           <p className="footer-bottom">
-            © 2026 <span className="brand">AZ Business Center</span> — Tous droits réservés.
+            © 2026 <span className="brand">AZ Business Center</span> — {t("footer.rights")}
           </p>
         </footer>
 
