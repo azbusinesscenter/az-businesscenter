@@ -101,8 +101,11 @@ export default function App() {
   const handleActivitiesScroll = () => {
     const el = activitiesRef.current;
     if (!el) return;
-    setAtStart(el.scrollLeft <= 5);
-    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 5);
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    const sl = el.scrollLeft;
+    const rtl = i18n.language === "ar";
+    setAtStart(rtl ? sl <= -maxScroll + 5 : sl <= 5);
+    setAtEnd(rtl ? sl >= -5 : sl >= maxScroll - 5);
   };
 
   const scrollActivities = (direction) => {
@@ -110,6 +113,9 @@ export default function App() {
     if (!el) return;
     el.scrollBy({ left: direction * el.clientWidth, behavior: "smooth" });
   };
+  React.useEffect(() => {
+    handleActivitiesScroll();
+  }, [i18n.language]);
 
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyBpy8fAoBfLpurO8ssVFwneveMaQxqjUnXAng7Vrc_RFPgz_aq6REicE-R75uJCF-M/exec";
 
@@ -275,7 +281,7 @@ export default function App() {
   flex-direction: column;
   gap: 0;
   background: #061222;
-  padding: 20px;
+  padding: 88px 20px 20px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -872,19 +878,19 @@ export default function App() {
               right: calc(50% + 10px);
               left: auto;
             }
+            [dir="rtl"] .carousel-arrow-left {
+              left: calc(50% + 10px);
+              right: auto;
+            }
+
+            [dir="rtl"] .carousel-arrow-right {
+              right: calc(50% + 10px);
+              left: auto;
+            }
 
             .carousel-arrow-right {
               left: calc(50% + 10px);
               right: auto;
-            }
-              [dir="rtl"] .carousel-arrow-left {
-              right: auto;
-              left: calc(50% + 10px);
-            }
-
-            [dir="rtl"] .carousel-arrow-right {
-              left: auto;
-              right: calc(50% + 10px);
             }
 
             .carousel-arrow:disabled {

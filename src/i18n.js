@@ -73,7 +73,7 @@ const resources = {
         rights: "Tous droits réservés.",
       },
       acts: {
-        backHome: "RETOUR À L'ACCUEIL",
+        backHome: "RETOUR",
         tarifs: "TARIFS",
         heroTitle: "NOS ACTIVITÉS",
         heroText: "accompagne les entreprises, copropriétés, investisseurs et professionnels au Maroc avec des solutions administratives, commerciales et organisationnelles structurées, conformément à la réglementation marocaine applicable.",
@@ -256,7 +256,7 @@ const resources = {
         rights: "جميع الحقوق محفوظة.",
       },
       acts: {
-        backHome: "العودة إلى الرئيسية",
+        backHome: "العودة",
         tarifs: "الأسعار",
         heroTitle: "أنشطتنا",
         heroText: "يرافق المقاولات والملكيات المشتركة والمستثمرين والمهنيين بالمغرب من خلال حلول إدارية وتجارية وتنظيمية منظمة، وفقاً للتشريعات المغربية الجاري بها العمل.",
