@@ -35,6 +35,19 @@ export default function Tarifs() {
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   const packs = [
     {
       name: "Pack Essentiel",
@@ -225,6 +238,7 @@ export default function Tarifs() {
             display: flex;
             flex-direction: column;
             position: relative;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
           }
 
           .pack-card.recommended {
@@ -375,6 +389,7 @@ export default function Tarifs() {
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
           }
 
           .pack-card.recommended .pack-button {
@@ -415,6 +430,7 @@ export default function Tarifs() {
             text-decoration: none;
             font-weight: 900;
             display: inline-block;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
           }
 
           .footer {
@@ -443,12 +459,49 @@ export default function Tarifs() {
             display: none !important;
           }
 
+          .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+          }
+
+          .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          .pack-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.13), 0 0 0 1px rgba(201,162,39,0.2);
+          }
+
+          .pack-card.recommended:hover {
+            transform: translateY(-22px);
+            box-shadow: 0 32px 70px rgba(7,20,38,0.5), 0 0 24px rgba(201,162,39,0.18);
+          }
+
+          .pack-button:hover {
+            transform: translateY(-2px);
+            background: #c9a227;
+            box-shadow: 0 6px 20px rgba(201,162,39,0.35);
+          }
+
+          .pack-card.recommended .pack-button:hover {
+            box-shadow: 0 6px 20px rgba(201,162,39,0.45);
+          }
+
+          .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201,162,39,0.4);
+          }
+
           @media (max-width: 1024px) {
             .tarifs-nav { padding: 0 32px; }
             .tarifs-hero { padding: 70px 40px 30px; }
             .packs-section { padding: 50px 40px 80px; }
             .packs-grid { grid-template-columns: 1fr; max-width: 560px; gap: 40px; }
             .pack-card.recommended { transform: none; padding-top: 50px; }
+            .pack-card.recommended:hover { transform: translateY(-4px); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
           }
 
@@ -500,7 +553,7 @@ export default function Tarifs() {
           </div>
         </nav>
 
-        <section className="tarifs-hero">
+        <section className="tarifs-hero fade-in">
           <div className="hero-pill">
             <Tag size={15} /> {t("tarifs.pill")}
           </div>
@@ -512,7 +565,7 @@ export default function Tarifs() {
           </p>
         </section>
 
-        <section className="packs-section">
+        <section className="packs-section fade-in">
           <div className="packs-grid">
             {packs.map((pack) => (
               <div
@@ -567,7 +620,7 @@ export default function Tarifs() {
           
         </section>
 
-        <section className="tarifs-cta">
+        <section className="tarifs-cta fade-in">
           <h2>
             {t("tarifs.ctaTitle1")}<span>{t("tarifs.ctaTitle2")}</span>
           </h2>

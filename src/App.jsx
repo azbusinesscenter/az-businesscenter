@@ -607,6 +607,18 @@ export default function App() {
             cursor: pointer;
           }
 
+          .contact-form input,
+          .contact-form textarea,
+          .contact-form select {
+            transition: box-shadow 0.2s ease;
+          }
+
+          .contact-form input:focus,
+          .contact-form textarea:focus,
+          .contact-form select:focus {
+            box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.4);
+          }
+
           .footer {
             background: #061222;
             padding: 45px 60px;

@@ -34,6 +34,19 @@ export default function Activities() {
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   const conseilCards = [
     [t("acts.c1t"), t("acts.c1d")],
     [t("acts.c2t"), t("acts.c2d")],
@@ -369,6 +382,7 @@ export default function Activities() {
             text-decoration: none;
             font-weight: 900;
             display: inline-block;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
           }
 
           .footer {
@@ -394,6 +408,22 @@ export default function Activities() {
 
           [dir="rtl"] #tidio-chat {
             display: none !important;
+          }
+
+          .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+          }
+
+          .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201,162,39,0.4);
           }
 
           @media (max-width: 1024px) {
@@ -461,7 +491,7 @@ export default function Activities() {
           </div>
         </nav>
 
-        <section className="activities-hero">
+        <section className="activities-hero fade-in">
           <img src="/logo.png" alt="AZ Business Center" className="hero-logo" />
           <h1 className="hero-title">{t("acts.heroTitle")}</h1>
           <p className="hero-text">
@@ -470,7 +500,7 @@ export default function Activities() {
         </section>
 
         {/* CONSEIL ET GESTION */}
-        <section className="activity-section-dark">
+        <section className="activity-section-dark fade-in">
           <div className="activity-banner">
             <img src="/conseil.webp" alt="Conseil et Gestion" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             <div className="activity-banner-overlay">
@@ -508,7 +538,7 @@ export default function Activities() {
         </section>
 
         {/* GESTION DU SYNDIC */}
-        <section className="activity-section-light">
+        <section className="activity-section-light fade-in">
           <div className="activity-banner">
             <img src="/syndic.webp" alt="Gestion du Syndic" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             <div className="activity-banner-overlay">
@@ -535,7 +565,7 @@ export default function Activities() {
         </section>
 
         {/* SOUS LOCATION */}
-        <section className="activity-section-dark">
+        <section className="activity-section-dark fade-in">
           <div className="activity-banner">
             <img src="/souslocation.webp" alt="Sous Location" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             <div className="activity-banner-overlay">
@@ -563,7 +593,7 @@ export default function Activities() {
 
 
 
-        <section className="cta-section">
+        <section className="cta-section fade-in">
           <h2>{t("acts.ctaTitle")}</h2>
           <p>{t("acts.ctaContact")} <span className="brand">AZ Business Center</span> {t("acts.ctaText")}</p>
           <Link to="/" className="home-button">{t("acts.backHome")}</Link>
