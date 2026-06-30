@@ -363,6 +363,7 @@ export default function App() {
             object-fit: contain;
             margin-bottom: 35px;
             align-self: flex-start;
+            animation: heroFadeUp 0.7s ease both;
           }
 
           .hero-title {
@@ -371,6 +372,7 @@ export default function App() {
             margin: 0;
             font-weight: 900;
             letter-spacing: 0.5px;
+            animation: heroFadeUp 0.7s ease 0.15s both;
           }
 
           .hero-subtitle {
@@ -379,6 +381,7 @@ export default function App() {
             font-size: 23px;
             font-weight: 800;
             letter-spacing: 2px;
+            animation: heroFadeUp 0.7s ease 0.35s both;
           }
 
           .hero-cta {
@@ -392,6 +395,7 @@ export default function App() {
             font-weight: 900;
             font-size: 16px;
             letter-spacing: 0.5px;
+            animation: heroFadeUp 0.7s ease 0.55s both;
           }
 
           .section-light {
@@ -656,6 +660,11 @@ export default function App() {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
 }
 
           @media (max-width: 1024px) {
