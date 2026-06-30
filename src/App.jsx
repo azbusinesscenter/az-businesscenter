@@ -306,12 +306,19 @@ export default function App() {
           .hero {
             min-height: calc(100vh - 76px);
             position: relative;
+            overflow: hidden;
+          }
+
+          .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
             background-image: url('/office.webp');
             background-size: cover;
             background-position: center;
-            overflow: hidden;
+            animation: heroBg 20s ease-out forwards;
           }
-          [dir="rtl"] .hero {
+          [dir="rtl"] .hero::before {
             background-image: url('/office-ar.webp');
           }
 
@@ -325,7 +332,7 @@ export default function App() {
           [dir="rtl"] .hero-gradient {
             background: linear-gradient(270deg, rgba(6,18,34,0.98) 0%, rgba(6,18,34,0.95) 38%, rgba(6,18,34,0.55) 58%, rgba(6,18,34,0.05) 100%);
           }
-          [dir="rtl"] .hero {
+          [dir="rtl"] .hero::before {
             background-position: left center;
           }
 
@@ -665,6 +672,11 @@ export default function App() {
 @keyframes heroFadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes heroBg {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1);    }
 }
 
           @media (max-width: 1024px) {
