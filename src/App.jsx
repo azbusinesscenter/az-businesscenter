@@ -403,6 +403,12 @@ export default function App() {
             font-size: 16px;
             letter-spacing: 0.5px;
             animation: heroFadeUp 0.7s ease 0.55s both;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+          }
+
+          .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(201, 162, 39, 0.45);
           }
 
           .section-light {
