@@ -180,7 +180,7 @@ export default function App() {
             background: #071426;
             color: white;
             min-height: 100vh;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
           }
 
           [dir="rtl"] .hero-cta {
@@ -194,7 +194,7 @@ export default function App() {
           }
 
           [dir="rtl"] .page {
-            font-family: Tahoma, Arial, sans-serif;
+            font-family: 'Cairo', Tahoma, sans-serif;
           }
 
           [dir="rtl"] .brand,

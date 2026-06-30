@@ -94,10 +94,10 @@ export default function Tarifs() {
             background: #f4f1eb;
             color: #071426;
             min-height: 100vh;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
           }
           [dir="rtl"] .tarifs-page {
-            font-family: Tahoma, Arial, sans-serif;
+            font-family: 'Cairo', Tahoma, sans-serif;
           }
           .brand {
             color: #c9a227;
