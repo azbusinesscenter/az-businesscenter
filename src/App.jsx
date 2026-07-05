@@ -326,31 +326,14 @@ export default function App() {
           .hero-gradient {
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, rgba(6,18,34,0.98) 0%, rgba(6,18,34,0.95) 38%, rgba(6,18,34,0.55) 58%, rgba(6,18,34,0.05) 100%);
+            background: linear-gradient(90deg, #071426 0%, #071426 30%, rgba(7,20,38,0.85) 45%, rgba(7,20,38,0.45) 62%, rgba(7,20,38,0.1) 80%, rgba(7,20,38,0) 100%);
           }
 
           [dir="rtl"] .hero-gradient {
-            background: linear-gradient(270deg, rgba(6,18,34,0.98) 0%, rgba(6,18,34,0.95) 38%, rgba(6,18,34,0.55) 58%, rgba(6,18,34,0.05) 100%);
+            background: linear-gradient(270deg, #071426 0%, #071426 30%, rgba(7,20,38,0.85) 45%, rgba(7,20,38,0.45) 62%, rgba(7,20,38,0.1) 80%, rgba(7,20,38,0) 100%);
           }
           [dir="rtl"] .hero::before {
             background-position: left center;
-          }
-
-          .hero-shape {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 58%;
-            height: 100%;
-            background: #061222;
-            clip-path: polygon(0 0, 78% 0, 100% 100%, 0% 100%);
-            opacity: 0.96;
-          }
-
-          [dir="rtl"] .hero-shape {
-            left: auto;
-            right: 0;
-            clip-path: polygon(22% 0, 100% 0, 100% 100%, 0% 100%);
           }
 
           .hero-content {
@@ -717,10 +700,6 @@ export default function App() {
               min-height: 650px;
             }
 
-            .hero-shape {
-              width: 75%;
-            }
-
             .hero-content {
               min-height: 650px;
               padding: 45px 42px;
@@ -810,10 +789,6 @@ export default function App() {
 
             [dir="rtl"] .hero-gradient {
               background: rgba(6,18,34,0.84);
-            }
-
-            .hero-shape {
-              display: none;
             }
 
             .hero-content {
@@ -1037,7 +1012,6 @@ export default function App() {
 
         <section id="accueil" className="hero">
           <div className="hero-gradient" />
-          <div className="hero-shape" />
 
           <div className="hero-content">
             <img
