@@ -6,6 +6,9 @@ import "./i18n";
 import App from "./App";
 import Activities from "./Activities";
 import Tarifs from "./Tarifs";
+import TarifsCreationEntreprise from "./TarifsCreationEntreprise";
+import TarifsSyndic from "./TarifsSyndic";
+import TarifsSousLocation from "./TarifsSousLocation";
 
 import "./index.css";
 
@@ -63,6 +66,9 @@ function Root() {
         <Route path="/" element={<App />} />
         <Route path="/activities" element={<Activities />} />
         <Route path="/tarifs" element={<Tarifs />} />
+        <Route path="/tarifs/creation-entreprise" element={<TarifsCreationEntreprise />} />
+        <Route path="/tarifs/syndic" element={<TarifsSyndic />} />
+        <Route path="/tarifs/sous-location" element={<TarifsSousLocation />} />
       </Routes>
     </BrowserRouter>
   );

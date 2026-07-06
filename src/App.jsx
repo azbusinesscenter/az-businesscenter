@@ -46,13 +46,25 @@ export default function App() {
   }, []);
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [status, setStatus] = React.useState("idle");
-  const selectedPlan = new URLSearchParams(window.location.search).get("plan") || "";
+  const searchParams = new URLSearchParams(window.location.search);
+  const selectedPlan = searchParams.get("plan") || "";
+  const selectedActivite = searchParams.get("activite") || "";
+  const scrollToContact = searchParams.get("contact");
+
+  const creationPlans = ["Pack Essentiel", "Pack Pro", "Pack Premium"];
+  const syndicPlans = ["Offre Essentielle", "Offre Confort", "Offre Premium"];
+  const [activite, setActivite] = React.useState(() => {
+    if (selectedActivite) return selectedActivite;
+    if (creationPlans.includes(selectedPlan)) return "Création d'entreprise";
+    if (syndicPlans.includes(selectedPlan)) return "Gestion du syndic";
+    return "";
+  });
 
   React.useEffect(() => {
-    if (selectedPlan) {
+    if (selectedPlan || scrollToContact) {
       document.getElementById("contact")?.scrollIntoView();
     }
-  }, [selectedPlan]);
+  }, [selectedPlan, scrollToContact]);
   const activitiesRef = React.useRef(null);
   const [atStart, setAtStart] = React.useState(true);
   const [atEnd, setAtEnd] = React.useState(false);
@@ -142,6 +154,7 @@ export default function App() {
       email,
       company,
       message,
+      activite: e.target.elements.activite.value,
       plan: e.target.elements.plan.value,
     };
 
@@ -974,8 +987,8 @@ export default function App() {
         <nav className="navbar">
           <div className="nav-links">
             <Link to="/" className="nav-link">{t("nav.home")}</Link>
-            <Link to="/activities" target="_blank" className="nav-link">{t("nav.activities")}</Link>
-            <Link to="/tarifs" target="_blank" className="nav-link">{t("nav.tarifs")}</Link>
+            <Link to="/activities" className="nav-link">{t("nav.activities")}</Link>
+            <Link to="/tarifs" className="nav-link">{t("nav.tarifs")}</Link>
             <a href="#pourquoi" className="nav-link">{t("nav.why")}</a>
             <a href="#contact" className="nav-link">{t("nav.contact")}</a>
           </div>
@@ -1003,8 +1016,8 @@ export default function App() {
         {menuOpen && (
           <div className="mobile-menu">
             <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.home")}</Link>
-            <Link to="/activities" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.activities")}</Link>
-            <Link to="/tarifs" target="_blank" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.tarifs")}</Link>
+            <Link to="/activities" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.activities")}</Link>
+            <Link to="/tarifs" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.tarifs")}</Link>
             <a href="#pourquoi" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.why")}</a>
             <a href="#contact" className="nav-link" onClick={() => setMenuOpen(false)}>{t("nav.contact")}</a>
           </div>
@@ -1035,7 +1048,7 @@ export default function App() {
               <span style={{ color: "#c9a227" }}>•</span> {t("hero.performance")}
             </div>
             <div>
-              <Link to="/tarifs" target="_blank" className="hero-cta">
+              <Link to="/tarifs" className="hero-cta">
                 {t("hero.cta")}
               </Link>
             </div>
@@ -1082,8 +1095,6 @@ export default function App() {
 
                       <Link
                         to="/activities"
-                        target="_blank"
-
                         className="button-dark"
                       >
                         {t("act.more")}
@@ -1179,15 +1190,46 @@ export default function App() {
               />
 
               <select
+                name="activite"
+                value={activite}
+                onChange={(e) => setActivite(e.target.value)}
+                style={inputStyle}
+              >
+                <option value="">{t("contact.activiteDefault")}</option>
+                <option value="Création d'entreprise">{t("contact.activite1")}</option>
+                <option value="Gestion du syndic">{t("contact.activite2")}</option>
+                <option value="Sous-location">{t("contact.activite3")}</option>
+              </select>
+
+              <select
+                key={activite}
                 name="plan"
                 defaultValue={selectedPlan}
+                disabled={!activite || activite === "Sous-location"}
                 style={inputStyle}
-                className="textarea-full"
               >
-                <option value="">{t("contact.planDefault")}</option>
-                <option value="Pack Essentiel">{t("contact.plan1")}</option>
-                <option value="Pack Pro">{t("contact.plan2")}</option>
-                <option value="Pack Premium">{t("contact.plan3")}</option>
+                {activite === "Création d'entreprise" && (
+                  <>
+                    <option value="">{t("contact.planDefault")}</option>
+                    <option value="Pack Essentiel">{t("contact.plan1")}</option>
+                    <option value="Pack Pro">{t("contact.plan2")}</option>
+                    <option value="Pack Premium">{t("contact.plan3")}</option>
+                  </>
+                )}
+                {activite === "Gestion du syndic" && (
+                  <>
+                    <option value="">{t("contact.planDefault")}</option>
+                    <option value="Offre Essentielle">{t("contact.planSyndic1")}</option>
+                    <option value="Offre Confort">{t("contact.planSyndic2")}</option>
+                    <option value="Offre Premium">{t("contact.planSyndic3")}</option>
+                  </>
+                )}
+                {activite === "Sous-location" && (
+                  <option value="" disabled>{t("contact.planSoonOption")}</option>
+                )}
+                {!activite && (
+                  <option value="">{t("contact.planDefault")}</option>
+                )}
               </select>
 
               <textarea
@@ -1261,14 +1303,14 @@ export default function App() {
                 </Link>
               </p>
               <p>
-                <Link to="/activities" target="_blank" className="footer-link">
+                <Link to="/activities" className="footer-link">
                   {t("footer.qActivities")}
                 </Link>
               </p>
 
 
               <p>
-                <Link to="/tarifs" target="_blank" className="footer-link">
+                <Link to="/tarifs" className="footer-link">
                   {t("footer.qTarifs")}
                 </Link>
               </p>

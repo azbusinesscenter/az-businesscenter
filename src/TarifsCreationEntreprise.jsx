@@ -7,17 +7,16 @@ import { useTranslation } from "react-i18next";
 import {
   ArrowLeft,
   ArrowRight,
-  BriefcaseBusiness,
-  Building2,
+  CheckCircle,
   Mail,
   MapPin,
   Phone,
   PhoneCall,
-  Sofa,
+  Star,
   Tag,
 } from "lucide-react";
 
-export default function Tarifs() {
+export default function TarifsCreationEntreprise() {
   const { pathname } = useLocation();
   const { t, i18n } = useTranslation();
   const isAr = i18n.language === "ar";
@@ -49,25 +48,42 @@ export default function Tarifs() {
     return () => observer.disconnect();
   }, []);
 
-  const activityCards = [
+  const packs = [
     {
-      icon: BriefcaseBusiness,
-      title: t("act.a1t"),
-      description: t("act.a1d"),
-      to: "/tarifs/creation-entreprise",
+      name: "Pack Essentiel",
+      displayName: t("tarifs.p1name"),
+      tagline: t("tarifs.p1tag"),
+      price: "3 500",
+      deposit: t("tarifs.p1deposit"),
+      highlights: [t("tarifs.p1h1")],
+      button: t("tarifs.p1btn"),
+      recommended: false,
     },
     {
-      icon: Building2,
-      title: t("act.a2t"),
-      description: t("act.a2d"),
-      to: "/tarifs/syndic",
+      name: "Pack Pro",
+      displayName: t("tarifs.p2name"),
+      tagline: t("tarifs.p2tag"),
+      price: "5 000",
+      deposit: t("tarifs.p2deposit"),
+      highlights: [t("tarifs.p2h1"), t("tarifs.p2h2")],
+      button: t("tarifs.p2btn"),
+      recommended: true,
     },
     {
-      icon: Sofa,
-      title: t("act.a3t"),
-      description: t("act.a3d"),
-      to: "/tarifs/sous-location",
+      name: "Pack Premium",
+      displayName: t("tarifs.p3name"),
+      tagline: t("tarifs.p3tag"),
+      price: "9 980",
+      deposit: t("tarifs.p3deposit"),
+      highlights: [t("tarifs.p3h1"), t("tarifs.p3h2"), t("tarifs.p3h3")],
+      button: t("tarifs.p3btn"),
+      recommended: false,
     },
+  ];
+
+  const commonServices = [
+    t("tarifs.sv1"), t("tarifs.sv2"), t("tarifs.sv3"), t("tarifs.sv4"), t("tarifs.sv5"),
+    t("tarifs.sv6"), t("tarifs.sv7"), t("tarifs.sv8"), t("tarifs.sv9"), t("tarifs.sv10"),
   ];
 
   return (
@@ -93,7 +109,7 @@ export default function Tarifs() {
             letter-spacing: 0;
           }
 
-          [dir="rtl"] .hub-card-button svg {
+          [dir="rtl"] .pack-button svg {
             transform: scaleX(-1);
           }
           [dir="rtl"] .back-link svg {
@@ -200,11 +216,11 @@ export default function Tarifs() {
             line-height: 1.8;
           }
 
-          .hub-section {
+          .packs-section {
             padding: 60px 60px 90px;
           }
 
-          .hub-grid {
+          .packs-grid {
             max-width: 1250px;
             margin: 0 auto;
             display: grid;
@@ -213,7 +229,7 @@ export default function Tarifs() {
             align-items: stretch;
           }
 
-          .hub-card {
+          .pack-card {
             background: white;
             color: #071426;
             border-radius: 26px;
@@ -221,37 +237,145 @@ export default function Tarifs() {
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
+            position: relative;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
           }
 
-          .hub-card-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
+          .pack-card.recommended {
             background: #071426;
-            border: 1px solid rgba(201,162,39,0.35);
+            color: white;
+            box-shadow: 0 25px 60px rgba(7,20,38,0.35);
+            transform: translateY(-18px);
+            padding-top: 50px;
+          }
+
+          .pack-badge {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #c9a227;
+            color: #071426;
+            font-weight: 900;
+            font-size: 13px;
+            letter-spacing: 1px;
+            padding: 9px 24px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+          }
+
+          [dir="rtl"] .pack-badge {
+            letter-spacing: 0;
+          }
+
+          .pack-name {
+            font-size: 27px;
+            font-weight: 900;
+            margin: 0 0 6px;
+          }
+
+          .pack-tagline {
+            color: #c9a227;
+            font-size: 15px;
+            font-weight: 700;
+            margin: 0 0 26px;
+          }
+
+          .pack-price {
+            font-size: 52px;
+            font-weight: 900;
+            margin: 0;
+            line-height: 1;
+          }
+
+          .pack-price span {
+            font-size: 17px;
+            color: #c9a227;
+            font-weight: 900;
+          }
+
+          .pack-deposit {
+            color: #8a93a3;
+            font-size: 14px;
+            margin: 12px 0 26px;
+          }
+
+          .pack-card.recommended .pack-deposit {
+            color: #aab4c4;
+          }
+
+          .pack-divider {
+            border: none;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            margin: 0 0 24px;
+          }
+
+          .pack-card.recommended .pack-divider {
+            border-top-color: rgba(255,255,255,0.12);
+          }
+
+          .pack-highlight {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-weight: 800;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+          }
+
+          .highlight-icon {
+            flex-shrink: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #c9a227;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 26px;
           }
 
-          .hub-card-title {
-            font-size: 23px;
+          .inclus-badge {
+            display: inline-block;
+            background: rgba(201,162,39,0.15);
+            color: #c9a227;
+            border: 1px solid rgba(201,162,39,0.4);
+            font-size: 11px;
             font-weight: 900;
-            margin: 0 0 16px;
-            line-height: 1.3;
+            letter-spacing: 1px;
+            padding: 3px 10px;
+            border-radius: 6px;
           }
 
-          .hub-card-desc {
-            color: #5c6676;
-            font-size: 15px;
-            line-height: 1.75;
+          [dir="rtl"] .inclus-badge {
+            letter-spacing: 0;
+          }
+
+          .pack-services {
             flex-grow: 1;
-            margin: 0 0 28px;
+            margin-top: 12px;
           }
 
-          .hub-card-button {
+          .pack-service {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 11px;
+            color: #283447;
+          }
+
+          .pack-card.recommended .pack-service {
+            color: #d8dee9;
+          }
+
+          .pack-button {
+            margin-top: 28px;
             border: 1.5px solid #c9a227;
             background: transparent;
             color: #071426;
@@ -266,6 +390,47 @@ export default function Tarifs() {
             justify-content: center;
             gap: 8px;
             transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+          }
+
+          .pack-card.recommended .pack-button {
+            background: #c9a227;
+            color: #071426;
+            border-color: #c9a227;
+          }
+
+          .tarifs-cta {
+            padding: 80px 60px;
+            background: #071426;
+            text-align: center;
+          }
+
+          .tarifs-cta h2 {
+            font-size: 38px;
+            color: white;
+            margin: 0 0 18px;
+          }
+
+          .tarifs-cta h2 span {
+            color: #c9a227;
+          }
+
+          .tarifs-cta p {
+            color: #d8dee9;
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 750px;
+            margin: 0 auto 32px;
+          }
+
+          .home-button {
+            background: #c9a227;
+            color: #071426;
+            padding: 16px 34px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 900;
+            display: inline-block;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
           }
 
           .footer {
@@ -305,22 +470,38 @@ export default function Tarifs() {
             transform: translateY(0);
           }
 
-          .hub-card:hover {
+          .pack-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 20px 50px rgba(0,0,0,0.13), 0 0 0 1px rgba(201,162,39,0.2);
           }
 
-          .hub-card-button:hover {
+          .pack-card.recommended:hover {
+            transform: translateY(-22px);
+            box-shadow: 0 32px 70px rgba(7,20,38,0.5), 0 0 24px rgba(201,162,39,0.18);
+          }
+
+          .pack-button:hover {
             transform: translateY(-2px);
             background: #c9a227;
             box-shadow: 0 6px 20px rgba(201,162,39,0.35);
           }
 
+          .pack-card.recommended .pack-button:hover {
+            box-shadow: 0 6px 20px rgba(201,162,39,0.45);
+          }
+
+          .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201,162,39,0.4);
+          }
+
           @media (max-width: 1024px) {
             .tarifs-nav { padding: 0 32px; }
             .tarifs-hero { padding: 70px 40px 30px; }
-            .hub-section { padding: 50px 40px 80px; }
-            .hub-grid { grid-template-columns: 1fr; max-width: 560px; gap: 28px; }
+            .packs-section { padding: 50px 40px 80px; }
+            .packs-grid { grid-template-columns: 1fr; max-width: 560px; gap: 40px; }
+            .pack-card.recommended { transform: none; padding-top: 50px; }
+            .pack-card.recommended:hover { transform: translateY(-4px); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
           }
 
@@ -333,9 +514,14 @@ export default function Tarifs() {
             .tarifs-hero { padding: 60px 22px 25px; }
             .tarifs-hero h1 { font-size: 33px; line-height: 1.15; }
             .tarifs-hero p { font-size: 16px; }
-            .hub-section { padding: 45px 22px 65px; }
-            .hub-card { padding: 38px 24px; }
+            .packs-section { padding: 45px 22px 65px; }
+            .pack-card { padding: 38px 24px; }
+            .pack-card.recommended { padding-top: 48px; }
+            .pack-price { font-size: 42px; }
             .brand { font-size: 0.9em; letter-spacing: 0; }
+            .tarifs-cta { padding: 65px 22px; }
+            .tarifs-cta h2 { font-size: 28px; }
+            .tarifs-cta p { font-size: 16px; }
             .footer { padding: 45px 22px; }
             .footer-grid { grid-template-columns: 1fr; }
           }
@@ -346,10 +532,11 @@ export default function Tarifs() {
         <nav className="tarifs-nav">
           <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
           <div className="nav-right">
-            <Link to="/" className="back-link">
+            <Link to="/tarifs" className="back-link">
               <ArrowLeft size={18} />
               {t("acts.backHome")}
             </Link>
+            <Link to="/tarifs" className="back-link">{t("acts.tarifs")}</Link>
             <div className="lang-switch">
               <button
                 className={`lang-btn${i18n.language === "fr" ? " active" : ""}`}
@@ -372,28 +559,78 @@ export default function Tarifs() {
             <Tag size={15} /> {t("tarifs.pill")}
           </div>
           <h1>
-            {t("tarifsHub.title1")}<span>{t("tarifsHub.title2")}</span>
+            {t("tarifs.title1")}<span>{t("tarifs.title2")}</span>
           </h1>
           <p>
-            {t("tarifsHub.subtitle")}
+            {t("tarifs.subtitle")}
           </p>
         </section>
 
-        <section className="hub-section fade-in">
-          <div className="hub-grid">
-            {activityCards.map(({ icon: Icon, title, description, to }) => (
-              <div className="hub-card" key={to}>
-                <div className="hub-card-icon">
-                  <Icon size={30} color="#c9a227" />
+        <section className="packs-section fade-in">
+          <div className="packs-grid">
+            {packs.map((pack) => (
+              <div
+                key={pack.name}
+                className={`pack-card${pack.recommended ? " recommended" : ""}`}
+              >
+                {pack.recommended && (
+                  <div className="pack-badge">
+                    <Star size={14} /> {t("tarifs.recommended")}
+                  </div>
+                )}
+
+                <h3 className="pack-name">{pack.displayName}</h3>
+                <p className="pack-tagline">{pack.tagline}</p>
+
+                <p className="pack-price" dir="ltr" style={{ textAlign: isAr ? "right" : "left" }}>
+                  {pack.price} <span>{t("tarifs.priceUnit")}</span>
+                </p>
+                <p className="pack-deposit">{pack.deposit}</p>
+
+                <hr className="pack-divider" />
+
+                {pack.highlights.map((h) => (
+                  <div key={h} className="pack-highlight">
+                    <span className="highlight-icon">
+                      <Star size={14} color="#071426" />
+                    </span>
+                    <span style={{ flex: 1 }}>
+                      {h} <span className="inclus-badge">{t("tarifs.inclus")}</span>
+                    </span>
+                  </div>
+                ))}
+
+                <hr className="pack-divider" style={{ marginTop: "14px" }} />
+
+                <div className="pack-services">
+                  {commonServices.map((service) => (
+                    <div key={service} className="pack-service">
+                      <CheckCircle color="#c9a227" size={17} />
+                      {service}
+                    </div>
+                  ))}
                 </div>
-                <h3 className="hub-card-title">{title}</h3>
-                <p className="hub-card-desc">{description}</p>
-                <Link to={to} className="hub-card-button">
-                  {t("tarifsHub.viewPricing")} <ArrowRight size={17} />
+
+                <Link
+                  to={"/?activite=" + encodeURIComponent("Création d'entreprise") + "&plan=" + encodeURIComponent(pack.name)}
+                  className="pack-button"
+                >
+                  {pack.button} <ArrowRight size={17} />
                 </Link>
               </div>
             ))}
           </div>
+        </section>
+
+        <section className="tarifs-cta fade-in">
+          <h2>
+            {t("tarifs.ctaTitle1")}<span>{t("tarifs.ctaTitle2")}</span>
+          </h2>
+          <p>
+            {t("tarifs.ctaText1")}{" "}
+            <span className="brand">AZ Business Center</span> {t("tarifs.ctaText2")}
+          </p>
+          <Link to="/" className="home-button">{t("tarifs.backHome")}</Link>
         </section>
 
         <footer className="footer">

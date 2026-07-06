@@ -6,9 +6,6 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   ArrowLeft,
-  ArrowRight,
-  BriefcaseBusiness,
-  Building2,
   Mail,
   MapPin,
   Phone,
@@ -17,7 +14,7 @@ import {
   Tag,
 } from "lucide-react";
 
-export default function Tarifs() {
+export default function TarifsSousLocation() {
   const { pathname } = useLocation();
   const { t, i18n } = useTranslation();
   const isAr = i18n.language === "ar";
@@ -35,40 +32,6 @@ export default function Tarifs() {
     document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
-        });
-      },
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  const activityCards = [
-    {
-      icon: BriefcaseBusiness,
-      title: t("act.a1t"),
-      description: t("act.a1d"),
-      to: "/tarifs/creation-entreprise",
-    },
-    {
-      icon: Building2,
-      title: t("act.a2t"),
-      description: t("act.a2d"),
-      to: "/tarifs/syndic",
-    },
-    {
-      icon: Sofa,
-      title: t("act.a3t"),
-      description: t("act.a3d"),
-      to: "/tarifs/sous-location",
-    },
-  ];
 
   return (
     <>
@@ -91,10 +54,6 @@ export default function Tarifs() {
           }
           [dir="rtl"] .brand {
             letter-spacing: 0;
-          }
-
-          [dir="rtl"] .hub-card-button svg {
-            transform: scaleX(-1);
           }
           [dir="rtl"] .back-link svg {
             transform: scaleX(-1);
@@ -157,8 +116,8 @@ export default function Tarifs() {
             color: #071426;
           }
 
-          .tarifs-hero {
-            padding: 80px 60px 40px;
+          .soon-section {
+            padding: 100px 60px 130px;
             text-align: center;
           }
 
@@ -181,91 +140,47 @@ export default function Tarifs() {
             letter-spacing: 0;
           }
 
-          .tarifs-hero h1 {
-            font-size: 52px;
-            font-weight: 900;
-            margin: 0 0 20px;
-            color: #071426;
-          }
-
-          .tarifs-hero h1 span {
-            color: #c9a227;
-          }
-
-          .tarifs-hero p {
-            max-width: 720px;
-            margin: 0 auto;
-            color: #5c6676;
-            font-size: 18px;
-            line-height: 1.8;
-          }
-
-          .hub-section {
-            padding: 60px 60px 90px;
-          }
-
-          .hub-grid {
-            max-width: 1250px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-            align-items: stretch;
-          }
-
-          .hub-card {
-            background: white;
-            color: #071426;
-            border-radius: 26px;
-            padding: 42px 32px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-          }
-
-          .hub-card-icon {
-            width: 64px;
-            height: 64px;
+          .hero-icon {
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: #071426;
             border: 1px solid rgba(201,162,39,0.35);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 26px;
+            margin: 0 auto 26px;
           }
 
-          .hub-card-title {
-            font-size: 23px;
+          .soon-section h1 {
+            font-size: 40px;
             font-weight: 900;
-            margin: 0 0 16px;
-            line-height: 1.3;
-          }
-
-          .hub-card-desc {
-            color: #5c6676;
-            font-size: 15px;
-            line-height: 1.75;
-            flex-grow: 1;
-            margin: 0 0 28px;
-          }
-
-          .hub-card-button {
-            border: 1.5px solid #c9a227;
-            background: transparent;
+            margin: 0 0 22px;
             color: #071426;
-            text-align: center;
-            padding: 15px 20px;
-            border-radius: 12px;
-            font-weight: 900;
-            font-size: 15px;
+          }
+
+          .soon-section p {
+            max-width: 650px;
+            margin: 0 auto 36px;
+            color: #5c6676;
+            font-size: 18px;
+            line-height: 1.8;
+          }
+
+          .contact-button {
+            background: #c9a227;
+            color: #071426;
+            padding: 16px 34px;
+            border-radius: 8px;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            font-weight: 900;
+            display: inline-block;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+          }
+
+          .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201,162,39,0.4);
           }
 
           .footer {
@@ -294,33 +209,9 @@ export default function Tarifs() {
             display: none !important;
           }
 
-          .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-          }
-
-          .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-          }
-
-          .hub-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.13), 0 0 0 1px rgba(201,162,39,0.2);
-          }
-
-          .hub-card-button:hover {
-            transform: translateY(-2px);
-            background: #c9a227;
-            box-shadow: 0 6px 20px rgba(201,162,39,0.35);
-          }
-
           @media (max-width: 1024px) {
             .tarifs-nav { padding: 0 32px; }
-            .tarifs-hero { padding: 70px 40px 30px; }
-            .hub-section { padding: 50px 40px 80px; }
-            .hub-grid { grid-template-columns: 1fr; max-width: 560px; gap: 28px; }
+            .soon-section { padding: 80px 40px 100px; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
           }
 
@@ -330,11 +221,9 @@ export default function Tarifs() {
             .back-link { font-size: 12px; }
             .nav-right { gap: 14px; }
             .lang-btn { padding: 5px 11px; font-size: 12px; }
-            .tarifs-hero { padding: 60px 22px 25px; }
-            .tarifs-hero h1 { font-size: 33px; line-height: 1.15; }
-            .tarifs-hero p { font-size: 16px; }
-            .hub-section { padding: 45px 22px 65px; }
-            .hub-card { padding: 38px 24px; }
+            .soon-section { padding: 60px 22px 80px; }
+            .soon-section h1 { font-size: 28px; line-height: 1.2; }
+            .soon-section p { font-size: 16px; }
             .brand { font-size: 0.9em; letter-spacing: 0; }
             .footer { padding: 45px 22px; }
             .footer-grid { grid-template-columns: 1fr; }
@@ -346,10 +235,11 @@ export default function Tarifs() {
         <nav className="tarifs-nav">
           <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
           <div className="nav-right">
-            <Link to="/" className="back-link">
+            <Link to="/tarifs" className="back-link">
               <ArrowLeft size={18} />
               {t("acts.backHome")}
             </Link>
+            <Link to="/tarifs" className="back-link">{t("acts.tarifs")}</Link>
             <div className="lang-switch">
               <button
                 className={`lang-btn${i18n.language === "fr" ? " active" : ""}`}
@@ -367,33 +257,16 @@ export default function Tarifs() {
           </div>
         </nav>
 
-        <section className="tarifs-hero fade-in">
+        <section className="soon-section">
           <div className="hero-pill">
             <Tag size={15} /> {t("tarifs.pill")}
           </div>
-          <h1>
-            {t("tarifsHub.title1")}<span>{t("tarifsHub.title2")}</span>
-          </h1>
-          <p>
-            {t("tarifsHub.subtitle")}
-          </p>
-        </section>
-
-        <section className="hub-section fade-in">
-          <div className="hub-grid">
-            {activityCards.map(({ icon: Icon, title, description, to }) => (
-              <div className="hub-card" key={to}>
-                <div className="hub-card-icon">
-                  <Icon size={30} color="#c9a227" />
-                </div>
-                <h3 className="hub-card-title">{title}</h3>
-                <p className="hub-card-desc">{description}</p>
-                <Link to={to} className="hub-card-button">
-                  {t("tarifsHub.viewPricing")} <ArrowRight size={17} />
-                </Link>
-              </div>
-            ))}
+          <div className="hero-icon">
+            <Sofa size={32} color="#c9a227" />
           </div>
+          <h1>{t("act.a3t")}</h1>
+          <p>{t("tarifsSousLocation.text")}</p>
+          <Link to="/?contact=1" className="contact-button">{t("tarifsSousLocation.contactBtn")}</Link>
         </section>
 
         <footer className="footer">
