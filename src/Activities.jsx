@@ -5,15 +5,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
+  BadgeCheck,
   BriefcaseBusiness,
+  Building,
   Building2,
   Sofa,
   CheckCircle,
   ArrowLeft,
+  Eye,
+  Lightbulb,
   Mail,
   MapPin,
   Phone,
   PhoneCall,
+  Zap,
 } from "lucide-react";
 
 export default function Activities() {
@@ -68,9 +73,20 @@ export default function Activities() {
     [t("acts.s11t"), t("acts.s11d")],
   ];
 
+  const domiciliationPoints = [
+    t("acts.dom1"), t("acts.dom2"), t("acts.dom3"),
+  ];
+
   const syndicPoints = [
     t("acts.sy1"), t("acts.sy2"), t("acts.sy3"),
     t("acts.sy4"), t("acts.sy5"), t("acts.sy6"),
+  ];
+
+  const syndicValues = [
+    { icon: Eye, label: t("acts.syVal1") },
+    { icon: Zap, label: t("acts.syVal2") },
+    { icon: BadgeCheck, label: t("acts.syVal3") },
+    { icon: Lightbulb, label: t("acts.syVal4") },
   ];
 
   const sousPoints = [
@@ -334,6 +350,43 @@ export default function Activities() {
             gap: 18px;
           }
 
+          .value-badges-grid {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+          }
+
+          .value-badge {
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            text-align: center;
+            border-right: 1px solid rgba(201,162,39,0.35);
+          }
+
+          .value-badge:last-child {
+            border-right: none;
+          }
+
+          [dir="rtl"] .value-badge {
+            border-right: none;
+            border-left: 1px solid rgba(201,162,39,0.35);
+          }
+
+          [dir="rtl"] .value-badge:last-child {
+            border-left: none;
+          }
+
+          .value-badge span {
+            font-weight: 800;
+            font-size: 16px;
+            color: #071426;
+            line-height: 1.3;
+          }
+
           .light-point {
             background: white;
             color: #071426;
@@ -406,10 +459,6 @@ export default function Activities() {
             font-size: 14px;
           }
 
-          [dir="rtl"] #tidio-chat {
-            display: none !important;
-          }
-
           .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -432,6 +481,8 @@ export default function Activities() {
             .activity-section-dark, .activity-section-light { padding: 80px 40px; }
             .cards-grid, .points-grid { grid-template-columns: 1fr; }
             .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .value-badges-grid { grid-template-columns: repeat(2, 1fr); }
+            .value-badge, [dir="rtl"] .value-badge { border: none; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
           }
 
@@ -461,13 +512,16 @@ export default function Activities() {
             .activity-banner-title { font-size: 24px; }
             .steps-grid { grid-template-columns: 1fr; }
             .steps-title { font-size: 24px; }
+            .value-badges-grid { grid-template-columns: 1fr; }
           }
         `}
       </style>
 
       <div className="activities-page">
         <nav className="activities-nav">
-          <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
+          <Link to="/">
+            <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
+          </Link>
           <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
             <Link to="/" className="back-link">
               <ArrowLeft size={18} />
@@ -537,6 +591,33 @@ export default function Activities() {
           </div>
         </section>
 
+        {/* DOMICILIATION */}
+        <section className="activity-section-dark fade-in">
+          <div className="activity-banner">
+            <img src="/domiciliation.webp" alt="Domiciliation" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <div className="activity-banner-overlay">
+              <div className="activity-banner-icon">
+                <Building size={36} color="#c9a227" />
+              </div>
+              <h2 className="activity-banner-title">{t("acts.domiciliationTitle")}</h2>
+            </div>
+          </div>
+
+          <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
+            <p className="text-dark-bg">
+              {t("acts.domiciliationIntro")}
+            </p>
+            <div className="points-grid">
+              {domiciliationPoints.map((item) => (
+                <div key={item} className="dark-point">
+                  <CheckCircle color="#c9a227" size={22} />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* GESTION DU SYNDIC */}
         <section className="activity-section-light fade-in">
           <div className="activity-banner">
@@ -551,6 +632,19 @@ export default function Activities() {
 
           <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
             <p className="text-light-bg">
+              {t("acts.syndicIntro2")}
+            </p>
+
+            <div className="value-badges-grid">
+              {syndicValues.map(({ icon: Icon, label }) => (
+                <div key={label} className="value-badge">
+                  <Icon color="#c9a227" size={40} />
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-light-bg" style={{ marginTop: "40px" }}>
               <span className="brand">AZ BUSINESS CENTER</span> {t("acts.syndicIntro")}
             </p>
             <div className="points-grid">

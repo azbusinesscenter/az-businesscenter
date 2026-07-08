@@ -7,6 +7,7 @@ import App from "./App";
 import Activities from "./Activities";
 import Tarifs from "./Tarifs";
 import TarifsCreationEntreprise from "./TarifsCreationEntreprise";
+import TarifsDomiciliation from "./TarifsDomiciliation";
 import TarifsSyndic from "./TarifsSyndic";
 import TarifsSousLocation from "./TarifsSousLocation";
 
@@ -21,12 +22,18 @@ function ScrollToTop() {
 }
 
 function Root() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(
+    () => sessionStorage.getItem("hasSeenSplash") !== "true"
+  );
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
+    if (!loading) return;
+    const timer = setTimeout(() => {
+      sessionStorage.setItem("hasSeenSplash", "true");
+      setLoading(false);
+    }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [loading]);
 
   if (loading) {
     return (
@@ -67,6 +74,7 @@ function Root() {
         <Route path="/activities" element={<Activities />} />
         <Route path="/tarifs" element={<Tarifs />} />
         <Route path="/tarifs/creation-entreprise" element={<TarifsCreationEntreprise />} />
+        <Route path="/tarifs/domiciliation" element={<TarifsDomiciliation />} />
         <Route path="/tarifs/syndic" element={<TarifsSyndic />} />
         <Route path="/tarifs/sous-location" element={<TarifsSousLocation />} />
       </Routes>

@@ -41,8 +41,5 @@ Submissions are sent to a Google Apps Script endpoint via `fetch` with `mode: "n
 ### Static assets
 All images are WebP and served from `/public/`. Reference them as absolute paths (e.g. `/office.webp`, `/logo.png`).
 
-### Tidio chat
-The Tidio widget is hidden in Arabic via CSS (`[dir="rtl"] #tidio-chat { display: none !important; }`). The script tag is in `index.html`.
-
 ### Loading screen
 `src/main.jsx` shows a 2-second logo splash screen before rendering the router. This is a hardcoded `setTimeout` — not based on actual asset loading.

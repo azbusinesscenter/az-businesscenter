@@ -533,10 +533,6 @@ export default function TarifsSyndic() {
             font-size: 14px;
           }
 
-          [dir="rtl"] #tidio-chat {
-            display: none !important;
-          }
-
           .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -609,7 +605,9 @@ export default function TarifsSyndic() {
 
       <div className="tarifs-page">
         <nav className="tarifs-nav">
-          <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
+          <Link to="/">
+            <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
+          </Link>
           <div className="nav-right">
             <Link to="/tarifs" className="back-link">
               <ArrowLeft size={18} />

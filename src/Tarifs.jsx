@@ -8,6 +8,7 @@ import {
   ArrowLeft,
   ArrowRight,
   BriefcaseBusiness,
+  Building,
   Building2,
   Mail,
   MapPin,
@@ -55,6 +56,12 @@ export default function Tarifs() {
       title: t("act.a1t"),
       description: t("act.a1d"),
       to: "/tarifs/creation-entreprise",
+    },
+    {
+      icon: Building,
+      title: t("act.a4t"),
+      description: t("act.a4d"),
+      to: "/tarifs/domiciliation",
     },
     {
       icon: Building2,
@@ -208,8 +215,8 @@ export default function Tarifs() {
             max-width: 1250px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
             align-items: stretch;
           }
 
@@ -290,10 +297,6 @@ export default function Tarifs() {
             font-size: 14px;
           }
 
-          [dir="rtl"] #tidio-chat {
-            display: none !important;
-          }
-
           .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -320,7 +323,7 @@ export default function Tarifs() {
             .tarifs-nav { padding: 0 32px; }
             .tarifs-hero { padding: 70px 40px 30px; }
             .hub-section { padding: 50px 40px 80px; }
-            .hub-grid { grid-template-columns: 1fr; max-width: 560px; gap: 28px; }
+            .hub-grid { grid-template-columns: repeat(2, 1fr); max-width: 700px; gap: 24px; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
           }
 
@@ -334,6 +337,7 @@ export default function Tarifs() {
             .tarifs-hero h1 { font-size: 33px; line-height: 1.15; }
             .tarifs-hero p { font-size: 16px; }
             .hub-section { padding: 45px 22px 65px; }
+            .hub-grid { grid-template-columns: 1fr; max-width: 400px; }
             .hub-card { padding: 38px 24px; }
             .brand { font-size: 0.9em; letter-spacing: 0; }
             .footer { padding: 45px 22px; }
@@ -344,7 +348,9 @@ export default function Tarifs() {
 
       <div className="tarifs-page">
         <nav className="tarifs-nav">
-          <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
+          <Link to="/">
+            <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
+          </Link>
           <div className="nav-right">
             <Link to="/" className="back-link">
               <ArrowLeft size={18} />

@@ -205,10 +205,6 @@ export default function TarifsSousLocation() {
             font-size: 14px;
           }
 
-          [dir="rtl"] #tidio-chat {
-            display: none !important;
-          }
-
           @media (max-width: 1024px) {
             .tarifs-nav { padding: 0 32px; }
             .soon-section { padding: 80px 40px 100px; }
@@ -233,7 +229,9 @@ export default function TarifsSousLocation() {
 
       <div className="tarifs-page">
         <nav className="tarifs-nav">
-          <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
+          <Link to="/">
+            <img src="/logo.png" alt="AZ Business Center" className="nav-logo" />
+          </Link>
           <div className="nav-right">
             <Link to="/tarifs" className="back-link">
               <ArrowLeft size={18} />

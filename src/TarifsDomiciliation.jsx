@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import {
   ArrowLeft,
   ArrowRight,
+  Building,
   CheckCircle,
   Mail,
   MapPin,
@@ -16,7 +17,7 @@ import {
   Tag,
 } from "lucide-react";
 
-export default function TarifsCreationEntreprise() {
+export default function TarifsDomiciliation() {
   const { pathname } = useLocation();
   const { t, i18n } = useTranslation();
   const isAr = i18n.language === "ar";
@@ -48,42 +49,31 @@ export default function TarifsCreationEntreprise() {
     return () => observer.disconnect();
   }, []);
 
+  const features = [t("acts.dom1"), t("acts.dom2"), t("acts.dom3")];
+
   const packs = [
     {
-      name: "Pack Essentiel",
-      displayName: t("tarifs.p1name"),
-      tagline: t("tarifs.p1tag"),
-      price: "3 500",
-      deposit: t("tarifs.p1deposit"),
-      highlights: [t("tarifs.p1h1")],
-      button: t("tarifs.p1btn"),
-      recommended: false,
+      name: "basic",
+      planValue: "Offre Basic - 3 mois",
+      displayName: t("tarifsDomiciliation.p1name"),
+      tagline: t("tarifsDomiciliation.p1tag"),
+      priceLabel: t("tarifsSyndic.startingFrom"),
+      price: t("tarifsDomiciliation.p1price"),
+      unit: t("tarifsDomiciliation.p1unit"),
+      altLines: [t("tarifsDomiciliation.p1alt1"), t("tarifsDomiciliation.p1alt2")],
+      badge: null,
     },
     {
-      name: "Pack Pro",
-      displayName: t("tarifs.p2name"),
-      tagline: t("tarifs.p2tag"),
-      price: "5 000",
-      deposit: t("tarifs.p2deposit"),
-      highlights: [t("tarifs.p2h1"), t("tarifs.p2h2")],
-      button: t("tarifs.p2btn"),
-      recommended: true,
+      name: "pro",
+      planValue: "Offre spéciale professionnels - 12 mois",
+      displayName: t("tarifsDomiciliation.p2name"),
+      tagline: t("tarifsDomiciliation.p2tag"),
+      priceLabel: t("tarifsDomiciliation.durationLabel"),
+      price: t("tarifsDomiciliation.p2price"),
+      unit: t("tarifsDomiciliation.p2unit"),
+      altLines: [],
+      badge: t("tarifsDomiciliation.specialBadge"),
     },
-    {
-      name: "Pack Premium",
-      displayName: t("tarifs.p3name"),
-      tagline: t("tarifs.p3tag"),
-      price: "9 980",
-      deposit: t("tarifs.p3deposit"),
-      highlights: [t("tarifs.p3h1"), t("tarifs.p3h2"), t("tarifs.p3h3")],
-      button: t("tarifs.p3btn"),
-      recommended: false,
-    },
-  ];
-
-  const commonServices = [
-    t("tarifs.sv1"), t("tarifs.sv2"), t("tarifs.sv3"), t("tarifs.sv4"), t("tarifs.sv5"),
-    t("tarifs.sv6"), t("tarifs.sv7"), t("tarifs.sv8"), t("tarifs.sv9"), t("tarifs.sv10"),
   ];
 
   return (
@@ -197,15 +187,23 @@ export default function TarifsCreationEntreprise() {
             letter-spacing: 0;
           }
 
+          .hero-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #071426;
+            border: 1px solid rgba(201,162,39,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 26px;
+          }
+
           .tarifs-hero h1 {
-            font-size: 52px;
+            font-size: 46px;
             font-weight: 900;
             margin: 0 0 20px;
             color: #071426;
-          }
-
-          .tarifs-hero h1 span {
-            color: #c9a227;
           }
 
           .tarifs-hero p {
@@ -217,14 +215,14 @@ export default function TarifsCreationEntreprise() {
           }
 
           .packs-section {
-            padding: 60px 60px 90px;
+            padding: 60px 60px 100px;
           }
 
           .packs-grid {
-            max-width: 1250px;
+            max-width: 820px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 28px;
             align-items: stretch;
           }
@@ -284,15 +282,32 @@ export default function TarifsCreationEntreprise() {
             margin: 0 0 26px;
           }
 
+          .price-label {
+            color: #8a93a3;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 6px;
+          }
+
+          [dir="rtl"] .price-label {
+            letter-spacing: 0;
+          }
+
+          .pack-card.recommended .price-label {
+            color: #aab4c4;
+          }
+
           .pack-price {
-            font-size: 52px;
+            font-size: 42px;
             font-weight: 900;
             margin: 0;
-            line-height: 1;
+            line-height: 1.15;
           }
 
           .pack-price span {
-            font-size: 17px;
+            font-size: 16px;
             color: #c9a227;
             font-weight: 900;
           }
@@ -300,7 +315,11 @@ export default function TarifsCreationEntreprise() {
           .pack-deposit {
             color: #8a93a3;
             font-size: 14px;
-            margin: 12px 0 26px;
+            margin: 12px 0 0;
+          }
+
+          .pack-deposit:last-of-type {
+            margin-bottom: 26px;
           }
 
           .pack-card.recommended .pack-deposit {
@@ -315,44 +334,6 @@ export default function TarifsCreationEntreprise() {
 
           .pack-card.recommended .pack-divider {
             border-top-color: rgba(255,255,255,0.12);
-          }
-
-          .pack-highlight {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-            font-weight: 800;
-            font-size: 15px;
-            line-height: 1.5;
-            margin-bottom: 14px;
-            flex-wrap: wrap;
-          }
-
-          .highlight-icon {
-            flex-shrink: 0;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: #c9a227;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-
-          .inclus-badge {
-            display: inline-block;
-            background: rgba(201,162,39,0.15);
-            color: #c9a227;
-            border: 1px solid rgba(201,162,39,0.4);
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            padding: 3px 10px;
-            border-radius: 6px;
-          }
-
-          [dir="rtl"] .inclus-badge {
-            letter-spacing: 0;
           }
 
           .pack-services {
@@ -396,41 +377,6 @@ export default function TarifsCreationEntreprise() {
             background: #c9a227;
             color: #071426;
             border-color: #c9a227;
-          }
-
-          .tarifs-cta {
-            padding: 80px 60px;
-            background: #071426;
-            text-align: center;
-          }
-
-          .tarifs-cta h2 {
-            font-size: 38px;
-            color: white;
-            margin: 0 0 18px;
-          }
-
-          .tarifs-cta h2 span {
-            color: #c9a227;
-          }
-
-          .tarifs-cta p {
-            color: #d8dee9;
-            font-size: 18px;
-            line-height: 1.8;
-            max-width: 750px;
-            margin: 0 auto 32px;
-          }
-
-          .home-button {
-            background: #c9a227;
-            color: #071426;
-            padding: 16px 34px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 900;
-            display: inline-block;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
           }
 
           .footer {
@@ -486,16 +432,11 @@ export default function TarifsCreationEntreprise() {
             box-shadow: 0 6px 20px rgba(201,162,39,0.45);
           }
 
-          .home-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(201,162,39,0.4);
-          }
-
           @media (max-width: 1024px) {
             .tarifs-nav { padding: 0 32px; }
             .tarifs-hero { padding: 70px 40px 30px; }
             .packs-section { padding: 50px 40px 80px; }
-            .packs-grid { grid-template-columns: 1fr; max-width: 560px; gap: 40px; }
+            .packs-grid { grid-template-columns: 1fr; max-width: 480px; gap: 40px; }
             .pack-card.recommended { transform: none; padding-top: 50px; }
             .pack-card.recommended:hover { transform: translateY(-4px); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -508,16 +449,13 @@ export default function TarifsCreationEntreprise() {
             .nav-right { gap: 14px; }
             .lang-btn { padding: 5px 11px; font-size: 12px; }
             .tarifs-hero { padding: 60px 22px 25px; }
-            .tarifs-hero h1 { font-size: 33px; line-height: 1.15; }
+            .tarifs-hero h1 { font-size: 30px; line-height: 1.2; }
             .tarifs-hero p { font-size: 16px; }
             .packs-section { padding: 45px 22px 65px; }
             .pack-card { padding: 38px 24px; }
             .pack-card.recommended { padding-top: 48px; }
-            .pack-price { font-size: 42px; }
+            .pack-price { font-size: 34px; }
             .brand { font-size: 0.9em; letter-spacing: 0; }
-            .tarifs-cta { padding: 65px 22px; }
-            .tarifs-cta h2 { font-size: 28px; }
-            .tarifs-cta p { font-size: 16px; }
             .footer { padding: 45px 22px; }
             .footer-grid { grid-template-columns: 1fr; }
           }
@@ -556,12 +494,11 @@ export default function TarifsCreationEntreprise() {
           <div className="hero-pill">
             <Tag size={15} /> {t("tarifs.pill")}
           </div>
-          <h1>
-            {t("tarifs.title1")}<span>{t("tarifs.title2")}</span>
-          </h1>
-          <p>
-            {t("tarifs.subtitle")}
-          </p>
+          <div className="hero-icon">
+            <Building size={32} color="#c9a227" />
+          </div>
+          <h1>{t("act.a4t")}</h1>
+          <p>{t("tarifsDomiciliation.subtitle")}</p>
         </section>
 
         <section className="packs-section fade-in">
@@ -569,66 +506,45 @@ export default function TarifsCreationEntreprise() {
             {packs.map((pack) => (
               <div
                 key={pack.name}
-                className={`pack-card${pack.recommended ? " recommended" : ""}`}
+                className={`pack-card${pack.badge ? " recommended" : ""}`}
               >
-                {pack.recommended && (
+                {pack.badge && (
                   <div className="pack-badge">
-                    <Star size={14} /> {t("tarifs.recommended")}
+                    <Star size={14} /> {pack.badge}
                   </div>
                 )}
 
                 <h3 className="pack-name">{pack.displayName}</h3>
                 <p className="pack-tagline">{pack.tagline}</p>
 
+                <p className="price-label">{pack.priceLabel}</p>
                 <p className="pack-price" dir="ltr" style={{ textAlign: isAr ? "right" : "left" }}>
-                  {pack.price} <span>{t("tarifs.priceUnit")}</span>
+                  {pack.price} <span>{pack.unit}</span>
                 </p>
-                <p className="pack-deposit">{pack.deposit}</p>
+                {pack.altLines.map((line) => (
+                  <p key={line} className="pack-deposit">{line}</p>
+                ))}
 
                 <hr className="pack-divider" />
 
-                {pack.highlights.map((h) => (
-                  <div key={h} className="pack-highlight">
-                    <span className="highlight-icon">
-                      <Star size={14} color="#071426" />
-                    </span>
-                    <span style={{ flex: 1 }}>
-                      {h} <span className="inclus-badge">{t("tarifs.inclus")}</span>
-                    </span>
-                  </div>
-                ))}
-
-                <hr className="pack-divider" style={{ marginTop: "14px" }} />
-
                 <div className="pack-services">
-                  {commonServices.map((service) => (
-                    <div key={service} className="pack-service">
+                  {features.map((feature) => (
+                    <div key={feature} className="pack-service">
                       <CheckCircle color="#c9a227" size={17} />
-                      {service}
+                      {feature}
                     </div>
                   ))}
                 </div>
 
                 <Link
-                  to={"/?activite=" + encodeURIComponent("Création d'entreprise") + "&plan=" + encodeURIComponent(pack.name)}
+                  to={"/?activite=" + encodeURIComponent("Domiciliation") + "&plan=" + encodeURIComponent(pack.planValue)}
                   className="pack-button"
                 >
-                  {pack.button} <ArrowRight size={17} />
+                  {t("tarifsSyndic.chooseBtn")} <ArrowRight size={17} />
                 </Link>
               </div>
             ))}
           </div>
-        </section>
-
-        <section className="tarifs-cta fade-in">
-          <h2>
-            {t("tarifs.ctaTitle1")}<span>{t("tarifs.ctaTitle2")}</span>
-          </h2>
-          <p>
-            {t("tarifs.ctaText1")}{" "}
-            <span className="brand">AZ Business Center</span> {t("tarifs.ctaText2")}
-          </p>
-          <Link to="/" className="home-button">{t("tarifs.backHome")}</Link>
         </section>
 
         <footer className="footer">

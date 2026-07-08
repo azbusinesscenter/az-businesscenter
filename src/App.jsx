@@ -52,10 +52,17 @@ export default function App() {
   const scrollToContact = searchParams.get("contact");
 
   const creationPlans = ["Pack Essentiel", "Pack Pro", "Pack Premium"];
+  const domiciliationPlans = [
+    "Offre Basic - 3 mois",
+    "Offre Basic - 6 mois",
+    "Offre Basic - 12 mois",
+    "Offre spéciale professionnels - 12 mois",
+  ];
   const syndicPlans = ["Offre Essentielle", "Offre Confort", "Offre Premium"];
   const [activite, setActivite] = React.useState(() => {
     if (selectedActivite) return selectedActivite;
     if (creationPlans.includes(selectedPlan)) return "Création d'entreprise";
+    if (domiciliationPlans.includes(selectedPlan)) return "Domiciliation";
     if (syndicPlans.includes(selectedPlan)) return "Gestion du syndic";
     return "";
   });
@@ -644,7 +651,7 @@ export default function App() {
           .whatsapp-button {
             position: fixed;
             right: 15px;
-            bottom: 150px;
+            bottom: 24px;
             width: 68px;
             height: 68px;
             border-radius: 50%;
@@ -656,16 +663,9 @@ export default function App() {
             z-index: 2000;
             text-decoration: none;
           }
-          [dir="rtl"] #tidio-chat {
-            display: none !important;
-          }
             [dir="rtl"] .whatsapp-button {
             right: auto;
             left: 15px;
-          }
-            [dir="rtl"] #tidio-chat-iframe {
-            right: auto !important;
-            left: 0 !important;
           }
 
           .whatsapp-button img {
@@ -968,7 +968,7 @@ export default function App() {
               width: 58px;
               height: 58px;
               right: 18px;
-              bottom: 90px;
+              bottom: 20px;
             }
               [dir="rtl"] .whatsapp-button {
               right: auto;
@@ -1197,6 +1197,7 @@ export default function App() {
               >
                 <option value="">{t("contact.activiteDefault")}</option>
                 <option value="Création d'entreprise">{t("contact.activite1")}</option>
+                <option value="Domiciliation">{t("contact.activite4")}</option>
                 <option value="Gestion du syndic">{t("contact.activite2")}</option>
                 <option value="Sous-location">{t("contact.activite3")}</option>
               </select>
@@ -1214,6 +1215,15 @@ export default function App() {
                     <option value="Pack Essentiel">{t("contact.plan1")}</option>
                     <option value="Pack Pro">{t("contact.plan2")}</option>
                     <option value="Pack Premium">{t("contact.plan3")}</option>
+                  </>
+                )}
+                {activite === "Domiciliation" && (
+                  <>
+                    <option value="">{t("contact.planDefault")}</option>
+                    <option value="Offre Basic - 3 mois">{t("contact.planDomiciliation1")}</option>
+                    <option value="Offre Basic - 6 mois">{t("contact.planDomiciliation2")}</option>
+                    <option value="Offre Basic - 12 mois">{t("contact.planDomiciliation3")}</option>
+                    <option value="Offre spéciale professionnels - 12 mois">{t("contact.planDomiciliation4")}</option>
                   </>
                 )}
                 {activite === "Gestion du syndic" && (
