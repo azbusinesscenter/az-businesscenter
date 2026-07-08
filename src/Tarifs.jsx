@@ -52,16 +52,16 @@ export default function Tarifs() {
 
   const activityCards = [
     {
-      icon: BriefcaseBusiness,
-      title: t("act.a1t"),
-      description: t("act.a1d"),
-      to: "/tarifs/creation-entreprise",
-    },
-    {
       icon: Building,
       title: t("act.a4t"),
       description: t("act.a4d"),
       to: "/tarifs/domiciliation",
+    },
+    {
+      icon: BriefcaseBusiness,
+      title: t("act.a1t"),
+      description: t("act.a1d"),
+      to: "/tarifs/creation-entreprise",
     },
     {
       icon: Building2,

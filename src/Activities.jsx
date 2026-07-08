@@ -553,6 +553,33 @@ export default function Activities() {
           </p>
         </section>
 
+        {/* DOMICILIATION */}
+        <section className="activity-section-dark fade-in">
+          <div className="activity-banner">
+            <img src="/domiciliation.webp" alt="Domiciliation" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <div className="activity-banner-overlay">
+              <div className="activity-banner-icon">
+                <Building size={36} color="#c9a227" />
+              </div>
+              <h2 className="activity-banner-title">{t("acts.domiciliationTitle")}</h2>
+            </div>
+          </div>
+
+          <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
+            <p className="text-dark-bg">
+              {t("acts.domiciliationIntro")}
+            </p>
+            <div className="points-grid">
+              {domiciliationPoints.map((item) => (
+                <div key={item} className="dark-point">
+                  <CheckCircle color="#c9a227" size={22} />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* CONSEIL ET GESTION */}
         <section className="activity-section-dark fade-in">
           <div className="activity-banner">
@@ -585,33 +612,6 @@ export default function Activities() {
                   <div className="step-number">{index + 1}</div>
                   <h4>{title}</h4>
                   <p>{text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* DOMICILIATION */}
-        <section className="activity-section-dark fade-in">
-          <div className="activity-banner">
-            <img src="/domiciliation.webp" alt="Domiciliation" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            <div className="activity-banner-overlay">
-              <div className="activity-banner-icon">
-                <Building size={36} color="#c9a227" />
-              </div>
-              <h2 className="activity-banner-title">{t("acts.domiciliationTitle")}</h2>
-            </div>
-          </div>
-
-          <div style={{ maxWidth: "1250px", margin: "0 auto" }}>
-            <p className="text-dark-bg">
-              {t("acts.domiciliationIntro")}
-            </p>
-            <div className="points-grid">
-              {domiciliationPoints.map((item) => (
-                <div key={item} className="dark-point">
-                  <CheckCircle color="#c9a227" size={22} />
-                  <span>{item}</span>
                 </div>
               ))}
             </div>

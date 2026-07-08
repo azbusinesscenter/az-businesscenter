@@ -1196,8 +1196,8 @@ export default function App() {
                 style={inputStyle}
               >
                 <option value="">{t("contact.activiteDefault")}</option>
-                <option value="Création d'entreprise">{t("contact.activite1")}</option>
                 <option value="Domiciliation">{t("contact.activite4")}</option>
+                <option value="Création d'entreprise">{t("contact.activite1")}</option>
                 <option value="Gestion du syndic">{t("contact.activite2")}</option>
                 <option value="Sous-location">{t("contact.activite3")}</option>
               </select>
