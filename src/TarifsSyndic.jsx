@@ -17,6 +17,19 @@ import {
   Tag,
 } from "lucide-react";
 
+const NUM_TOKEN = /(\d+(?: \d+)*%?)/g;
+
+function wrapPriceNumbers(str) {
+  if (!str) return str;
+  return str.split(NUM_TOKEN).map((part, i) =>
+    i % 2 === 1 ? (
+      <span key={i} dir="ltr" style={{ unicodeBidi: "embed" }}>{part}</span>
+    ) : (
+      part
+    )
+  );
+}
+
 export default function TarifsSyndic() {
   const { pathname } = useLocation();
   const { t, i18n } = useTranslation();
@@ -355,13 +368,23 @@ export default function TarifsSyndic() {
           }
 
           .pack-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
             font-size: 42px;
             font-weight: 900;
             margin: 0;
             line-height: 1.15;
           }
 
-          .pack-price span {
+          .price-num {
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+            unicode-bidi: embed;
+          }
+
+          .price-unit {
             font-size: 16px;
             color: #c9a227;
             font-weight: 900;
@@ -659,10 +682,11 @@ export default function TarifsSyndic() {
                 <p className="pack-tagline">{pack.tagline}</p>
 
                 <p className="price-label">{t("tarifsSyndic.startingFrom")}</p>
-                <p className="pack-price" dir="ltr" style={{ textAlign: isAr ? "right" : "left" }}>
-                  {pack.price} <span>{pack.unit}</span>
+                <p className="pack-price">
+                  <span className="price-num" dir="ltr">{pack.price}</span>
+                  <span className="price-unit">{pack.unit}</span>
                 </p>
-                {pack.alt && <p className="pack-deposit">{pack.alt}</p>}
+                {pack.alt && <p className="pack-deposit">{wrapPriceNumbers(pack.alt)}</p>}
 
                 <hr className="pack-divider" />
 
@@ -694,7 +718,7 @@ export default function TarifsSyndic() {
             {addons.map(([label, price]) => (
               <div key={label} className="addon-row">
                 <span className="addon-label">{label}</span>
-                <span className="addon-price">{price}</span>
+                <span className="addon-price">{wrapPriceNumbers(price)}</span>
               </div>
             ))}
           </div>

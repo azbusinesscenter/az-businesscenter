@@ -51,7 +51,7 @@ export default function App() {
   const selectedActivite = searchParams.get("activite") || "";
   const scrollToContact = searchParams.get("contact");
 
-  const creationPlans = ["Pack Essentiel", "Pack Pro", "Pack Premium"];
+  const creationPlans = ["Pack Essentiel", "Pack Pro"];
   const domiciliationPlans = [
     "Offre Basic - 3 mois",
     "Offre Basic - 6 mois",
@@ -1214,7 +1214,6 @@ export default function App() {
                     <option value="">{t("contact.planDefault")}</option>
                     <option value="Pack Essentiel">{t("contact.plan1")}</option>
                     <option value="Pack Pro">{t("contact.plan2")}</option>
-                    <option value="Pack Premium">{t("contact.plan3")}</option>
                   </>
                 )}
                 {activite === "Domiciliation" && (

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import React from "react";
@@ -51,30 +51,35 @@ export default function TarifsDomiciliation() {
 
   const features = [t("acts.dom1"), t("acts.dom2"), t("acts.dom3")];
 
-  const packs = [
+  const durations = [
     {
-      name: "basic",
+      key: "3",
+      label: t("tarifsDomiciliation.d1name"),
+      price: t("tarifsDomiciliation.d1price"),
+      unit: t("tarifsDomiciliation.d1unit"),
+      gift: null,
       planValue: "Offre Basic - 3 mois",
-      displayName: t("tarifsDomiciliation.p1name"),
-      tagline: t("tarifsDomiciliation.p1tag"),
-      priceLabel: t("tarifsSyndic.startingFrom"),
-      price: t("tarifsDomiciliation.p1price"),
-      unit: t("tarifsDomiciliation.p1unit"),
-      altLines: [t("tarifsDomiciliation.p1alt1"), t("tarifsDomiciliation.p1alt2")],
-      badge: null,
     },
     {
-      name: "pro",
-      planValue: "Offre spéciale professionnels - 12 mois",
-      displayName: t("tarifsDomiciliation.p2name"),
-      tagline: t("tarifsDomiciliation.p2tag"),
-      priceLabel: t("tarifsDomiciliation.durationLabel"),
-      price: t("tarifsDomiciliation.p2price"),
-      unit: t("tarifsDomiciliation.p2unit"),
-      altLines: [],
-      badge: t("tarifsDomiciliation.specialBadge"),
+      key: "6",
+      label: t("tarifsDomiciliation.d2name"),
+      price: t("tarifsDomiciliation.d2price"),
+      unit: t("tarifsDomiciliation.d2unit"),
+      gift: t("tarifsDomiciliation.d2gift"),
+      planValue: "Offre Basic - 6 mois",
+    },
+    {
+      key: "12",
+      label: t("tarifsDomiciliation.d3name"),
+      price: t("tarifsDomiciliation.d3price"),
+      unit: t("tarifsDomiciliation.d3unit"),
+      gift: t("tarifsDomiciliation.d3gift"),
+      planValue: "Offre Basic - 12 mois",
     },
   ];
+
+  const [durationKey, setDurationKey] = useState("3");
+  const selected = durations.find((d) => d.key === durationKey);
 
   return (
     <>
@@ -231,7 +236,7 @@ export default function TarifsDomiciliation() {
             background: white;
             color: #071426;
             border-radius: 26px;
-            padding: 42px 32px;
+            padding: 40px 32px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
@@ -239,12 +244,11 @@ export default function TarifsDomiciliation() {
             transition: transform 0.25s ease, box-shadow 0.25s ease;
           }
 
-          .pack-card.recommended {
+          .pack-card.special {
             background: #071426;
             color: white;
-            box-shadow: 0 25px 60px rgba(7,20,38,0.35);
-            transform: translateY(-18px);
-            padding-top: 50px;
+            box-shadow: 0 20px 50px rgba(7,20,38,0.35);
+            padding-top: 48px;
           }
 
           .pack-badge {
@@ -295,50 +299,104 @@ export default function TarifsDomiciliation() {
             letter-spacing: 0;
           }
 
-          .pack-card.recommended .price-label {
+          .pack-card.special .price-label {
             color: #aab4c4;
           }
 
           .pack-price {
-            font-size: 42px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            font-size: 40px;
             font-weight: 900;
             margin: 0;
             line-height: 1.15;
           }
 
-          .pack-price span {
-            font-size: 16px;
+          .price-num {
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+            unicode-bidi: embed;
+          }
+
+          .price-unit {
+            font-size: 15px;
             color: #c9a227;
             font-weight: 900;
           }
 
-          .pack-deposit {
-            color: #8a93a3;
+          .duration-toggle {
+            display: flex;
+            gap: 6px;
+            background: rgba(7,20,38,0.06);
+            border-radius: 14px;
+            padding: 6px;
+            margin: 0 0 24px;
+          }
+
+          .toggle-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 11px 10px;
+            border-radius: 10px;
+            font-weight: 900;
             font-size: 14px;
-            margin: 12px 0 0;
+            color: #5c6676;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: inherit;
+            transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
           }
 
-          .pack-deposit:last-of-type {
-            margin-bottom: 26px;
+          .toggle-btn.active {
+            background: #071426;
+            color: #c9a227;
+            box-shadow: 0 6px 16px rgba(7,20,38,0.25);
           }
 
-          .pack-card.recommended .pack-deposit {
-            color: #aab4c4;
+          @keyframes giftPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.55; }
+          }
+
+          .gift-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(201,162,39,0.12);
+            border: 1px solid rgba(201,162,39,0.45);
+            color: #c9a227;
+            font-weight: 800;
+            font-size: 13px;
+            line-height: 1.4;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin: 16px 0 0;
+            animation: giftPulse 1.1s ease-in-out infinite;
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .gift-badge {
+              animation: none;
+            }
           }
 
           .pack-divider {
             border: none;
             border-top: 1px solid rgba(0,0,0,0.08);
-            margin: 0 0 24px;
+            margin: 24px 0 24px;
           }
 
-          .pack-card.recommended .pack-divider {
-            border-top-color: rgba(255,255,255,0.12);
+          .pack-card.special .pack-divider {
+            border-top-color: rgba(255,255,255,0.15);
           }
 
           .pack-services {
-            flex-grow: 1;
-            margin-top: 12px;
+            margin-bottom: 4px;
           }
 
           .pack-service {
@@ -351,12 +409,12 @@ export default function TarifsDomiciliation() {
             color: #283447;
           }
 
-          .pack-card.recommended .pack-service {
+          .pack-card.special .pack-service {
             color: #d8dee9;
           }
 
           .pack-button {
-            margin-top: 28px;
+            margin-top: auto;
             border: 1.5px solid #c9a227;
             background: transparent;
             color: #071426;
@@ -373,7 +431,7 @@ export default function TarifsDomiciliation() {
             transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
           }
 
-          .pack-card.recommended .pack-button {
+          .pack-card.special .pack-button {
             background: #c9a227;
             color: #071426;
             border-color: #c9a227;
@@ -417,9 +475,9 @@ export default function TarifsDomiciliation() {
             box-shadow: 0 20px 50px rgba(0,0,0,0.13), 0 0 0 1px rgba(201,162,39,0.2);
           }
 
-          .pack-card.recommended:hover {
-            transform: translateY(-22px);
-            box-shadow: 0 32px 70px rgba(7,20,38,0.5), 0 0 24px rgba(201,162,39,0.18);
+          .pack-card.special:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 26px 60px rgba(7,20,38,0.45);
           }
 
           .pack-button:hover {
@@ -428,7 +486,7 @@ export default function TarifsDomiciliation() {
             box-shadow: 0 6px 20px rgba(201,162,39,0.35);
           }
 
-          .pack-card.recommended .pack-button:hover {
+          .pack-card.special .pack-button:hover {
             box-shadow: 0 6px 20px rgba(201,162,39,0.45);
           }
 
@@ -436,9 +494,7 @@ export default function TarifsDomiciliation() {
             .tarifs-nav { padding: 0 32px; }
             .tarifs-hero { padding: 70px 40px 30px; }
             .packs-section { padding: 50px 40px 80px; }
-            .packs-grid { grid-template-columns: 1fr; max-width: 480px; gap: 40px; }
-            .pack-card.recommended { transform: none; padding-top: 50px; }
-            .pack-card.recommended:hover { transform: translateY(-4px); }
+            .packs-grid { max-width: 640px; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
           }
 
@@ -452,9 +508,11 @@ export default function TarifsDomiciliation() {
             .tarifs-hero h1 { font-size: 30px; line-height: 1.2; }
             .tarifs-hero p { font-size: 16px; }
             .packs-section { padding: 45px 22px 65px; }
-            .pack-card { padding: 38px 24px; }
-            .pack-card.recommended { padding-top: 48px; }
+            .packs-grid { grid-template-columns: 1fr; max-width: 420px; }
+            .pack-card { padding: 34px 24px; }
+            .pack-card.special { padding-top: 40px; }
             .pack-price { font-size: 34px; }
+            .toggle-btn { font-size: 12px; padding: 9px 6px; }
             .brand { font-size: 0.9em; letter-spacing: 0; }
             .footer { padding: 45px 22px; }
             .footer-grid { grid-template-columns: 1fr; }
@@ -503,47 +561,80 @@ export default function TarifsDomiciliation() {
 
         <section className="packs-section fade-in">
           <div className="packs-grid">
-            {packs.map((pack) => (
-              <div
-                key={pack.name}
-                className={`pack-card${pack.badge ? " recommended" : ""}`}
-              >
-                {pack.badge && (
-                  <div className="pack-badge">
-                    <Star size={14} /> {pack.badge}
-                  </div>
-                )}
+            <div className="pack-card">
+              <h3 className="pack-name">{t("tarifsDomiciliation.basicTag")}</h3>
+              <p className="pack-tagline">{t("tarifsDomiciliation.basicSubtitle")}</p>
 
-                <h3 className="pack-name">{pack.displayName}</h3>
-                <p className="pack-tagline">{pack.tagline}</p>
-
-                <p className="price-label">{pack.priceLabel}</p>
-                <p className="pack-price" dir="ltr" style={{ textAlign: isAr ? "right" : "left" }}>
-                  {pack.price} <span>{pack.unit}</span>
-                </p>
-                {pack.altLines.map((line) => (
-                  <p key={line} className="pack-deposit">{line}</p>
+              <div className="duration-toggle">
+                {durations.map((d) => (
+                  <button
+                    key={d.key}
+                    type="button"
+                    className={`toggle-btn${durationKey === d.key ? " active" : ""}`}
+                    onClick={() => setDurationKey(d.key)}
+                  >
+                    {d.label}
+                  </button>
                 ))}
-
-                <hr className="pack-divider" />
-
-                <div className="pack-services">
-                  {features.map((feature) => (
-                    <div key={feature} className="pack-service">
-                      <CheckCircle color="#c9a227" size={17} />
-                      {feature}
-                    </div>
-                  ))}
-                </div>
-
-                <Link
-                  to={"/?activite=" + encodeURIComponent("Domiciliation") + "&plan=" + encodeURIComponent(pack.planValue)}
-                  className="pack-button"
-                >
-                  {t("tarifsSyndic.chooseBtn")} <ArrowRight size={17} />
-                </Link>
               </div>
-            ))}
+
+              <p className="pack-price">
+                <span className="price-num" dir="ltr">{selected.price}</span>
+                <span className="price-unit">{selected.unit}</span>
+              </p>
+              {selected.gift && <div className="gift-badge">{selected.gift}</div>}
+
+              <hr className="pack-divider" />
+
+              <div className="pack-services">
+                {features.map((feature) => (
+                  <div key={feature} className="pack-service">
+                    <CheckCircle color="#c9a227" size={17} />
+                    {feature}
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                to={"/?activite=" + encodeURIComponent("Domiciliation") + "&plan=" + encodeURIComponent(selected.planValue)}
+                className="pack-button"
+              >
+                {t("tarifsSyndic.chooseBtn")} <ArrowRight size={17} />
+              </Link>
+            </div>
+
+            <div className="pack-card special">
+              <div className="pack-badge">
+                <Star size={14} /> {t("tarifsDomiciliation.specialBadge")}
+              </div>
+
+              <h3 className="pack-name">{t("tarifsDomiciliation.p2name")}</h3>
+              <p className="pack-tagline">{t("tarifsDomiciliation.p2tag")}</p>
+
+              <p className="price-label">{t("tarifsDomiciliation.durationLabel")}</p>
+              <p className="pack-price">
+                <span className="price-num" dir="ltr">{t("tarifsDomiciliation.p2price")}</span>
+                <span className="price-unit">{t("tarifsDomiciliation.p2unit")}</span>
+              </p>
+
+              <hr className="pack-divider" />
+
+              <div className="pack-services">
+                {features.map((feature) => (
+                  <div key={feature} className="pack-service">
+                    <CheckCircle color="#c9a227" size={17} />
+                    {feature}
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                to={"/?activite=" + encodeURIComponent("Domiciliation") + "&plan=" + encodeURIComponent("Offre spéciale professionnels - 12 mois")}
+                className="pack-button"
+              >
+                {t("tarifsSyndic.chooseBtn")} <ArrowRight size={17} />
+              </Link>
+            </div>
           </div>
         </section>
 
