@@ -530,7 +530,7 @@ export default function TarifsDomiciliation() {
               <ArrowLeft size={18} />
               {t("acts.backHome")}
             </Link>
-            <Link to="/tarifs" className="back-link">{t("acts.tarifs")}</Link>
+            <Link to="/" className="back-link">{t("nav.home")}</Link>
             <div className="lang-switch">
               <button
                 className={`lang-btn${i18n.language === "fr" ? " active" : ""}`}
