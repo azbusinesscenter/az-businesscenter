@@ -68,9 +68,72 @@ export default function App() {
   });
 
   React.useEffect(() => {
-    if (selectedPlan || scrollToContact) {
-      document.getElementById("contact")?.scrollIntoView();
-    }
+    const hashId = window.location.hash?.replace("#", "");
+    const targetId = hashId || (selectedPlan || scrollToContact ? "contact" : null);
+    if (!targetId) return;
+
+    let cancelled = false;
+    let rafId;
+
+    const waitForElement = () =>
+      new Promise((resolve) => {
+        const deadline = Date.now() + 6000;
+        const tryFind = () => {
+          if (cancelled) return resolve(null);
+          const el = document.getElementById(targetId);
+          if (el || Date.now() > deadline) return resolve(el);
+          rafId = requestAnimationFrame(tryFind);
+        };
+        tryFind();
+      });
+
+    const waitForImages = () => {
+      const pending = Array.from(document.images).filter((img) => !img.complete);
+      if (pending.length === 0) return Promise.resolve();
+      return Promise.race([
+        Promise.all(
+          pending.map(
+            (img) =>
+              new Promise((resolve) => {
+                img.addEventListener("load", resolve, { once: true });
+                img.addEventListener("error", resolve, { once: true });
+              })
+          )
+        ),
+        new Promise((resolve) => setTimeout(resolve, 3000)),
+      ]);
+    };
+
+    const scrollToTarget = () => {
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const supportsSmooth = "scrollBehavior" in document.documentElement.style;
+      el.scrollIntoView(supportsSmooth ? { behavior: "smooth", block: "start" } : true);
+    };
+
+    (async () => {
+      await waitForElement();
+      if (cancelled) return;
+      await waitForImages();
+      if (cancelled) return;
+      // Wait an extra frame so layout has settled after images/fonts resize content.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (cancelled) return;
+          scrollToTarget();
+          // Late-loading assets (maps embed, remaining images) can still shift
+          // layout; re-align once more shortly after for slow connections.
+          setTimeout(() => {
+            if (!cancelled) scrollToTarget();
+          }, 1000);
+        });
+      });
+    })();
+
+    return () => {
+      cancelled = true;
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [selectedPlan, scrollToContact]);
   const activitiesRef = React.useRef(null);
   const [atStart, setAtStart] = React.useState(true);
